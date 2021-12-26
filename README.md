@@ -1,2 +1,3 @@
-# react-flatifycss
-Reactified FlatifyCSS: Modern flat design framework for the web — inspired by Duolingo design system. 
+# React's FlatifyCSS
+The React version of FlatifyCSS: Modern flat design framework for the web. 
+
