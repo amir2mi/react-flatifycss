@@ -1,2 +1,3 @@
-import "flatifycss/dist/flatify-min.css"
+import "flatifycss/dist/css/flatify-min.css"
+
 export * from './button';

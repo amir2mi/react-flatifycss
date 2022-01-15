@@ -1,19 +1,48 @@
 import React from 'react';
+import classNames from 'classnames';
+import { FlatifyGeneralProps } from '../interfaces';
+import { generalClasses } from '../classes';
 
-/**
-const Button: FC<ButtonProps> = ({ text }) => {
-  return (
-    <button style={{ backgroundColor: 'blueviolet', color: 'white' }}>
-      {text}
-    </button>
-  );
-};
-*/
-interface ButtonProps {
-  text?: string;
+interface ButtonProps extends FlatifyGeneralProps {
+  bordered?: boolean;
   children?: React.ReactNode;
+  disabled?: boolean;
+  onClick?: () => void;
+  outline?: boolean;
+  state?: 'default' | 'active' | 'static' | 'disabled';
+  text?: string;
 }
 
-export function Button({ text, children }: ButtonProps) {
-  return <button className="button">{text! + children!}</button>;
+export function Button({
+  bordered,
+  children,
+  color,
+  disabled,
+  onClick,
+  outline,
+  roundness,
+  state,
+  style,
+  text,
+}: ButtonProps) {
+  return (
+    <button
+      className={classNames(
+        'button',
+        generalClasses({ style, color, roundness }),
+        {
+          bordered: bordered,
+          outline: outline,
+          active: state === 'active',
+          disabled: state === 'disabled',
+          static: state === 'static',
+        }
+      )}
+      disabled={disabled || state === 'disabled'}
+      onClick={() => onClick && onClick()}
+    >
+      {text && text}
+      {children && children}
+    </button>
+  );
 }
