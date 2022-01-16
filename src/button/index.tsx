@@ -9,8 +9,10 @@ interface ButtonProps extends FlatifyGeneralProps {
   disabled?: boolean;
   onClick?: () => void;
   outline?: boolean;
+  secondaryText?: React.ReactNode | string;
   state?: 'default' | 'active' | 'static' | 'disabled';
   text?: string;
+  variant?: 'default' | 'primary' | 'secondary' | 'tertiary';
 }
 
 export function Button({
@@ -21,29 +23,33 @@ export function Button({
   onClick,
   outline,
   roundness,
+  secondaryText,
   size,
   state,
   style,
   text,
+  variant,
 }: ButtonProps) {
   return (
     <button
-      className={classNames(
-        'button',
-        generalClasses({ color, size, style, roundness }),
-        {
-          bordered: bordered,
-          outline: outline,
-          active: state === 'active',
-          disabled: state === 'disabled',
-          static: state === 'static',
-        }
-      )}
+      className={classNames(generalClasses({ color, size, style, roundness }), {
+        button: variant !== 'tertiary',
+        bordered: bordered,
+        outline: outline,
+        active: state === 'active',
+        disabled: state === 'disabled',
+        static: state === 'static',
+        'style-accent': variant === 'primary',
+        'style-light': variant === 'secondary',
+        'link-button': variant === 'tertiary',
+        'two-layer-button': secondaryText,
+      })}
       disabled={disabled || state === 'disabled'}
       onClick={() => onClick && onClick()}
     >
       {text && text}
       {children && children}
+      {secondaryText && <span className="secondary-text">{secondaryText}</span>}
     </button>
   );
 }
