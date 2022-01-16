@@ -10,9 +10,9 @@ interface ButtonProps extends FlatifyGeneralProps {
   onClick?: () => void;
   outline?: boolean;
   secondaryText?: React.ReactNode | string;
-  state?: 'default' | 'active' | 'static' | 'disabled';
+  state?: 'active' | 'static' | 'disabled';
   text?: string;
-  variant?: 'default' | 'primary' | 'secondary' | 'tertiary';
+  variant?: 'primary' | 'secondary' | 'tertiary';
 }
 
 export function Button({
