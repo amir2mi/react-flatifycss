@@ -21,6 +21,7 @@ export function Button({
   onClick,
   outline,
   roundness,
+  size,
   state,
   style,
   text,
@@ -29,7 +30,7 @@ export function Button({
     <button
       className={classNames(
         'button',
-        generalClasses({ style, color, roundness }),
+        generalClasses({ color, size, style, roundness }),
         {
           bordered: bordered,
           outline: outline,

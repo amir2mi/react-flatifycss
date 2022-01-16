@@ -1,13 +1,16 @@
 export const generalClasses = ({
-  style,
   color,
   roundness,
+  size,
+  style,
 }: {
-  style?: string | undefined;
   color?: string | undefined;
   roundness?: string | undefined;
+  size?: string | undefined;
+  style?: string | undefined;
 }) => ({
-  ['style-' + style]: style && style !== 'default',
   ['color-' + color]: color && color !== 'default',
   ['edge-' + roundness]: roundness && roundness !== 'default',
+  ['size-' + size]: size && size !== 'default',
+  ['style-' + style]: style && style !== 'default',
 });

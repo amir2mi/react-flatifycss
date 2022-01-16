@@ -41,8 +41,21 @@ enum Roundness {
   'triangle' = 'triangle',
 }
 
+enum Sizes {
+  'default' = 'default',
+  'xs' = 'xs',
+  'sm' = 'sm',
+  'md' = 'md',
+  'lg' = 'lg',
+  '2x' = '2x',
+  '3x' = '3x',
+  '4x' = '4x',
+  '5x' = '5x',
+}
+
 export interface FlatifyGeneralProps {
   style?: Colors;
   color?: Colors;
   roundness?: Roundness;
+  size?: Sizes;
 }
