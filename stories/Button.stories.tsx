@@ -28,7 +28,6 @@ Default.args = {
   bordered: false,
   outline: false,
   disabled: false,
-  state: 'default',
   onClick: () => alert('Hello World'),
 };
 

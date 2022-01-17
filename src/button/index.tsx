@@ -45,7 +45,7 @@ export function Button({
         'two-layer-button': secondaryText,
       })}
       disabled={disabled || state === 'disabled'}
-      onClick={() => onClick && onClick()}
+      onClick={onClick}
     >
       {text && text}
       {children && children}
