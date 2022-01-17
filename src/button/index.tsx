@@ -15,35 +15,36 @@ interface ButtonProps extends FlatifyGeneralProps {
   variant?: 'primary' | 'secondary' | 'tertiary';
 }
 
-export function Button({
-  bordered,
-  children,
-  color,
-  disabled,
-  onClick,
-  outline,
-  roundness,
-  secondaryText,
-  size,
-  state,
-  style,
-  text,
-  variant,
-}: ButtonProps) {
+export function Button(props: ButtonProps) {
+  const {
+    bordered,
+    children,
+    disabled,
+    onClick,
+    outline,
+    secondaryText,
+    state,
+    text,
+    variant,
+  } = props;
+
   return (
     <button
-      className={classNames(generalClasses({ color, size, style, roundness }), {
-        button: variant !== 'tertiary',
-        bordered: bordered,
-        outline: outline,
-        active: state === 'active',
-        disabled: state === 'disabled',
-        static: state === 'static',
-        'style-accent': variant === 'primary',
-        'style-light': variant === 'secondary',
-        'link-button': variant === 'tertiary',
-        'two-layer-button': secondaryText,
-      })}
+      className={classNames(
+        {
+          button: variant !== 'tertiary',
+          bordered: bordered,
+          outline: outline,
+          active: state === 'active',
+          disabled: state === 'disabled',
+          static: state === 'static',
+          'style-accent': variant === 'primary',
+          'style-light': variant === 'secondary',
+          'link-button': variant === 'tertiary',
+          'two-layer-button': secondaryText,
+        },
+        generalClasses(props)
+      )}
       disabled={disabled || state === 'disabled'}
       onClick={onClick}
     >
