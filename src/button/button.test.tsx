@@ -1,10 +1,10 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { Default as Button } from '../stories/button.stories';
+import { Button } from '../button';
 
 describe('Button', () => {
   it('should be rendered without crashing', () => {
-    render(<Button {...Button.args} />);
+    render(<Button text="Hello ">World</Button>);
 
     expect(screen.getByText('Hello World')).toBeInTheDocument();
   });

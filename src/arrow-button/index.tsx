@@ -13,10 +13,12 @@ interface ArrowButtonProps extends FlatifyGeneralProps {
 }
 
 export function ArrowButton(props: ArrowButtonProps) {
-  const { direction, disabled, isButton, isFlipped, label, onClick } = props;
+  const { direction, disabled, id, isButton, isFlipped, label, onClick } =
+    props;
 
   return (
     <button
+      id={id}
       className={classNames(
         'arrow-button',
         {
@@ -24,11 +26,11 @@ export function ArrowButton(props: ArrowButtonProps) {
           'arrow-flip': isFlipped,
           ['arrow-' + direction]: direction,
         },
-        generalClasses(props)
+        ...generalClasses(props)
       )}
       aria-label={label}
       disabled={disabled}
       onClick={onClick}
-    />
+    ></button>
   );
 }

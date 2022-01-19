@@ -42,8 +42,10 @@ type Roundness =
 type Sizes = 'default' | 'xs' | 'sm' | 'md' | 'lg' | '2x' | '3x' | '4x' | '5x';
 
 export interface FlatifyGeneralProps {
-  style?: Colors;
+  className?: string;
   color?: Colors;
+  id?: string;
   roundness?: Roundness;
   size?: Sizes;
+  style?: Colors;
 }

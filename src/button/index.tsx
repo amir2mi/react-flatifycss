@@ -20,6 +20,7 @@ export function Button(props: ButtonProps) {
     bordered,
     children,
     disabled,
+    id,
     onClick,
     outline,
     secondaryText,
@@ -30,6 +31,7 @@ export function Button(props: ButtonProps) {
 
   return (
     <button
+      id={id}
       className={classNames(
         {
           button: variant !== 'tertiary',
@@ -43,7 +45,7 @@ export function Button(props: ButtonProps) {
           'link-button': variant === 'tertiary',
           'two-layer-button': secondaryText,
         },
-        generalClasses(props)
+        ...generalClasses(props)
       )}
       disabled={disabled || state === 'disabled'}
       onClick={onClick}
