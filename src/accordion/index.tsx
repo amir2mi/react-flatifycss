@@ -2,19 +2,12 @@ import React, { Fragment, useState } from 'react';
 import classNames from 'classnames';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
-import { AccordionItem } from './accordion-item';
+import { AccordionItem, AccordionItemProps } from './accordion-item';
 
 interface AccordionProps extends FlatifyGeneralProps {
   bordered?: boolean;
   expendable?: boolean;
-  items: AccordionItem[];
-}
-
-interface AccordionItem {
-  title: string;
-  content: string;
-  disableAddButton?: boolean;
-  heading?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+  items: AccordionItemProps[];
 }
 
 export function Accordion(props: AccordionProps) {

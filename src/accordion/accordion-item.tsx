@@ -1,8 +1,9 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import classNames from 'classnames';
+import { AddButton } from '../add-button';
 
-interface AccordionItemProps {
-  content: string | React.ReactNode;
+export interface AccordionItemProps {
+  content: string | React.ReactNode | Element;
   disableAddButton?: boolean;
   heading?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   isOpen?: boolean;
@@ -18,14 +19,10 @@ export function AccordionItem({
   onClick,
   title,
 }: AccordionItemProps) {
-  const thisItem = useRef(null);
-  const thisItemCollapse = useRef(null);
-
   const Heading = heading || 'h2';
 
   return (
     <div
-      ref={thisItem}
       className={classNames('accordion-item', {
         active: isOpen,
       })}
@@ -38,17 +35,17 @@ export function AccordionItem({
           onClick={onClick}
         >
           {title}
-          {!disableAddButton && <span className="add-button"></span>}
+          {!disableAddButton && (
+            <AddButton tagName="span" label="" active={isOpen} />
+          )}
         </button>
       </Heading>
       <div
-        ref={thisItemCollapse}
         id="accordion-1"
         className={classNames('accordion-collapse', {
           'modal-will-be-shown': isOpen,
           'modal-will-be-hidden': !isOpen,
         })}
-        // onAnimationEnd={() => alert('yell')}
       >
         <div className="accordion-body">{content}</div>
       </div>
