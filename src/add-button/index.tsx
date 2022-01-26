@@ -1,11 +1,11 @@
-import React, { createElement } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 
 interface AddButtonProps extends FlatifyGeneralProps {
   active?: boolean;
-  label: string | boolean;
+  label?: string | boolean;
   onClick?: () => void;
   tagName?: string;
 }
@@ -13,7 +13,7 @@ interface AddButtonProps extends FlatifyGeneralProps {
 export function AddButton(props: AddButtonProps) {
   const { active, label, onClick, tagName } = props;
 
-  return createElement(tagName || 'button', {
+  return React.createElement(tagName || 'button', {
     className: classNames(
       'add-button',
       {

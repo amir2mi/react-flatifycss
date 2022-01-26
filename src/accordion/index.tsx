@@ -11,10 +11,12 @@ interface AccordionProps extends FlatifyGeneralProps {
 }
 
 export function Accordion(props: AccordionProps) {
-  const [openedItem, setOpenedItem] = useState<number[]>([]);
   const { bordered, expendable, id, items } = props;
 
-  // when no items are passed, return null
+  // array of active accordion items indexes
+  const [openedItem, setOpenedItem] = useState<number[]>([]);
+
+  // when no items are passed, return
   if (!items) return null;
 
   return (
@@ -32,10 +34,8 @@ export function Accordion(props: AccordionProps) {
         return (
           <Fragment key={index}>
             <AccordionItem
+              {...item}
               isOpen={isOpen}
-              // index={}
-              title={item.title}
-              content={item.content}
               onClick={() => {
                 // expendable expects multiple opened items
                 if (expendable) {
