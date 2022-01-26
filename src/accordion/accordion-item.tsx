@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import getUniqueID from '../utils/id-generator';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 import { AddButton } from '../add-button';
@@ -25,6 +26,7 @@ export function AccordionItem(props: AccordionItemProps) {
     title,
   } = props;
   const Heading = heading || 'h2';
+  const id = getUniqueID(JSON.stringify(title || content));
 
   return (
     <div
@@ -39,8 +41,8 @@ export function AccordionItem(props: AccordionItemProps) {
       <Heading className="accordion-header">
         <button
           className="accordion-toggle"
-          aria-expanded="false"
-          aria-controls="accordion-1"
+          aria-expanded={isOpen}
+          aria-controls={id}
           onClick={onClick}
         >
           {title}
@@ -48,7 +50,7 @@ export function AccordionItem(props: AccordionItemProps) {
         </button>
       </Heading>
       <div
-        id="accordion-1"
+        id={id}
         className={classNames('accordion-collapse', {
           'modal-will-be-shown': isOpen,
           'modal-will-be-hidden': !isOpen,
