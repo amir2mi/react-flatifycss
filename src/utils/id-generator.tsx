@@ -10,5 +10,5 @@ export default function getUniqueID(
   str: string | undefined | null,
   limit: number = 16
 ) {
-  return getUuid(str || Math.ceil(Math.random() * 100000)).slice(0, limit);
+  return getUuid(str || Math.ceil(Math.random() * 99999)).slice(0, limit);
 }

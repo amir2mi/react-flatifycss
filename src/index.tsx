@@ -1,6 +1,7 @@
 import 'flatifycss/dist/css/flatify-min.css';
 
 export * from './accordion';
+export * from './dropdown';
 
 // button
 export * from './button';
