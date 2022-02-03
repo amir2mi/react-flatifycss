@@ -20,5 +20,11 @@ export const Bordered = Template.bind({});
 export const Customized = Template.bind({});
 
 Default.args = {
-  
+  autoClose: true
+buttonArrow:
+buttonLabel:
+children:
+isMenu:
+placement:
+tagName:
 };

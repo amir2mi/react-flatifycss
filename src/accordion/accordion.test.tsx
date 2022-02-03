@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, waitFor } from '@testing-library/react';
 import { Accordion } from '../accordion';
 
 const items = [
@@ -46,7 +46,7 @@ describe('Accordion', () => {
     );
   });
 
-  it('should open clicked accordion item', () => {
+  it('should open clicked accordion item', async () => {
     const { container } = render(<Accordion items={items} />);
     const firstItemToggle = container.querySelector('.accordion-toggle');
     if (!firstItemToggle)
@@ -54,8 +54,10 @@ describe('Accordion', () => {
 
     fireEvent.click(firstItemToggle);
 
-    expect(
-      container.querySelector('.accordion-item.active')
-    ).toBeInTheDocument();
+    await waitFor(() => {
+      expect(
+        container.querySelector('.accordion-item.active')
+      ).toBeInTheDocument();
+    });
   });
 });

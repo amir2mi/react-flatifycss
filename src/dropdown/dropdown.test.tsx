@@ -7,10 +7,7 @@ describe('Dropdown', () => {
     render(<Dropdown data-testid="dropdown" />);
 
     await waitFor(() => {
-      console.log(screen.getByTestId('dropdown'));
-
       expect(screen.getByTestId('dropdown')).toBeInTheDocument();
     });
-    // expect(screen.queryByTestId('data-test-dropdown')).toBeInTheDocument();
   });
 });

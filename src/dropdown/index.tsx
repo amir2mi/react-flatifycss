@@ -1,4 +1,4 @@
-import React, { ElementType, useState } from 'react';
+import React, { ElementType, useEffect, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { usePopper } from 'react-popper';
 import classNames from 'classnames';
@@ -8,15 +8,23 @@ import { generalClasses } from '../classes';
 import { generalAttributes } from '../attributes';
 
 interface DropdownProps extends FlatifyGeneralProps {
+  autoClose?: boolean | 'outside' | 'inside';
   buttonArrow?: boolean;
   buttonLabel?: string | React.ReactNode;
   children?: string | React.ReactNode;
-  tagName?: ElementType;
   isMenu?: boolean;
+  placement?: 'top' | 'bottom' | 'left' | 'right';
+  tagName?: ElementType;
 }
 
-const popperOptions = (arrowElement: HTMLElement | null) => {
+interface PopperOptionsProps {
+  arrowElement: HTMLElement | null;
+  placement: 'top' | 'bottom' | 'left' | 'right' | undefined;
+}
+
+const popperOptions = ({ arrowElement, placement }: PopperOptionsProps) => {
   return {
+    placement: placement || 'bottom',
     modifiers: [
       {
         name: 'arrow',
@@ -40,8 +48,16 @@ const popperOptions = (arrowElement: HTMLElement | null) => {
 };
 
 export function Dropdown(props: DropdownProps) {
-  const { buttonArrow, buttonLabel, children, className, isMenu, tagName } =
-    props;
+  const {
+    autoClose,
+    buttonArrow,
+    buttonLabel,
+    children,
+    className,
+    isMenu,
+    placement,
+    tagName,
+  } = props;
 
   // visibility toggle
   const [isOpen, setOpen] = useState<boolean>(false);
@@ -55,17 +71,47 @@ export function Dropdown(props: DropdownProps) {
   const { styles, attributes, update } = usePopper(
     referenceElement,
     popperElement,
-    popperOptions(arrowElement)
+    popperOptions({ arrowElement, placement })
   );
 
   const DropdownBody: ElementType = tagName || (isMenu ? 'ul' : 'div');
   const DropdownArrow: ElementType = isMenu ? 'li' : 'div';
   const buttonId: string = getUniqueID(JSON.stringify(buttonLabel));
 
+  const closeDropdown = () => setOpen(false);
+
+  // keyup event handler
+  const handleKeyUp = (e: KeyboardEvent) => {
+    if (e.key === 'Escape' && autoClose !== false) closeDropdown();
+  };
+
+  // click event handlers
+  const outsideClicked = () => {
+    if (autoClose === true || autoClose === 'outside') closeDropdown();
+  };
+  const insideClicked = () => {
+    if (autoClose === true || autoClose === 'inside') closeDropdown();
+  };
+
+  useEffect(() => {
+    // listen when document is clicked to close dropdown
+    document.addEventListener('click', outsideClicked);
+
+    // listen when user presses escape key to close dropdown
+    document.addEventListener('keyup', handleKeyUp);
+
+    return () => {
+      // clean up the event listeners
+      document.removeEventListener('click', outsideClicked);
+      document.removeEventListener('keyup', handleKeyUp);
+    };
+  }, []);
+
   return (
     <div
       className={classNames('dropdown-wrapper', className)}
       {...generalAttributes(props)}
+      onClick={(e) => e.stopPropagation()}
     >
       <button
         ref={setReferenceElement}
@@ -82,7 +128,7 @@ export function Dropdown(props: DropdownProps) {
           setOpen((old) => !old);
 
           // update popper after animation
-          update && setTimeout(() => update(), 350);
+          update && setTimeout(() => update(), 320);
         }}
       >
         {buttonLabel}
@@ -106,9 +152,13 @@ export function Dropdown(props: DropdownProps) {
             ...generalClasses(props)
           )}
           aria-labelledby={buttonId}
+          onClick={() => {
+            // check if the dropdown should be closed depending on autoClose
+            insideClicked();
+          }}
         >
           {children}
-          <DropdownArrow aria-hidden="true">
+          <DropdownArrow aria-hidden="true" data-popper-placement="right">
             <span
               ref={setArrowElement}
               style={styles.arrow}

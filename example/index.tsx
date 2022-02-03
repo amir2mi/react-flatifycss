@@ -5,8 +5,14 @@ import { Dropdown } from '../.';
 
 const App = () => {
   return (
-    <div>
-      <Dropdown data-testid="help" isMenu={true} buttonLabel="help">
+    <div style={{ padding: '20em' }}>
+      <Dropdown
+        data-testid="help"
+        isMenu={true}
+        buttonLabel="help"
+        placement="right"
+        autoClose={true}
+      >
         <li className="menu-item">test</li>
         <li className="menu-item">test</li>
         <li className="menu-item">test</li>
