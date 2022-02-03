@@ -1,4 +1,5 @@
 import React, { ElementType, useState } from 'react';
+import { CSSTransition } from 'react-transition-group';
 import classNames from 'classnames';
 import getUniqueID from '../utils/id-generator';
 import { FlatifyGeneralProps } from '../interfaces';
@@ -36,7 +37,14 @@ export function Dropdown(props: DropdownProps) {
         {buttonLabel}
       </button>
 
-      {isOpen && (
+      <CSSTransition
+        in={isOpen}
+        timeout={300}
+        classNames={{
+          enterDone: 'show',
+          exitActive: 'show dropdown-will-be-hidden',
+        }}
+      >
         <DropdownBody
           className={classNames(
             'dropdown',
@@ -50,7 +58,7 @@ export function Dropdown(props: DropdownProps) {
             <span className="pointer-arrow"></span>
           </div>
         </DropdownBody>
-      )}
+      </CSSTransition>
     </div>
   );
 }

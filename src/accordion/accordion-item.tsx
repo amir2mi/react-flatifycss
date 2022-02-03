@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import { CSSTransition } from 'react-transition-group';
 import getUniqueID from '../utils/id-generator';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
@@ -49,18 +50,27 @@ export function AccordionItem(props: AccordionItemProps) {
           {!disableAddButton && <AddButton tagName="span" active={isOpen} />}
         </button>
       </Heading>
-      <div
-        id={id}
-        className={classNames('accordion-collapse', {
-          'modal-will-be-shown': isOpen,
-          'modal-will-be-hidden': !isOpen,
-        })}
+      <CSSTransition
+        in={isOpen}
+        timeout={300}
+        classNames={{
+          enterDone: 'show',
+          exitActive: 'show dropdown-will-be-hidden',
+        }}
       >
-        <div className="accordion-body">
-          {content}
-          {children}
+        <div
+          id={id}
+          className={classNames('accordion-collapse', {
+            'modal-will-be-shown': isOpen,
+            'modal-will-be-hidden': !isOpen,
+          })}
+        >
+          <div className="accordion-body">
+            {content}
+            {children}
+          </div>
         </div>
-      </div>
+      </CSSTransition>
     </div>
   );
 }
