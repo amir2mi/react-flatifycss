@@ -26,7 +26,7 @@ export function Dropdown(props: DropdownProps) {
   );
   const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
   const [arrowElement, setArrowElement] = useState<HTMLElement | null>(null);
-  const { styles, attributes, forceUpdate } = usePopper(
+  const { styles, attributes, update } = usePopper(
     referenceElement,
     popperElement,
     {
@@ -66,13 +66,10 @@ export function Dropdown(props: DropdownProps) {
           ...generalClasses(props)
         )}
         onClick={() => {
-          setOpen((old) => {
-            if (old === false && forceUpdate) {
-              forceUpdate();
-            }
+          setOpen((old) => !old);
 
-            return !old;
-          });
+          // update popper after animation
+          update && setTimeout(() => update(), 350);
         }}
       >
         {buttonLabel}
