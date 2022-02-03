@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
+import { generalAttributes } from '../attributes';
 
 interface ButtonGroupProps extends FlatifyGeneralProps {
   children?: React.ReactNode;
@@ -9,16 +10,16 @@ interface ButtonGroupProps extends FlatifyGeneralProps {
 }
 
 export function ButtonGroup(props: ButtonGroupProps) {
-  const { children, id, vertical } = props;
+  const { children, vertical } = props;
 
   return (
     <div
-      id={id}
       className={classNames(
         'button-group',
         { vertical: vertical },
         ...generalClasses(props)
       )}
+      {...generalAttributes(props)}
     >
       {children && children}
     </div>

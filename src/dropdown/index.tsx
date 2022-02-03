@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import getUniqueID from '../utils/id-generator';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
+import { generalAttributes } from '../attributes';
 
 interface DropdownProps extends FlatifyGeneralProps {
   buttonArrow?: boolean;
@@ -39,7 +40,7 @@ const popperOptions = (arrowElement: HTMLElement | null) => {
 };
 
 export function Dropdown(props: DropdownProps) {
-  const { buttonArrow, buttonLabel, children, className, id, isMenu, tagName } =
+  const { buttonArrow, buttonLabel, children, className, isMenu, tagName } =
     props;
 
   // visibility toggle
@@ -62,7 +63,10 @@ export function Dropdown(props: DropdownProps) {
   const buttonId: string = getUniqueID(JSON.stringify(buttonLabel));
 
   return (
-    <div id={id} className={classNames('dropdown-wrapper', className)}>
+    <div
+      className={classNames('dropdown-wrapper', className)}
+      {...generalAttributes(props)}
+    >
       <button
         ref={setReferenceElement}
         id={buttonId}

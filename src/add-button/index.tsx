@@ -2,6 +2,7 @@ import React, { ElementType } from 'react';
 import classNames from 'classnames';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
+import { generalAttributes } from '../attributes';
 
 interface AddButtonProps extends FlatifyGeneralProps {
   active?: boolean;
@@ -11,10 +12,9 @@ interface AddButtonProps extends FlatifyGeneralProps {
 }
 
 export function AddButton(props: AddButtonProps) {
-  const { active, id, label, onClick, tagName } = props;
+  const { active, label, onClick, tagName } = props;
 
   return React.createElement(tagName || 'button', {
-    id,
     className: classNames(
       'add-button',
       {
@@ -24,5 +24,6 @@ export function AddButton(props: AddButtonProps) {
     ),
     'aria-label': !!label,
     onClick: onClick,
+    ...generalAttributes(props),
   });
 }

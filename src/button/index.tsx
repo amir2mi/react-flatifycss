@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
+import { generalAttributes } from '../attributes';
 
 interface ButtonProps extends FlatifyGeneralProps {
   bordered?: boolean;
@@ -20,7 +21,6 @@ export function Button(props: ButtonProps) {
     bordered,
     children,
     disabled,
-    id,
     onClick,
     outline,
     secondaryText,
@@ -31,7 +31,6 @@ export function Button(props: ButtonProps) {
 
   return (
     <button
-      id={id}
       className={classNames(
         {
           button: variant !== 'tertiary',
@@ -49,6 +48,7 @@ export function Button(props: ButtonProps) {
       )}
       disabled={disabled || state === 'disabled'}
       onClick={onClick}
+      {...generalAttributes(props)}
     >
       {text && text}
       {children && children}

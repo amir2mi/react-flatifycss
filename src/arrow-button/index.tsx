@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
+import { generalAttributes } from '../attributes';
 
 interface ArrowButtonProps extends FlatifyGeneralProps {
   direction?: 'top' | 'bottom' | 'left' | 'right';
@@ -13,12 +14,10 @@ interface ArrowButtonProps extends FlatifyGeneralProps {
 }
 
 export function ArrowButton(props: ArrowButtonProps) {
-  const { direction, disabled, id, isButton, isFlipped, label, onClick } =
-    props;
+  const { direction, disabled, isButton, isFlipped, label, onClick } = props;
 
   return (
     <button
-      id={id}
       className={classNames(
         'arrow-button',
         {
@@ -31,6 +30,7 @@ export function ArrowButton(props: ArrowButtonProps) {
       aria-label={label}
       disabled={disabled}
       onClick={onClick}
+      {...generalAttributes(props)}
     ></button>
   );
 }

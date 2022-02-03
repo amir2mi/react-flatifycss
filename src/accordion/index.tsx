@@ -2,6 +2,7 @@ import React, { Fragment, useState } from 'react';
 import classNames from 'classnames';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
+import { generalAttributes } from '../attributes';
 import { AccordionItem, AccordionItemProps } from './accordion-item';
 
 interface AccordionProps extends FlatifyGeneralProps {
@@ -11,7 +12,7 @@ interface AccordionProps extends FlatifyGeneralProps {
 }
 
 export function Accordion(props: AccordionProps) {
-  const { bordered, expendable, id, items } = props;
+  const { bordered, expendable, items } = props;
 
   // array of active accordion items indexes
   const [openedItem, setOpenedItem] = useState<number[]>([]);
@@ -21,12 +22,12 @@ export function Accordion(props: AccordionProps) {
 
   return (
     <div
-      id={id}
       className={classNames(
         'accordion',
         { bordered: bordered },
         ...generalClasses(props)
       )}
+      {...generalAttributes(props)}
     >
       {items.map((item, index) => {
         const isOpen = openedItem.filter((i) => i === index).length > 0;

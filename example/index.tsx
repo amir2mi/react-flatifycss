@@ -6,7 +6,7 @@ import { Dropdown } from '../.';
 const App = () => {
   return (
     <div>
-      <Dropdown isMenu={true} buttonLabel="hel">
+      <Dropdown data-testid="help" isMenu={true} buttonLabel="help">
         <li className="menu-item">test</li>
         <li className="menu-item">test</li>
         <li className="menu-item">test</li>
