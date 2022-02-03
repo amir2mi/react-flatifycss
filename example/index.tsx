@@ -6,8 +6,11 @@ import { Dropdown } from '../.';
 const App = () => {
   return (
     <div>
-      <Dropdown buttonLabel="hel">
-        <p>Hello my lady</p>
+      <Dropdown isMenu={true} buttonLabel="hel">
+        <li className="menu-item">test</li>
+        <li className="menu-item">test</li>
+        <li className="menu-item">test</li>
+        <li className="menu-item">test</li>
       </Dropdown>
       <br />
       <br />

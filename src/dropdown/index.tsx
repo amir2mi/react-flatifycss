@@ -14,12 +14,37 @@ interface DropdownProps extends FlatifyGeneralProps {
   isMenu?: boolean;
 }
 
+const popperOptions = (arrowElement: HTMLElement | null) => {
+  return {
+    modifiers: [
+      {
+        name: 'arrow',
+        options: { element: arrowElement && arrowElement, padding: 15 },
+      },
+      {
+        name: 'computeStyles',
+        options: {
+          // because of show/hide animation that works with transform property, it should be false
+          gpuAcceleration: false,
+        },
+      },
+      {
+        name: 'offset',
+        options: {
+          offset: [0, 20],
+        },
+      },
+    ],
+  };
+};
+
 export function Dropdown(props: DropdownProps) {
   const { buttonArrow, buttonLabel, children, className, id, isMenu, tagName } =
     props;
 
   // visibility toggle
   const [isOpen, setOpen] = useState<boolean>(false);
+
   // Popper js
   const [referenceElement, setReferenceElement] = useState<HTMLElement | null>(
     null
@@ -29,28 +54,12 @@ export function Dropdown(props: DropdownProps) {
   const { styles, attributes, update } = usePopper(
     referenceElement,
     popperElement,
-    {
-      modifiers: [
-        { name: 'arrow', options: { element: arrowElement, padding: 15 } },
-        {
-          name: 'computeStyles',
-          options: {
-            // because of show/hide animation that works with transform property, it should be false
-            gpuAcceleration: false,
-          },
-        },
-        {
-          name: 'offset',
-          options: {
-            offset: [0, 20],
-          },
-        },
-      ],
-    }
+    popperOptions(arrowElement)
   );
 
-  const DropdownBody = tagName || 'ul';
-  const buttonId = getUniqueID(JSON.stringify(buttonLabel));
+  const DropdownBody: ElementType = tagName || (isMenu ? 'ul' : 'div');
+  const DropdownArrow: ElementType = isMenu ? 'li' : 'div';
+  const buttonId: string = getUniqueID(JSON.stringify(buttonLabel));
 
   return (
     <div id={id} className={classNames('dropdown-wrapper', className)}>
@@ -95,13 +104,13 @@ export function Dropdown(props: DropdownProps) {
           aria-labelledby={buttonId}
         >
           {children}
-          <div aria-hidden="true">
+          <DropdownArrow aria-hidden="true">
             <span
               ref={setArrowElement}
               style={styles.arrow}
               className="pointer-arrow"
             ></span>
-          </div>
+          </DropdownArrow>
         </DropdownBody>
       </CSSTransition>
     </div>
