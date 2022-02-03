@@ -1,4 +1,4 @@
-import React, { ElementType } from 'react';
+import React, { ElementType, useState } from 'react';
 import classNames from 'classnames';
 import getUniqueID from '../utils/id-generator';
 import { FlatifyGeneralProps } from '../interfaces';
@@ -13,9 +13,10 @@ interface DropdownProps extends FlatifyGeneralProps {
 }
 
 export function Dropdown(props: DropdownProps) {
+  const [isOpen, setOpen] = useState<boolean>(false);
   const { buttonArrow, buttonLabel, children, className, id, isMenu, tagName } =
     props;
-  const DropDownBody = tagName || 'ul';
+  const DropdownBody = tagName || 'ul';
   const buttonId = getUniqueID(JSON.stringify(buttonLabel));
 
   return (
@@ -30,20 +31,26 @@ export function Dropdown(props: DropdownProps) {
           },
           ...generalClasses(props)
         )}
+        onClick={() => setOpen((old) => !old)}
       >
         {buttonLabel}
       </button>
 
-      <DropDownBody
-        className={classNames(
-          'dropdown',
-          { 'menu-items-wrapper': isMenu },
-          ...generalClasses(props)
-        )}
-        aria-labelledby={buttonId}
-      >
-        {children}
-      </DropDownBody>
+      {isOpen && (
+        <DropdownBody
+          className={classNames(
+            'dropdown',
+            { 'menu-items-wrapper': isMenu },
+            ...generalClasses(props)
+          )}
+          aria-labelledby={buttonId}
+        >
+          {children}
+          <div aria-hidden="true">
+            <span className="pointer-arrow"></span>
+          </div>
+        </DropdownBody>
+      )}
     </div>
   );
 }

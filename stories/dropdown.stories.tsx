@@ -12,7 +12,7 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story = (args) => <Dropdown />;
+const Template: Story = (args) => <Dropdown {...args} />;
 
 export const Default = Template.bind({});
 export const Expendable = Template.bind({});
