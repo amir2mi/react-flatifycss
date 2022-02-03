@@ -74,6 +74,23 @@ export function Dropdown(props: DropdownProps) {
     popperOptions({ arrowElement, placement })
   );
 
+  // arrow direction should be opposite of placement
+  let arrowDirection: string = 'bottom';
+  switch (placement) {
+    case 'top':
+      arrowDirection = 'bottom';
+      break;
+    case 'bottom':
+      arrowDirection = 'top';
+      break;
+    case 'left':
+      arrowDirection = 'right';
+      break;
+    case 'right':
+      arrowDirection = 'left';
+      break;
+  }
+
   const DropdownBody: ElementType = tagName || (isMenu ? 'ul' : 'div');
   const DropdownArrow: ElementType = isMenu ? 'li' : 'div';
   const buttonId: string = getUniqueID(JSON.stringify(buttonLabel));
@@ -121,6 +138,8 @@ export function Dropdown(props: DropdownProps) {
           'button dropdown-toggle',
           {
             'arrow-button': buttonArrow,
+            'arrow-flip': buttonArrow && isOpen,
+            ['arrow-' + arrowDirection]: buttonArrow && placement,
           },
           ...generalClasses(props)
         )}
