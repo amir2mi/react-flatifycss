@@ -30,47 +30,48 @@ export function AccordionItem(props: AccordionItemProps) {
   const id = getUniqueID(JSON.stringify(title || content));
 
   return (
-    <div
-      className={classNames(
-        'accordion-item',
-        {
-          active: isOpen,
-        },
-        ...generalClasses(props)
-      )}
+    <CSSTransition
+      in={isOpen}
+      timeout={250}
+      classNames={{
+        enterDone: 'active',
+        exitActive: 'active',
+      }}
     >
-      <Heading className="accordion-header">
-        <button
-          className="accordion-toggle"
-          aria-expanded={isOpen}
-          aria-controls={id}
-          onClick={onClick}
+      <div className={classNames('accordion-item', ...generalClasses(props))}>
+        <Heading className="accordion-header">
+          <button
+            className="accordion-toggle"
+            aria-expanded={isOpen}
+            aria-controls={id}
+            onClick={onClick}
+          >
+            {title}
+            {!disableAddButton && <AddButton tagName="span" active={isOpen} />}
+          </button>
+        </Heading>
+        <CSSTransition
+          in={isOpen}
+          timeout={250}
+          classNames={{
+            enterDone: 'modal-will-be-shown',
+            exitActive: 'modal-will-be-hidden',
+          }}
         >
-          {title}
-          {!disableAddButton && <AddButton tagName="span" active={isOpen} />}
-        </button>
-      </Heading>
-      <CSSTransition
-        in={isOpen}
-        timeout={300}
-        classNames={{
-          enterDone: 'show',
-          exitActive: 'show dropdown-will-be-hidden',
-        }}
-      >
-        <div
-          id={id}
-          className={classNames('accordion-collapse', {
-            'modal-will-be-shown': isOpen,
-            'modal-will-be-hidden': !isOpen,
-          })}
-        >
-          <div className="accordion-body">
-            {content}
-            {children}
+          <div
+            id={id}
+            className={classNames('accordion-collapse', {
+              'modal-will-be-shown': isOpen,
+              'modal-will-be-hidden': !isOpen,
+            })}
+          >
+            <div className="accordion-body">
+              {content}
+              {children}
+            </div>
           </div>
-        </div>
-      </CSSTransition>
-    </div>
+        </CSSTransition>
+      </div>
+    </CSSTransition>
   );
 }
