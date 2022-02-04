@@ -4,11 +4,12 @@ import classNames from 'classnames';
 interface TabButtonProps {
   isActive: boolean;
   children?: string | React.ReactNode;
+  onClick?: () => void;
   panelId: string;
 }
 
 export function TabButton(props: TabButtonProps) {
-  const { children, isActive, panelId } = props;
+  const { children, isActive, onClick, panelId } = props;
   return (
     <button
       role="tab"
@@ -16,7 +17,8 @@ export function TabButton(props: TabButtonProps) {
         active: isActive,
       })}
       aria-controls={panelId}
-      aria-selected={isActive && true}
+      aria-selected={isActive}
+      onClick={onClick}
     >
       {children}
     </button>
