@@ -1,34 +1,31 @@
-import React from 'react';
+import React, { ElementType } from 'react';
 import classNames from 'classnames';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 import { generalAttributes } from '../attributes';
 
-interface ArrowButtonProps extends FlatifyGeneralProps {
-  direction?: 'top' | 'bottom' | 'left' | 'right';
-  isButton?: boolean;
-  isFlipped?: boolean;
-  label: string;
-  onClick?: () => void;
+interface BadgeProps extends FlatifyGeneralProps {
+  children: string | React.ReactNode;
+  pulse: boolean;
+  tagName: ElementType;
 }
 
-export function ArrowButton(props: ArrowButtonProps) {
-  const { direction, isButton, isFlipped, label, onClick } = props;
+export function Badge(props: BadgeProps) {
+  const { children, pulse, tagName } = props;
+  const Badge = tagName || 'span';
 
   return (
-    <button
+    <Badge
+      {...generalAttributes(props)}
       className={classNames(
-        'arrow-button',
+        'badge',
         {
-          button: isButton,
-          'arrow-flip': isFlipped,
-          ['arrow-' + direction]: direction,
+          pulse: pulse,
         },
         ...generalClasses(props)
       )}
-      aria-label={label}
-      onClick={onClick}
-      {...generalAttributes(props)}
-    ></button>
+    >
+      {children}
+    </Badge>
   );
 }
