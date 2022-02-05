@@ -1,10 +1,10 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import { TextInput } from '../src';
+import { Input } from '../src';
 
 const meta: Meta = {
-  title: 'Text input',
-  component: TextInput,
+  title: 'Input',
+  component: Input,
   parameters: {
     controls: { expanded: true },
   },
@@ -12,10 +12,11 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story = (args) => <TextInput type="text" {...args} />;
+const Template: Story = (args) => <Input type="text" {...args} />;
 
 export const Default = Template.bind({});
 export const FloatingLabel = Template.bind({});
+export const Number = Template.bind({});
 
 Default.args = {
   autoComplete: true,
@@ -26,7 +27,16 @@ Default.args = {
   type: 'text',
   onChange: (value) => console.log(value),
 };
+
 FloatingLabel.args = {
   ...Default.args,
   floatingLabel: true,
+};
+
+Number.args = {
+  ...Default.args,
+  type: 'number',
+  min: 0,
+  max: 100,
+  step: 10,
 };

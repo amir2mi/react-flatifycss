@@ -5,7 +5,7 @@ import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 import { generalAttributes } from '../attributes';
 
-interface TextInputProps extends FlatifyGeneralProps {
+interface InputProps extends FlatifyGeneralProps {
   autoComplete?: boolean;
   autoFocus?: boolean;
   floatingLabel?: boolean;
@@ -26,7 +26,7 @@ interface TextInputProps extends FlatifyGeneralProps {
   value?: string;
 }
 
-export function TextInput(props: TextInputProps) {
+export function Input(props: InputProps) {
   const {
     autoComplete,
     autoFocus,

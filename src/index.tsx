@@ -9,4 +9,4 @@ export * from './arrow-button';
 export * from './accordion';
 export * from './dropdown';
 export * from './tabs';
-export * from './text-input';
+export * from './input';
