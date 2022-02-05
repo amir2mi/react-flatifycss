@@ -19,9 +19,11 @@ interface InputProps extends FlatifyGeneralProps {
   placeholder?: string;
   readOnly?: boolean | undefined;
   required?: boolean | undefined;
-  status?: 'valid' | 'warning' | 'invalid';
-  statusWithIcon?: boolean;
+  state?: 'valid' | 'warning' | 'invalid';
+  stateIcon?: boolean;
   step?: number | string | undefined;
+  togglePassword?: boolean;
+  togglePasswordLabel?: string;
   type: 'text' | 'password' | 'email' | 'number' | 'tel' | 'url' | 'search';
   value?: string;
 }
@@ -42,18 +44,21 @@ export function Input(props: InputProps) {
     placeholder,
     readOnly,
     required,
-    status,
-    statusWithIcon,
+    state,
+    stateIcon,
     size,
     step,
+    togglePassword,
+    togglePasswordLabel,
     type,
     value,
   } = props;
 
   const [InputValue, setInputValue] = useState<string>(value || '');
-  const [isFocused, setIsFocused] = useState(false);
+  const [isFocused, setIsFocused] = useState<boolean>(false);
+  const [isPassword, setTogglePassword] = useState<boolean>(true);
 
-  const inputId = id || getUniqueID(name);
+  const inputId: string = id || getUniqueID(name);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
@@ -72,6 +77,11 @@ export function Input(props: InputProps) {
     onFocus?.(event.target.value);
   };
 
+  let inputType: string;
+  if (togglePassword) {
+    inputType = isPassword ? 'password' : 'text';
+  } else inputType = type;
+
   return (
     <>
       {label && !floatingLabel ? (
@@ -85,7 +95,9 @@ export function Input(props: InputProps) {
       <div
         className={classNames('input-wrapper', {
           'floating-label': floatingLabel,
-          [status + '']: status && statusWithIcon,
+          'toggle-password': togglePassword,
+          'visible-password': !isPassword,
+          [state + '']: state && stateIcon,
         })}
       >
         <input
@@ -94,14 +106,14 @@ export function Input(props: InputProps) {
             'text-input',
             {
               'is-focused': isFocused,
-              [status + '']: status && !statusWithIcon,
+              [state + '']: state && !stateIcon,
             },
             ...generalClasses(props)
           )}
           autoComplete={autoComplete ? 'on' : 'off'}
           autoFocus={autoFocus}
           id={inputId}
-          type={type}
+          type={inputType}
           placeholder={placeholder}
           value={InputValue}
           onChange={handleChange}
@@ -118,6 +130,13 @@ export function Input(props: InputProps) {
             {label}
           </label>
         ) : null}
+        {togglePassword && (
+          <button
+            className="show-password-button"
+            aria-label={togglePasswordLabel}
+            onClick={() => setTogglePassword((old) => !old)}
+          />
+        )}
       </div>
     </>
   );

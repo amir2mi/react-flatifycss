@@ -13,10 +13,19 @@ const meta: Meta = {
 export default meta;
 
 const Template: Story = (args) => <Input type="text" {...args} />;
+const StatesTemplate: Story = () => (
+  <>
+    <Input type="text" state="invalid" stateIcon={true} />
+    <Input type="text" state="warning" stateIcon={true} />
+    <Input type="text" state="valid" stateIcon={true} />
+  </>
+);
 
 export const Default = Template.bind({});
 export const FloatingLabel = Template.bind({});
 export const Number = Template.bind({});
+export const Password = Template.bind({});
+export const States = StatesTemplate.bind({});
 
 Default.args = {
   autoComplete: true,
