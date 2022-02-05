@@ -31,6 +31,7 @@ export function Button(props: ButtonProps) {
 
   return (
     <button
+      {...generalAttributes(props)}
       className={classNames(
         {
           button: variant !== 'tertiary',
@@ -48,7 +49,6 @@ export function Button(props: ButtonProps) {
       )}
       disabled={disabled || state === 'disabled'}
       onClick={onClick}
-      {...generalAttributes(props)}
     >
       {text && text}
       {children && children}

@@ -6,7 +6,6 @@ import { generalAttributes } from '../attributes';
 
 interface ArrowButtonProps extends FlatifyGeneralProps {
   direction?: 'top' | 'bottom' | 'left' | 'right';
-  disabled?: boolean;
   isButton?: boolean;
   isFlipped?: boolean;
   label: string;
@@ -14,7 +13,7 @@ interface ArrowButtonProps extends FlatifyGeneralProps {
 }
 
 export function ArrowButton(props: ArrowButtonProps) {
-  const { direction, disabled, isButton, isFlipped, label, onClick } = props;
+  const { direction, isButton, isFlipped, label, onClick } = props;
 
   return (
     <button
@@ -28,7 +27,6 @@ export function ArrowButton(props: ArrowButtonProps) {
         ...generalClasses(props)
       )}
       aria-label={label}
-      disabled={disabled}
       onClick={onClick}
       {...generalAttributes(props)}
     ></button>

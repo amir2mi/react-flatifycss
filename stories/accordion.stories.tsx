@@ -43,7 +43,7 @@ const items = [
 const itemsCustomized = [
   {
     size: 'xs',
-    style: 'red',
+    theme: 'red',
     disableAddButton: true,
     roundness: 'sharp',
     title: 'Lorem ipsum dolor sit amet',
@@ -52,7 +52,7 @@ const itemsCustomized = [
   },
   {
     size: 'md',
-    style: 'orange',
+    theme: 'orange',
     disableAddButton: true,
     title: 'Far far away',
     content:
@@ -60,7 +60,7 @@ const itemsCustomized = [
   },
   {
     size: 'lg',
-    style: 'yellow',
+    theme: 'yellow',
     disableAddButton: true,
     roundness: 'sharp',
     title: 'The Sorrows of Young Werther',
