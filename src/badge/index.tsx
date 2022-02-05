@@ -5,13 +5,14 @@ import { generalClasses } from '../classes';
 import { generalAttributes } from '../attributes';
 
 interface BadgeProps extends FlatifyGeneralProps {
-  children: string | React.ReactNode;
-  pulse: boolean;
-  tagName: ElementType;
+  children?: string | React.ReactNode;
+  pulse?: boolean;
+  tagName?: ElementType;
+  text?: string;
 }
 
 export function Badge(props: BadgeProps) {
-  const { children, pulse, tagName } = props;
+  const { children, pulse, tagName, text } = props;
   const Badge = tagName || 'span';
 
   return (
@@ -26,6 +27,7 @@ export function Badge(props: BadgeProps) {
       )}
     >
       {children}
+      {text}
     </Badge>
   );
 }

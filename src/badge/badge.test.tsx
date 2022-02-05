@@ -1,15 +1,11 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { ArrowButton } from '../arrow-button';
+import { Badge } from '../badge';
 
-describe('Arrow button', () => {
+describe('Badge', () => {
   it('should be rendered without crashing', () => {
-    const { container } = render(
-      <ArrowButton label="Arrow button" isButton={true} isFlipped={true} />
-    );
+    const { container } = render(<Badge tagName="div" text="hello" />);
 
-    expect(
-      container.querySelector(`.button.arrow-flip[aria-label="Arrow button"]`)
-    ).toBeInTheDocument();
+    expect(container.querySelector('div.badge')).toBeInTheDocument();
   });
 });

@@ -1,6 +1,7 @@
 import 'flatifycss/dist/css/flatify-min.css';
 
 // button
+export * from './badge';
 export * from './button';
 export * from './button-group';
 export * from './add-button';

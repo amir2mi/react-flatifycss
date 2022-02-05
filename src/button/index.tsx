@@ -50,8 +50,8 @@ export function Button(props: ButtonProps) {
       disabled={disabled || state === 'disabled'}
       onClick={onClick}
     >
-      {text && text}
-      {children && children}
+      {text}
+      {children}
       {secondaryText && <span className="secondary-text">{secondaryText}</span>}
     </button>
   );
