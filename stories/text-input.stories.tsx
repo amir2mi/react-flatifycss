@@ -13,11 +13,11 @@ const meta: Meta = {
 export default meta;
 
 const Template: Story = (args) => <Input type="text" {...args} />;
-const StatesTemplate: Story = () => (
+const StatesTemplate: Story = (args) => (
   <>
-    <Input type="text" state="invalid" stateIcon={true} />
-    <Input type="text" state="warning" stateIcon={true} />
-    <Input type="text" state="valid" stateIcon={true} />
+    <Input {...args} type="text" state="invalid" stateIcon={true} />
+    <Input {...args} type="text" state="warning" stateIcon={true} />
+    <Input {...args} type="text" state="valid" stateIcon={true} />
   </>
 );
 
@@ -48,4 +48,10 @@ Number.args = {
   min: 0,
   max: 100,
   step: 10,
+};
+
+Password.args = {
+  ...Default.args,
+  togglePassword: true,
+  togglePasswordLabel: 'Toggle Password',
 };

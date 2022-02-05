@@ -93,12 +93,16 @@ export function Input(props: InputProps) {
         </label>
       ) : null}
       <div
-        className={classNames('input-wrapper', {
-          'floating-label': floatingLabel,
-          'toggle-password': togglePassword,
-          'visible-password': !isPassword,
-          [state + '']: state && stateIcon,
-        })}
+        className={classNames(
+          'input-wrapper',
+          {
+            'floating-label': floatingLabel,
+            'toggle-password': togglePassword,
+            'visible-password': !isPassword,
+            [state + '']: state && stateIcon,
+          },
+          ...generalClasses({ size })
+        )}
       >
         <input
           {...generalAttributes(props)}
