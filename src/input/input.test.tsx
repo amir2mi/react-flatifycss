@@ -9,7 +9,7 @@ describe('Input', () => {
     expect(screen.getByTestId('input')).toBeInTheDocument();
   });
 
-  it('should be rendered without crashing', async () => {
+  it('should change value onChange', async () => {
     render(<Input data-testid="input" type="text" />);
 
     fireEvent.change(screen.getByTestId('input'), { target: { value: 'foo' } });

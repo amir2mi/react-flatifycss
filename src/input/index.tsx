@@ -68,13 +68,17 @@ export function Input(props: InputProps) {
   };
 
   const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+
     setIsFocused(false);
-    onBlur?.(event.target.value);
+    onBlur?.(value);
   };
 
   const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+
     setIsFocused(true);
-    onFocus?.(event.target.value);
+    onFocus?.(value);
   };
 
   let inputType: string;

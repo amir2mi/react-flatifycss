@@ -9,5 +9,6 @@ export * from './arrow-button';
 
 export * from './accordion';
 export * from './dropdown';
-export * from './tabs';
 export * from './input';
+export * from './select';
+export * from './tabs';
