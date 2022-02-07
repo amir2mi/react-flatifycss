@@ -97,7 +97,7 @@ export function Input(props: InputProps) {
           htmlFor={inputId}
           className={classNames(
             'form-label',
-            wrapperClassName,
+
             ...generalClasses({ size })
           )}
         >
@@ -107,6 +107,7 @@ export function Input(props: InputProps) {
       <div
         className={classNames(
           'input-wrapper',
+          wrapperClassName,
           {
             'floating-label': floatingLabel,
             'toggle-password': togglePassword,

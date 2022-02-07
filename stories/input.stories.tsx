@@ -25,6 +25,7 @@ export const Default = Template.bind({});
 export const FloatingLabel = Template.bind({});
 export const Number = Template.bind({});
 export const Password = Template.bind({});
+export const SearchBar = Template.bind({});
 export const States = StatesTemplate.bind({});
 
 Default.args = {
@@ -35,6 +36,8 @@ Default.args = {
   placeholder: 'Enter your name',
   type: 'text',
   onChange: (value) => console.log(value),
+  onFocus: (value) => console.log(value),
+  onBlur: (value) => console.log(value),
 };
 
 FloatingLabel.args = {
@@ -54,4 +57,11 @@ Password.args = {
   ...Default.args,
   togglePassword: true,
   togglePasswordLabel: 'Toggle Password',
+};
+
+SearchBar.args = {
+  ...Default.args,
+  children: <button className="search-button" aria-label="Search"></button>,
+  wrapperClassName: 'search-bar',
+  theme: 'light',
 };
