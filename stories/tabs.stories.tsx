@@ -3,7 +3,7 @@ import { Meta, Story } from '@storybook/react';
 import { Tabs } from '../src';
 
 const meta: Meta = {
-  title: 'Tabs',
+  title: 'Components/Tabs',
   component: Tabs,
   parameters: {
     controls: { expanded: true },

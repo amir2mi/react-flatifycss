@@ -3,7 +3,7 @@ import { Meta, Story } from '@storybook/react';
 import { AddButton } from '../src';
 
 const meta: Meta = {
-  title: 'Add button',
+  title: 'Components/Add button',
   component: AddButton,
   parameters: {
     controls: { expanded: true },

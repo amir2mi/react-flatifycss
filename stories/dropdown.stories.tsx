@@ -3,7 +3,7 @@ import { Meta, Story } from '@storybook/react';
 import { Dropdown } from '../src';
 
 const meta: Meta = {
-  title: 'Dropdown',
+  title: 'Components/Dropdown',
   component: Dropdown,
   parameters: {
     controls: { expanded: true },

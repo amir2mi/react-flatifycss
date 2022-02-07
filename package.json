@@ -81,7 +81,7 @@
   "dependencies": {
     "@popperjs/core": "^2.11.2",
     "classnames": "^2.3.1",
-    "flatifycss": "^1.1.6",
+    "flatifycss": "^1.1.7",
     "react-popper": "^2.2.5",
     "react-transition-group": "^4.4.2",
     "uuid-by-string": "^3.0.6"

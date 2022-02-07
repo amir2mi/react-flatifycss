@@ -3,7 +3,7 @@ import { Meta, Story } from '@storybook/react';
 import { Badge } from '../src';
 
 const meta: Meta = {
-  title: 'Badge',
+  title: 'Components/Badge',
   component: Badge,
   parameters: {
     controls: { expanded: true },

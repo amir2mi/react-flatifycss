@@ -3,7 +3,7 @@ import { Meta, Story } from '@storybook/react';
 import { Accordion } from '../src';
 
 const meta: Meta = {
-  title: 'Accordion',
+  title: 'Components/Accordion',
   component: Accordion,
   parameters: {
     controls: { expanded: true },
