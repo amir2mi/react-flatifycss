@@ -8,6 +8,7 @@ import { generalAttributes } from '../attributes';
 interface InputProps extends FlatifyGeneralProps {
   autoComplete?: boolean;
   autoFocus?: boolean;
+  children?: string | React.ReactNode;
   floatingLabel?: boolean;
   label?: string | React.ReactNode;
   max?: number | string | undefined;
@@ -26,12 +27,14 @@ interface InputProps extends FlatifyGeneralProps {
   togglePasswordLabel?: string;
   type: 'text' | 'password' | 'email' | 'number' | 'tel' | 'url' | 'search';
   value?: string;
+  wrapperClassName?: string;
 }
 
 export function Input(props: InputProps) {
   const {
     autoComplete,
     autoFocus,
+    children,
     floatingLabel,
     id,
     label,
@@ -52,6 +55,7 @@ export function Input(props: InputProps) {
     togglePasswordLabel,
     type,
     value,
+    wrapperClassName,
   } = props;
 
   const [InputValue, setInputValue] = useState<string>(value || '');
@@ -91,7 +95,11 @@ export function Input(props: InputProps) {
       {label && !floatingLabel ? (
         <label
           htmlFor={inputId}
-          className={classNames('form-label', ...generalClasses({ size }))}
+          className={classNames(
+            'form-label',
+            wrapperClassName,
+            ...generalClasses({ size })
+          )}
         >
           {label}
         </label>
@@ -145,6 +153,7 @@ export function Input(props: InputProps) {
             onClick={() => setTogglePassword((old) => !old)}
           />
         )}
+        {children}
       </div>
     </>
   );
