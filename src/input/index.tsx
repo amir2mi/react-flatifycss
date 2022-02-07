@@ -58,7 +58,7 @@ export function Input(props: InputProps) {
     wrapperClassName,
   } = props;
 
-  const [InputValue, setInputValue] = useState<string>(value || '');
+  const [InputValue, setInputValue] = useState<string>('');
   const [isFocused, setIsFocused] = useState<boolean>(false);
   const [isPassword, setTogglePassword] = useState<boolean>(true);
 
@@ -132,7 +132,7 @@ export function Input(props: InputProps) {
           id={inputId}
           type={inputType}
           placeholder={placeholder}
-          value={InputValue}
+          value={value || InputValue}
           onChange={handleChange}
           onBlur={handleBlur}
           onFocus={handleFocus}
