@@ -1,5 +1,3 @@
-import 'flatifycss/dist/css/flatify-min.css';
-
 // button
 export * from './badge';
 export * from './button';
