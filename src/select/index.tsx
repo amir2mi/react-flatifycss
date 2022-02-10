@@ -17,11 +17,21 @@ interface SelectProps extends FlatifyGeneralProps {
   multiple?: boolean;
   name?: string;
   onChange?: (value: string | string[]) => void;
+  value?: string | string[];
 }
 
 export function Select(props: SelectProps) {
-  const { id, inlineLabel, items, label, multiple, name, onChange, size } =
-    props;
+  const {
+    id,
+    inlineLabel,
+    items,
+    label,
+    multiple,
+    name,
+    onChange,
+    size,
+    value,
+  } = props;
 
   const [selected, setSelected] = useState<string | string[]>(
     multiple ? [] : ''
@@ -62,7 +72,7 @@ export function Select(props: SelectProps) {
         name={name}
         className={classNames(...generalClasses(props))}
         multiple={multiple}
-        value={selected}
+        value={value || selected}
         onChange={(e) => handleChange(e)}
       >
         {items.map(({ label, value }) => (
