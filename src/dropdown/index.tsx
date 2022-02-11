@@ -13,16 +13,25 @@ interface DropdownProps extends FlatifyGeneralProps {
   buttonLabel?: string | React.ReactNode;
   children?: string | React.ReactNode;
   isMenu?: boolean;
+  offsetX?: number;
+  offsetY?: number;
   placement?: 'top' | 'bottom' | 'left' | 'right';
   tagName?: ElementType;
 }
 
 interface PopperOptionsProps {
   arrowElement: HTMLElement | null;
+  offsetX: number | undefined;
+  offsetY: number | undefined;
   placement: 'top' | 'bottom' | 'left' | 'right' | undefined;
 }
 
-const popperOptions = ({ arrowElement, placement }: PopperOptionsProps) => {
+const popperOptions = ({
+  arrowElement,
+  placement,
+  offsetX,
+  offsetY,
+}: PopperOptionsProps) => {
   return {
     placement: placement || 'bottom',
     modifiers: [
@@ -40,7 +49,10 @@ const popperOptions = ({ arrowElement, placement }: PopperOptionsProps) => {
       {
         name: 'offset',
         options: {
-          offset: [0, 20],
+          offset: [
+            typeof offsetX === 'number' ? offsetX : 0,
+            typeof offsetY === 'number' ? offsetY : 20,
+          ],
         },
       },
     ],
@@ -55,6 +67,8 @@ export function Dropdown(props: DropdownProps) {
     children,
     className,
     isMenu,
+    offsetX,
+    offsetY,
     placement,
     tagName,
   } = props;
@@ -71,7 +85,7 @@ export function Dropdown(props: DropdownProps) {
   const { styles, attributes, update } = usePopper(
     referenceElement,
     popperElement,
-    popperOptions({ arrowElement, placement })
+    popperOptions({ arrowElement, placement, offsetX, offsetY })
   );
 
   // arrow direction should be opposite of placement
