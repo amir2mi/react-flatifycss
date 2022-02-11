@@ -13,4 +13,5 @@ export * from './select';
 // other components
 export * from './accordion';
 export * from './dropdown';
+export * from './items-group';
 export * from './tabs';
