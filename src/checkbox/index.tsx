@@ -5,16 +5,25 @@ import { generalClasses } from '../classes';
 import { generalAttributes } from '../attributes';
 
 interface CheckboxProps extends FlatifyGeneralProps {
-  checked: boolean;
+  checked?: boolean;
+  defaultChecked?: boolean;
   disabled?: boolean;
   children?: string | React.ReactNode;
   label?: string;
-  onClick?: (checked: boolean) => void;
+  onChange?: (checked: boolean) => void;
   state?: 'valid' | 'warning' | 'invalid';
 }
 
 export function Checkbox(props: CheckboxProps) {
-  const { checked, disabled, children, label, onClick, state } = props;
+  const {
+    checked,
+    defaultChecked,
+    disabled,
+    children,
+    label,
+    onChange,
+    state,
+  } = props;
 
   return (
     <label
@@ -24,10 +33,14 @@ export function Checkbox(props: CheckboxProps) {
         { [state + '']: state },
         ...generalClasses(props)
       )}
-      // if the checkbox is disabled, returned value should not be changed
-      onClick={() => onClick?.(disabled ? checked : !checked)}
     >
-      <input type="checkbox" checked={checked} disabled={disabled} />
+      <input
+        type="checkbox"
+        checked={checked}
+        defaultChecked={defaultChecked}
+        disabled={disabled}
+        onChange={() => onChange?.(!checked)}
+      />
       <span aria-hidden={true} className="check" />
       {children}
       {label}
