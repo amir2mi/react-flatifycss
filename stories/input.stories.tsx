@@ -42,7 +42,7 @@ Default.args = {
 
 FloatingLabel.args = {
   ...Default.args,
-  floatingLabel: true,
+  hasFloatingLabel: true,
 };
 
 Number.args = {

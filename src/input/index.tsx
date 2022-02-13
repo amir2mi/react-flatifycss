@@ -9,7 +9,7 @@ interface InputProps extends FlatifyGeneralProps {
   autoComplete?: boolean;
   autoFocus?: boolean;
   children?: string | React.ReactNode;
-  floatingLabel?: boolean;
+  hasFloatingLabel?: boolean;
   label?: string | React.ReactNode;
   max?: number | string | undefined;
   min?: number | string | undefined;
@@ -35,7 +35,7 @@ export function Input(props: InputProps) {
     autoComplete,
     autoFocus,
     children,
-    floatingLabel,
+    hasFloatingLabel,
     id,
     label,
     max,
@@ -92,7 +92,7 @@ export function Input(props: InputProps) {
 
   return (
     <>
-      {label && !floatingLabel ? (
+      {label && !hasFloatingLabel ? (
         <label
           htmlFor={inputId}
           className={classNames(
@@ -109,7 +109,7 @@ export function Input(props: InputProps) {
           'input-wrapper',
           wrapperClassName,
           {
-            'floating-label': floatingLabel,
+            'floating-label': hasFloatingLabel,
             'toggle-password': togglePassword,
             'visible-password': !isPassword,
             [state + '']: state && stateIcon,
@@ -142,7 +142,7 @@ export function Input(props: InputProps) {
           readOnly={readOnly}
           required={required}
         />
-        {label && floatingLabel ? (
+        {label && hasFloatingLabel ? (
           <label htmlFor={inputId} className="form-label">
             {label}
           </label>
