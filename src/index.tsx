@@ -8,6 +8,7 @@ export * from './arrow-button';
 // form
 export * from './input';
 export * from './checkbox';
+export * from './toggle-switch';
 export * from './select';
 
 // other components

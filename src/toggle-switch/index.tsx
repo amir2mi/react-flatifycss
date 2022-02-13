@@ -4,7 +4,7 @@ import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 import { generalAttributes } from '../attributes';
 
-interface CheckboxProps extends FlatifyGeneralProps {
+interface ToggleSwitchProps extends FlatifyGeneralProps {
   checked?: boolean;
   defaultChecked?: boolean;
   disabled?: boolean;
@@ -16,7 +16,7 @@ interface CheckboxProps extends FlatifyGeneralProps {
   state?: 'valid' | 'warning' | 'invalid';
 }
 
-export function Checkbox(props: CheckboxProps) {
+export function ToggleSwitch(props: ToggleSwitchProps) {
   const {
     checked,
     defaultChecked,
@@ -33,7 +33,7 @@ export function Checkbox(props: CheckboxProps) {
     <label
       {...generalAttributes(props)}
       className={classNames(
-        'checkbox-wrapper',
+        'toggle-wrapper',
         { [state + '']: state },
         ...generalClasses(props)
       )}
