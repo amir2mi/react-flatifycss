@@ -5,7 +5,7 @@ import { ToggleSwitch } from '../toggle-switch';
 describe('ToggleSwitch', () => {
   it('should be rendered without crashing', () => {
     const { container } = render(
-      <ToggleSwitch id="test-toggle-switch" checked>
+      <ToggleSwitch id="test-toggle-switch" type="checkbox" checked>
         I Agree to Privacy Policy.
       </ToggleSwitch>
     );
@@ -17,7 +17,7 @@ describe('ToggleSwitch', () => {
 
   it('should be checked', () => {
     const { container } = render(
-      <ToggleSwitch id="test-toggle-switch" checked={true}>
+      <ToggleSwitch id="test-toggle-switch" type="checkbox" checked={true}>
         I Agree to Privacy Policy.
       </ToggleSwitch>
     );
@@ -27,7 +27,7 @@ describe('ToggleSwitch', () => {
 
   it('should not be checked', () => {
     const { container } = render(
-      <ToggleSwitch id="test-toggle-switch" checked={false}>
+      <ToggleSwitch id="test-toggle-switch" type="checkbox" checked={false}>
         I Agree to Privacy Policy.
       </ToggleSwitch>
     );
@@ -39,7 +39,7 @@ describe('ToggleSwitch', () => {
 
   it('should be disabled', () => {
     const { container } = render(
-      <ToggleSwitch id="test-toggle-switch" checked disabled>
+      <ToggleSwitch id="test-toggle-switch" type="checkbox" checked disabled>
         I Agree to Privacy Policy.
       </ToggleSwitch>
     );

@@ -4,7 +4,7 @@ import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 import { generalAttributes } from '../attributes';
 
-interface ToggleSwitchProps extends FlatifyGeneralProps {
+interface RadioProps extends FlatifyGeneralProps {
   checked?: boolean;
   defaultChecked?: boolean;
   disabled?: boolean;
@@ -14,10 +14,9 @@ interface ToggleSwitchProps extends FlatifyGeneralProps {
   onChange?: (checked: boolean) => void;
   required?: boolean | undefined;
   state?: 'valid' | 'warning' | 'invalid';
-  type: 'checkbox' | 'radio';
 }
 
-export function ToggleSwitch(props: ToggleSwitchProps) {
+export function Radio(props: RadioProps) {
   const {
     checked,
     defaultChecked,
@@ -28,20 +27,19 @@ export function ToggleSwitch(props: ToggleSwitchProps) {
     onChange,
     required,
     state,
-    type,
   } = props;
 
   return (
     <label
       {...generalAttributes(props)}
       className={classNames(
-        'toggle-wrapper',
+        'radio-wrapper',
         { [state + '']: state },
         ...generalClasses(props)
       )}
     >
       <input
-        type={type}
+        type="radio"
         name={name}
         checked={checked}
         defaultChecked={defaultChecked}

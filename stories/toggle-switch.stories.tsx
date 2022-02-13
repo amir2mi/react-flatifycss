@@ -18,6 +18,7 @@ const Template: Story = (args) => {
   return (
     <ToggleSwitch
       {...args}
+      type="checkbox"
       checked={checked}
       onChange={(value) => setChecked(value)}
     >
