@@ -10,7 +10,10 @@ interface CheckboxProps extends FlatifyGeneralProps {
   disabled?: boolean;
   children?: string | React.ReactNode;
   label?: string;
+  name?: string;
+
   onChange?: (checked: boolean) => void;
+  required?: boolean | undefined;
   state?: 'valid' | 'warning' | 'invalid';
 }
 
@@ -21,7 +24,10 @@ export function Checkbox(props: CheckboxProps) {
     disabled,
     children,
     label,
+    name,
+
     onChange,
+    required,
     state,
   } = props;
 
@@ -36,9 +42,11 @@ export function Checkbox(props: CheckboxProps) {
     >
       <input
         type="checkbox"
+        name={name}
         checked={checked}
         defaultChecked={defaultChecked}
         disabled={disabled}
+        required={required}
         onChange={() => onChange?.(!checked)}
       />
       <span aria-hidden={true} className="check" />
