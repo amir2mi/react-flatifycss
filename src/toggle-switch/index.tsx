@@ -43,6 +43,7 @@ export function ToggleSwitch(props: ToggleSwitchProps) {
       )}
     >
       {isAfterLabel && label}
+      {isAfterLabel && children}
       <input
         type={type || 'checkbox'}
         name={name}
@@ -52,8 +53,13 @@ export function ToggleSwitch(props: ToggleSwitchProps) {
         required={required}
         onChange={() => onChange?.(!checked)}
       />
-      <span aria-hidden={true} className="check" />
-      {children}
+      <span
+        aria-hidden={true}
+        className={classNames('check', {
+          'after-label': isAfterLabel,
+        })}
+      />
+      {!isAfterLabel && children}
       {!isAfterLabel && label}
     </label>
   );

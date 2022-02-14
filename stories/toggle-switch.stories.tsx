@@ -29,8 +29,13 @@ const Template: Story = (args) => {
 
 export const Default = Template.bind({});
 export const Disabled = Template.bind({});
+export const AfterLabel = Template.bind({});
 
 Disabled.args = {
   checked: false,
   disabled: true,
+};
+
+AfterLabel.args = {
+  isAfterLabel: true,
 };
