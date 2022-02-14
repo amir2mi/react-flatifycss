@@ -5,6 +5,8 @@ import { generalClasses } from '../classes';
 import { generalAttributes } from '../attributes';
 
 interface itemProps {
+  activeClassName?: string;
+  className?: string;
   subtitle?: string;
   svg?: string | React.ReactNode;
   title: string;
@@ -28,11 +30,25 @@ export function ItemsGroup(props: ItemsGroupProps) {
       className={classNames('items-group', ...generalClasses(props))}
     >
       {items.map((item) => {
-        const { subtitle, svg, title, value: itemValue } = item;
-
+        const {
+          activeClassName,
+          className,
+          subtitle,
+          svg,
+          title,
+          value: itemValue,
+        } = item;
+        const isActive = itemValue === value;
         return (
           <button
-            className={`item-button${itemValue === value ? ' active' : ''}`}
+            className={classNames(
+              'item-button',
+              className,
+              {
+                active: isActive,
+              },
+              isActive && activeClassName
+            )}
             key={title}
             onClick={() => onChange?.(itemValue)}
           >
