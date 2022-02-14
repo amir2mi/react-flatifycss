@@ -6,9 +6,10 @@ import { generalAttributes } from '../attributes';
 
 interface ToggleSwitchProps extends FlatifyGeneralProps {
   checked?: boolean;
+  children?: string | React.ReactNode;
   defaultChecked?: boolean;
   disabled?: boolean;
-  children?: string | React.ReactNode;
+  isAfterLabel?: boolean;
   label?: string;
   name?: string;
   onChange?: (checked: boolean) => void;
@@ -24,6 +25,7 @@ export function ToggleSwitch(props: ToggleSwitchProps) {
     disabled,
     children,
     label,
+    isAfterLabel,
     name,
     onChange,
     required,
@@ -40,6 +42,7 @@ export function ToggleSwitch(props: ToggleSwitchProps) {
         ...generalClasses(props)
       )}
     >
+      {isAfterLabel && label}
       <input
         type={type || 'checkbox'}
         name={name}
@@ -51,7 +54,7 @@ export function ToggleSwitch(props: ToggleSwitchProps) {
       />
       <span aria-hidden={true} className="check" />
       {children}
-      {label}
+      {!isAfterLabel && label}
     </label>
   );
 }
