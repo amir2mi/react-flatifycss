@@ -14,7 +14,7 @@ interface ToggleSwitchProps extends FlatifyGeneralProps {
   onChange?: (checked: boolean) => void;
   required?: boolean | undefined;
   state?: 'valid' | 'warning' | 'invalid';
-  type: 'checkbox' | 'radio';
+  type?: 'checkbox' | 'radio';
 }
 
 export function ToggleSwitch(props: ToggleSwitchProps) {
@@ -41,7 +41,7 @@ export function ToggleSwitch(props: ToggleSwitchProps) {
       )}
     >
       <input
-        type={type}
+        type={type || 'checkbox'}
         name={name}
         checked={checked}
         defaultChecked={defaultChecked}
