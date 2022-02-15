@@ -9,6 +9,7 @@ import { TabPanel } from './tab-panel';
 
 interface TabItemProps {
   content: string | React.ReactNode;
+  isHidden?: boolean;
   title: string | React.ReactNode;
 }
 
@@ -30,7 +31,8 @@ export function Tabs(props: TabsProps) {
     null
   );
 
-  const getItemId = (item: TabItemProps) => getUniqueID(item.title?.toString());
+  const getItemId = (item: TabItemProps) =>
+    getUniqueID(JSON.stringify(item.title));
 
   return (
     <div
@@ -53,7 +55,12 @@ export function Tabs(props: TabsProps) {
       >
         {items.map((item, index) => {
           const id = getItemId(item);
+          console.log(id);
+
           const isActive = active === index;
+
+          // do not show hidden tabs
+          if (item.isHidden) return null;
 
           return (
             <TabButton
