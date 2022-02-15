@@ -4,7 +4,7 @@ import classNames from 'classnames';
 interface TabButtonProps {
   isActive: boolean;
   children?: string | React.ReactNode;
-  onClick?: () => void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   panelId: string;
 }
 

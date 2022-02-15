@@ -23,8 +23,8 @@ const Template: Story = (args) => (
   <Select id="storybook-select" items={items} {...args} />
 );
 
-export const Default = Template.bind({ active: false, label: 'Add button' });
-export const Multiple = Template.bind({ active: false, label: 'Add button' });
+export const Default = Template.bind({});
+export const Multiple = Template.bind({});
 
 Default.args = {
   label:"Choose one item:",

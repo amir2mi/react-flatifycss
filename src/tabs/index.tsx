@@ -10,6 +10,7 @@ import { TabPanel } from './tab-panel';
 interface TabItemProps {
   content: string | React.ReactNode;
   isHidden?: boolean;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   title: string | React.ReactNode;
 }
 
@@ -53,28 +54,27 @@ export function Tabs(props: TabsProps) {
         })}
         role="tablist"
       >
-        {items.map((item, index) => {
-          const id = getItemId(item, index);
+        {items
+          .filter((item) => !item.isHidden)
+          .map((item, index) => {
+            const id = getItemId(item, index);
+            const isActive = active === index;
 
-          const isActive = active === index;
-
-          // do not show hidden tabs
-          if (item.isHidden) return null;
-
-          return (
-            <TabButton
-              key={id}
-              isActive={isActive}
-              panelId={id}
-              onClick={() => {
-                setActive(index);
-                setLastDirection(index > active ? 'right' : 'left');
-              }}
-            >
-              {item.title}
-            </TabButton>
-          );
-        })}
+            return (
+              <TabButton
+                key={id}
+                isActive={isActive}
+                panelId={id}
+                onClick={(e) => {
+                  setActive(index);
+                  setLastDirection(index > active ? 'right' : 'left');
+                  item.onClick?.(e);
+                }}
+              >
+                {item.title}
+              </TabButton>
+            );
+          })}
       </div>
       <div
         className={classNames('tabs-content', {
@@ -82,27 +82,26 @@ export function Tabs(props: TabsProps) {
           'no-animation': !animation,
         })}
       >
-        {items.map((item, index) => {
-          const id = getItemId(item, index);
-          const isActive = active === index;
+        {items
+          .filter((item) => !item.isHidden)
+          .map((item, index) => {
+            const id = getItemId(item, index);
+            const isActive = active === index;
 
-          // do not show hidden tabs
-          if (item.isHidden) return null;
-
-          return (
-            <TabPanel
-              key={id}
-              isActive={isActive}
-              panelId={id}
-              className={classNames({
-                'slide-left': isActive && lastDirection === 'left',
-                'slide-right': isActive && lastDirection === 'right',
-              })}
-            >
-              {item.content}
-            </TabPanel>
-          );
-        })}
+            return (
+              <TabPanel
+                key={id}
+                isActive={isActive}
+                panelId={id}
+                className={classNames({
+                  'slide-left': isActive && lastDirection === 'left',
+                  'slide-right': isActive && lastDirection === 'right',
+                })}
+              >
+                {item.content}
+              </TabPanel>
+            );
+          })}
       </div>
     </div>
   );
