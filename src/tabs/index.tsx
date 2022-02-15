@@ -31,8 +31,8 @@ export function Tabs(props: TabsProps) {
     null
   );
 
-  const getItemId = (item: TabItemProps) =>
-    getUniqueID(JSON.stringify(item.title));
+  const getItemId = (item: TabItemProps, index: number) =>
+    getUniqueID(item.title ? item.title.toString() + index : index);
 
   return (
     <div
@@ -54,8 +54,7 @@ export function Tabs(props: TabsProps) {
         role="tablist"
       >
         {items.map((item, index) => {
-          const id = getItemId(item);
-          console.log(id);
+          const id = getItemId(item, index);
 
           const isActive = active === index;
 
@@ -84,7 +83,7 @@ export function Tabs(props: TabsProps) {
         })}
       >
         {items.map((item, index) => {
-          const id = getItemId(item);
+          const id = getItemId(item, index);
           const isActive = active === index;
 
           return (
