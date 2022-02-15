@@ -86,6 +86,9 @@ export function Tabs(props: TabsProps) {
           const id = getItemId(item, index);
           const isActive = active === index;
 
+          // do not show hidden tabs
+          if (item.isHidden) return null;
+
           return (
             <TabPanel
               key={id}
