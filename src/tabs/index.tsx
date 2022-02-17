@@ -9,9 +9,11 @@ import { TabPanel } from './tab-panel';
 
 interface TabItemProps {
   content: string | React.ReactNode;
-  isHidden?: boolean;
+  isHidden?: boolean; // do not render
+  key: string | number;
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   title: string | React.ReactNode;
+  isInvisible?: boolean; // render but not visible
 }
 
 interface TabsProps extends FlatifyGeneralProps {
@@ -27,7 +29,10 @@ export function Tabs(props: TabsProps) {
   const { animation, bordered, centered, items, linePosition, scrollable } =
     props;
 
-  const [active, setActive] = useState<number>(0);
+  const unHiddenItems = items.filter((item) => !item.isHidden);
+  const visibleItems = items.filter((item) => !item.isInvisible);
+
+  const [active, setActive] = useState<string | number>(visibleItems[0].key);
   const [lastDirection, setLastDirection] = useState<'left' | 'right' | null>(
     null
   );
@@ -54,27 +59,26 @@ export function Tabs(props: TabsProps) {
         })}
         role="tablist"
       >
-        {items
-          .filter((item) => !item.isHidden)
-          .map((item, index) => {
-            const id = getItemId(item, index);
-            const isActive = active === index;
+        {unHiddenItems.map((item, index) => {
+          const id = getItemId(item, index);
+          const isActive = active === item.key;
 
-            return (
-              <TabButton
-                key={id}
-                isActive={isActive}
-                panelId={id}
-                onClick={(e) => {
-                  setActive(index);
-                  setLastDirection(index > active ? 'right' : 'left');
-                  item.onClick?.(e);
-                }}
-              >
-                {item.title}
-              </TabButton>
-            );
-          })}
+          return (
+            <TabButton
+              key={id}
+              hidden={item.isInvisible}
+              isActive={isActive}
+              panelId={id}
+              onClick={(e) => {
+                setActive(item.key);
+                setLastDirection(index > active ? 'right' : 'left');
+                item.onClick?.(e);
+              }}
+            >
+              {item.title}
+            </TabButton>
+          );
+        })}
       </div>
       <div
         className={classNames('tabs-content', {
@@ -82,26 +86,24 @@ export function Tabs(props: TabsProps) {
           'no-animation': !animation,
         })}
       >
-        {items
-          .filter((item) => !item.isHidden)
-          .map((item, index) => {
-            const id = getItemId(item, index);
-            const isActive = active === index;
+        {unHiddenItems.map((item, index) => {
+          const id = getItemId(item, index);
+          const isActive = active === item.key;
 
-            return (
-              <TabPanel
-                key={id}
-                isActive={isActive}
-                panelId={id}
-                className={classNames({
-                  'slide-left': isActive && lastDirection === 'left',
-                  'slide-right': isActive && lastDirection === 'right',
-                })}
-              >
-                {item.content}
-              </TabPanel>
-            );
-          })}
+          return (
+            <TabPanel
+              key={id}
+              isActive={isActive}
+              panelId={id}
+              className={classNames({
+                'slide-left': isActive && lastDirection === 'left',
+                'slide-right': isActive && lastDirection === 'right',
+              })}
+            >
+              {item.content}
+            </TabPanel>
+          );
+        })}
       </div>
     </div>
   );
