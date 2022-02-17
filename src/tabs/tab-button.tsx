@@ -18,9 +18,7 @@ export function TabButton(props: TabButtonProps) {
         {
           active: isActive,
         },
-      
       )}
-      
       aria-controls={panelId}
       aria-selected={isActive}
       onClick={onClick}

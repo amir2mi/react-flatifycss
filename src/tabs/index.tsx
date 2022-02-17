@@ -10,7 +10,6 @@ import { TabPanel } from './tab-panel';
 interface TabItemProps {
   content: string | React.ReactNode;
   isHidden?: boolean;
-  key: string | number;
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   title: string | React.ReactNode;
 }
