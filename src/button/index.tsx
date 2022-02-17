@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ElementType } from 'react';
 import classNames from 'classnames';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
@@ -8,10 +8,12 @@ interface ButtonProps extends FlatifyGeneralProps {
   bordered?: boolean;
   children?: React.ReactNode;
   disabled?: boolean;
+  href?: string;
   onClick?: () => void;
   outline?: boolean;
   secondaryText?: React.ReactNode | string;
   state?: 'active' | 'static' | 'disabled';
+  tagName?: ElementType;
   text?: string;
   variant?: 'primary' | 'secondary' | 'tertiary';
 }
@@ -21,16 +23,20 @@ export function Button(props: ButtonProps) {
     bordered,
     children,
     disabled,
+    href,
     onClick,
     outline,
     secondaryText,
     state,
+    tagName,
     text,
     variant,
   } = props;
 
+  const Button = tagName || 'button';
+
   return (
-    <button
+    <Button
       {...generalAttributes(props)}
       className={classNames(
         {
@@ -47,12 +53,13 @@ export function Button(props: ButtonProps) {
         },
         ...generalClasses(props)
       )}
+      href={href}
       disabled={disabled || state === 'disabled'}
       onClick={onClick}
     >
       {text}
       {children}
       {secondaryText && <span className="secondary-text">{secondaryText}</span>}
-    </button>
+    </Button>
   );
 }
