@@ -12,6 +12,8 @@ interface TabItemProps {
   isHidden?: boolean;
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   title: string | React.ReactNode;
+  buttonTagName?: string;
+  buttonHref?: string;
 }
 
 interface TabsProps extends FlatifyGeneralProps {
@@ -26,8 +28,8 @@ interface TabsProps extends FlatifyGeneralProps {
 export function Tabs(props: TabsProps) {
   const { animation, bordered, centered, items, linePosition, scrollable } =
     props;
-    
-  const [active, setActive] = useState< number>(0);
+
+  const [active, setActive] = useState<number>(0);
   const [lastDirection, setLastDirection] = useState<'left' | 'right' | null>(
     null
   );
@@ -65,6 +67,8 @@ export function Tabs(props: TabsProps) {
               key={id}
               isActive={isActive}
               panelId={id}
+              tagName={item.buttonTagName}
+              href={item.buttonHref}
               onClick={(e) => {
                 setActive(index);
                 setLastDirection(index > active ? 'right' : 'left');
