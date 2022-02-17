@@ -2,8 +2,8 @@ import React from 'react';
 import classNames from 'classnames';
 
 interface TabButtonProps {
-  isActive: boolean;
   children?: string | React.ReactNode;
+  isActive: boolean;
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   panelId: string;
 }
@@ -13,9 +13,14 @@ export function TabButton(props: TabButtonProps) {
   return (
     <button
       role="tab"
-      className={classNames('tab-button', {
-        active: isActive,
-      })}
+      className={classNames(
+        'tab-button',
+        {
+          active: isActive,
+        },
+      
+      )}
+      
       aria-controls={panelId}
       aria-selected={isActive}
       onClick={onClick}

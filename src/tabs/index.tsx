@@ -10,6 +10,7 @@ import { TabPanel } from './tab-panel';
 interface TabItemProps {
   content: string | React.ReactNode;
   isHidden?: boolean;
+  key: string | number;
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   title: string | React.ReactNode;
 }
@@ -26,8 +27,8 @@ interface TabsProps extends FlatifyGeneralProps {
 export function Tabs(props: TabsProps) {
   const { animation, bordered, centered, items, linePosition, scrollable } =
     props;
-
-  const [active, setActive] = useState<number>(0);
+    
+  const [active, setActive] = useState< number>(0);
   const [lastDirection, setLastDirection] = useState<'left' | 'right' | null>(
     null
   );
