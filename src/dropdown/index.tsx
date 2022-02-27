@@ -154,6 +154,7 @@ export function Dropdown(props: DropdownProps) {
         className={classNames(
           'button dropdown-toggle',
           {
+            active: isOpen,
             'arrow-button': buttonArrow,
             'arrow-flip': buttonArrow && isOpen,
             ['arrow-' + arrowDirection]: buttonArrow && placement,
