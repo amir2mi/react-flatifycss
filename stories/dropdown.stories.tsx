@@ -12,7 +12,7 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story = (args) => <Dropdown {...args} />;
+const Template: Story = (args) => <Dropdown id="test-dropdown" {...args} />;
 
 export const Default = Template.bind({});
 export const MenuItems = Template.bind({});

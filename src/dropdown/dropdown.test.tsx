@@ -4,7 +4,7 @@ import { Dropdown } from '../dropdown';
 
 describe('Dropdown', () => {
   it('should be rendered without crashing', async () => {
-    render(<Dropdown data-testid="dropdown" />);
+    render(<Dropdown id="test-dropdown" data-testid="dropdown" />);
 
     await waitFor(() => {
       expect(screen.getByTestId('dropdown')).toBeInTheDocument();
@@ -12,7 +12,7 @@ describe('Dropdown', () => {
   });
 
   it('should be opened on click', async () => {
-    const { container } = render(<Dropdown data-testid="dropdown" />);
+    const { container } = render(<Dropdown id="test-dropdown" data-testid="dropdown" />);
 
     await waitFor(() => {
       expect(screen.getByTestId('dropdown')).toBeInTheDocument();

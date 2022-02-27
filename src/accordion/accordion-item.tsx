@@ -27,7 +27,7 @@ export function AccordionItem(props: AccordionItemProps) {
     title,
   } = props;
   const Heading = heading || 'h2';
-  const id = getUniqueID(JSON.stringify(title || content));
+  const uniqueId = getUniqueID(String(title) + String(content));
 
   return (
     <CSSTransition
@@ -43,7 +43,7 @@ export function AccordionItem(props: AccordionItemProps) {
           <button
             className="accordion-toggle"
             aria-expanded={isOpen}
-            aria-controls={id}
+            aria-controls={uniqueId}
             onClick={onClick}
           >
             {title}
@@ -59,7 +59,7 @@ export function AccordionItem(props: AccordionItemProps) {
           }}
         >
           <div
-            id={id}
+            id={uniqueId}
             className={classNames('accordion-collapse', {
               'modal-will-be-shown': isOpen,
               'modal-will-be-hidden': !isOpen,

@@ -12,6 +12,7 @@ interface DropdownProps extends FlatifyGeneralProps {
   buttonArrow?: boolean;
   buttonLabel?: string | React.ReactNode;
   children?: string | React.ReactNode;
+  id: string;
   isMenu?: boolean;
   offsetX?: number;
   offsetY?: number;
@@ -61,6 +62,7 @@ const popperOptions = ({
 
 export function Dropdown(props: DropdownProps) {
   const {
+    id,
     autoClose,
     buttonArrow,
     buttonLabel,
@@ -107,7 +109,8 @@ export function Dropdown(props: DropdownProps) {
 
   const DropdownBody: ElementType = tagName || (isMenu ? 'ul' : 'div');
   const DropdownArrow: ElementType = isMenu ? 'li' : 'div';
-  const buttonId: string = getUniqueID(JSON.stringify(buttonLabel));
+
+  const buttonId: string = getUniqueID(id);
 
   const closeDropdown = () => setOpen(false);
 

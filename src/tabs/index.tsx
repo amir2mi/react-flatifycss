@@ -41,6 +41,7 @@ export function Tabs(props: TabsProps) {
 
   return (
     <div
+      {...generalAttributes(props)}
       className={classNames(
         'tabs-wrapper',
         {
@@ -48,7 +49,6 @@ export function Tabs(props: TabsProps) {
         },
         ...generalClasses(props)
       )}
-      {...generalAttributes(props)}
     >
       <div
         className={classNames('tabs-header', {
