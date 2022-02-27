@@ -16,6 +16,7 @@ const Template: Story = (args) => <Dropdown {...args} />;
 
 export const Default = Template.bind({});
 export const MenuItems = Template.bind({});
+export const CustomLabel = Template.bind({});
 export const CustomOffset = Template.bind({});
 
 Default.args = {
@@ -53,6 +54,14 @@ MenuItems.args = {
   ),
   isMenu: true,
   placement: 'left',
+};
+
+CustomLabel.args = {
+  autoClose: true,
+  buttonArrow: true,
+  buttonLabel: <i>I am a JSX element</i>,
+  children: 'Im a dropdown',
+  isMenu: false,
 };
 
 CustomOffset.args = {
