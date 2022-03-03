@@ -22,8 +22,8 @@ export function AddButton(props: AddButtonProps) {
       },
       ...generalClasses(props)
     ),
+    ...generalAttributes(props),
     'aria-label': !!label,
     onClick: onClick,
-    ...generalAttributes(props),
   });
 }

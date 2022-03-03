@@ -26,9 +26,9 @@ export function ArrowButton(props: ArrowButtonProps) {
         },
         ...generalClasses(props)
       )}
+      {...generalAttributes(props)}
       aria-label={label}
       onClick={onClick}
-      {...generalAttributes(props)}
     ></button>
   );
 }
