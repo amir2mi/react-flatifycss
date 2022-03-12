@@ -8,12 +8,14 @@ import { TabButton } from './tab-button';
 import { TabPanel } from './tab-panel';
 
 interface TabItemProps {
+  buttonHref?: string;
+  buttonTagName?: string;
+  className?: string;
   content: string | React.ReactNode;
+  id?: string;
   isHidden?: boolean;
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   title: string | React.ReactNode;
-  buttonTagName?: string;
-  buttonHref?: string;
 }
 
 interface TabsProps extends FlatifyGeneralProps {
@@ -87,7 +89,7 @@ export function Tabs(props: TabsProps) {
         })}
       >
         {visibleItems.map((item, index) => {
-          const id = getItemId(item, index);
+          const id = item.id || getItemId(item, index);
           const isActive = active === index;
 
           return (
@@ -95,7 +97,7 @@ export function Tabs(props: TabsProps) {
               key={id}
               isActive={isActive}
               panelId={id}
-              className={classNames({
+              className={classNames(item.className, {
                 'slide-left': isActive && lastDirection === 'left',
                 'slide-right': isActive && lastDirection === 'right',
               })}
