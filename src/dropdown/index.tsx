@@ -120,7 +120,9 @@ export function Dropdown(props: DropdownProps) {
   };
 
   // click event handlers
-  const outsideClicked = () => {
+  const outsideClicked = (e: any) => {
+    const thisDropdownWrapper = `#wrapper-${id}`;
+    if (e.target.closest(thisDropdownWrapper)) return;
     if (autoClose === true || autoClose === 'outside') closeDropdown();
   };
   const insideClicked = () => {
@@ -143,9 +145,9 @@ export function Dropdown(props: DropdownProps) {
 
   return (
     <div
-      className={classNames('dropdown-wrapper', className)}
       {...generalAttributes(props)}
-      onClick={(e) => e.stopPropagation()}
+      id={`wrapper-${id}`}
+      className={classNames('dropdown-wrapper', className)}
     >
       <button
         ref={setReferenceElement}
