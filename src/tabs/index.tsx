@@ -22,16 +22,24 @@ interface TabsProps extends FlatifyGeneralProps {
   animation?: 'slide' | 'fade' | boolean;
   bordered?: boolean;
   centered?: boolean;
+  defaultTab?: number;
   items: TabItemProps[];
   linePosition?: 'bottom' | 'top';
   scrollable?: boolean;
 }
 
 export function Tabs(props: TabsProps) {
-  const { animation, bordered, centered, items, linePosition, scrollable } =
-    props;
+  const {
+    animation,
+    bordered,
+    centered,
+    defaultTab,
+    items,
+    linePosition,
+    scrollable,
+  } = props;
 
-  const [active, setActive] = useState<number>(0);
+  const [active, setActive] = useState<number>(defaultTab || 0);
   const [lastDirection, setLastDirection] = useState<'left' | 'right' | null>(
     null
   );

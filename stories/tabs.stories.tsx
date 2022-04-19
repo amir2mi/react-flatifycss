@@ -14,8 +14,6 @@ export default meta;
 
 const items = [
   {
-    buttonTagName: 'a',
-    buttonHref: '#',
     title: 'Kafka',
     content:
       'One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections. The bedding was hardly able to cover it and seemed ready to slide off any moment. His many legs, pitifully thin compared with the size of the rest of him, waved about helplessly as he looked. "What is happened to me?" he thought. It was not a dream. His room, a proper human room although a little too small, lay peacefully between its four familiar walls.',
@@ -49,6 +47,8 @@ const itemsExtended = [
       'One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections. The bedding was hardly able to cover it and seemed ready to slide off any moment. His many legs, pitifully thin compared with the size of the rest of him, waved about helplessly as he looked. "What is happened to me?" he thought. It was not a dream. His room, a proper human room although a little too small, lay peacefully between its four familiar walls.',
   },
   {
+    buttonTagName: 'a',
+    buttonHref: '#',
     title: 'Werther',
     content:
       'A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend, so absorbed in the exquisite sense of mere tranquil existence, that I neglect my talents. I should be incapable of drawing a single stroke at the present moment; and yet I feel that I never was a greater artist than now.',
@@ -111,6 +111,7 @@ export const SlideAnimation = Template.bind({});
 export const Scrollable = Template.bind({});
 
 TopLine.args = {
+  defaultTab: 2,
   linePosition: 'top',
 };
 
