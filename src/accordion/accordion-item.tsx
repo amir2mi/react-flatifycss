@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { CSSTransition } from 'react-transition-group';
 import getUniqueID from '../utils/id-generator';
 import { FlatifyGeneralProps } from '../interfaces';
@@ -38,7 +38,7 @@ export function AccordionItem(props: AccordionItemProps) {
         exitActive: 'active',
       }}
     >
-      <div className={classNames('accordion-item', ...generalClasses(props))}>
+      <div className={clsx('accordion-item', ...generalClasses(props))}>
         <Heading className="accordion-header">
           <button
             className="accordion-toggle"
@@ -60,7 +60,7 @@ export function AccordionItem(props: AccordionItemProps) {
         >
           <div
             id={uniqueId}
-            className={classNames('accordion-collapse', {
+            className={clsx('accordion-collapse', {
               'modal-will-be-shown': isOpen,
               'modal-will-be-hidden': !isOpen,
             })}

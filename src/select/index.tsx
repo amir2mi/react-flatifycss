@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 import { generalAttributes } from '../attributes';
@@ -56,7 +56,7 @@ export function Select(props: SelectProps) {
       {label && (
         <label
           htmlFor={id}
-          className={classNames(
+          className={clsx(
             'form-label',
             {
               inline: inlineLabel,
@@ -70,7 +70,7 @@ export function Select(props: SelectProps) {
       <select
         {...generalAttributes(props)}
         name={name}
-        className={classNames(...generalClasses(props))}
+        className={clsx(...generalClasses(props))}
         multiple={multiple}
         value={value || selected}
         onChange={(e) => handleChange(e)}

@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 import { generalAttributes } from '../attributes';
@@ -32,7 +32,7 @@ export function Checkbox(props: CheckboxProps) {
   return (
     <label
       {...generalAttributes(props)}
-      className={classNames(
+      className={clsx(
         'checkbox-wrapper',
         { [state + '']: state },
         ...generalClasses(props)

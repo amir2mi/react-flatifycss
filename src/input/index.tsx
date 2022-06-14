@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import getUniqueID from '../utils/id-generator';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
@@ -95,7 +95,7 @@ export function Input(props: InputProps) {
       {label && !hasFloatingLabel ? (
         <label
           htmlFor={inputId}
-          className={classNames(
+          className={clsx(
             'form-label',
 
             ...generalClasses({ size })
@@ -105,7 +105,7 @@ export function Input(props: InputProps) {
         </label>
       ) : null}
       <div
-        className={classNames(
+        className={clsx(
           'input-wrapper',
           wrapperClassName,
           {
@@ -119,7 +119,7 @@ export function Input(props: InputProps) {
       >
         <input
           {...generalAttributes(props)}
-          className={classNames(
+          className={clsx(
             'text-input',
             {
               'is-focused': isFocused,

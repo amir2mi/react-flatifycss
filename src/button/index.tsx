@@ -1,5 +1,5 @@
 import React, { ElementType } from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 import { generalAttributes } from '../attributes';
@@ -38,7 +38,7 @@ export function Button(props: ButtonProps) {
   return (
     <Button
       {...generalAttributes(props)}
-      className={classNames(
+      className={clsx(
         {
           button: variant !== 'tertiary',
           bordered: bordered,

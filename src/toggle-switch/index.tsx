@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 import { generalAttributes } from '../attributes';
@@ -36,7 +36,7 @@ export function ToggleSwitch(props: ToggleSwitchProps) {
   return (
     <label
       {...generalAttributes(props)}
-      className={classNames(
+      className={clsx(
         'toggle-wrapper',
         { [state + '']: state },
         ...generalClasses(props)
@@ -55,7 +55,7 @@ export function ToggleSwitch(props: ToggleSwitchProps) {
       />
       <span
         aria-hidden={true}
-        className={classNames('check', {
+        className={clsx('check', {
           'after-label': isAfterLabel,
         })}
       />

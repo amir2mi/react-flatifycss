@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 
 interface TabButtonProps {
   children?: string | React.ReactNode;
@@ -18,7 +18,7 @@ export function TabButton(props: TabButtonProps) {
     Button,
     {
       role: 'tab',
-      className: classNames('tab-button', {
+      className: clsx('tab-button', {
         active: isActive,
       }),
       'aria-controls': panelId,

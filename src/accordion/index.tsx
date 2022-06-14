@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 import { generalAttributes } from '../attributes';
@@ -22,7 +22,7 @@ export function Accordion(props: AccordionProps) {
 
   return (
     <div
-      className={classNames(
+      className={clsx(
         'accordion',
         { bordered: bordered },
         ...generalClasses(props)

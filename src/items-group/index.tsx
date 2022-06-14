@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 import { generalAttributes } from '../attributes';
@@ -27,7 +27,7 @@ export function ItemsGroup(props: ItemsGroupProps) {
   return (
     <div
       {...generalAttributes(props)}
-      className={classNames('items-group', ...generalClasses(props))}
+      className={clsx('items-group', ...generalClasses(props))}
     >
       {items.map((item) => {
         const {
@@ -41,7 +41,7 @@ export function ItemsGroup(props: ItemsGroupProps) {
         const isActive = itemValue === value;
         return (
           <button
-            className={classNames(
+            className={clsx(
               'item-button',
               className,
               {

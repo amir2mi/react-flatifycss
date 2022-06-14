@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 import { generalAttributes } from '../attributes';
@@ -32,7 +32,7 @@ export function Radio(props: RadioProps) {
   return (
     <label
       {...generalAttributes(props)}
-      className={classNames(
+      className={clsx(
         'radio-wrapper',
         { [state + '']: state },
         ...generalClasses(props)

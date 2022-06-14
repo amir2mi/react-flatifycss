@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 import { generalAttributes } from '../attributes';
@@ -14,7 +14,7 @@ export function Loading(props: LoadingProps) {
   return (
     <span
       {...generalAttributes(props)}
-      className={classNames(
+      className={clsx(
         'loading',
         {
           'stop-animation': isStopped,

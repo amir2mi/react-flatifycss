@@ -1,7 +1,7 @@
 import React, { ElementType, useEffect, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { usePopper } from 'react-popper';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import getUniqueID from '../utils/id-generator';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
@@ -147,13 +147,13 @@ export function Dropdown(props: DropdownProps) {
     <div
       {...generalAttributes(props)}
       id={`wrapper-${id}`}
-      className={classNames('dropdown-wrapper', className)}
+      className={clsx('dropdown-wrapper', className)}
     >
       <button
         ref={setReferenceElement}
         id={buttonId}
         aria-expanded={false}
-        className={classNames(
+        className={clsx(
           'button dropdown-toggle',
           {
             active: isOpen,
@@ -185,7 +185,7 @@ export function Dropdown(props: DropdownProps) {
           ref={setPopperElement}
           style={styles.popper}
           {...attributes.popper}
-          className={classNames(
+          className={clsx(
             'dropdown',
             { 'menu-items-wrapper': isMenu },
             ...generalClasses(props)

@@ -1,23 +1,15 @@
 import React from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
+import { TabPanel as ReachTabPanel } from '@reach/tabs';
+import { FlatifyGeneralProps } from '../interfaces';
 
-interface TabPanelProps {
-  children?: string | React.ReactNode;
+interface TabPanelProps extends FlatifyGeneralProps {
+  [key: string]: any;
   className?: string;
-  isActive: boolean;
-  panelId: string;
+  children: React.ReactNode;
 }
 
-export function TabPanel(props: TabPanelProps) {
-  const { children, className, isActive, panelId } = props;
-  return (
-    <div
-      id={panelId}
-      className={classNames('tab-panel', className, {
-        show: isActive,
-      })}
-    >
-      {children}
-    </div>
-  );
+export default function TabPanel(props: TabPanelProps) {
+  const { className, ...rest } = props;
+  return <ReachTabPanel {...rest} className={clsx('tab-panel show')} />;
 }

@@ -1,5 +1,5 @@
 import React, { ElementType } from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 import { generalAttributes } from '../attributes';
@@ -15,7 +15,7 @@ export function AddButton(props: AddButtonProps) {
   const { active, label, onClick, tagName } = props;
 
   return React.createElement(tagName || 'button', {
-    className: classNames(
+    className: clsx(
       'add-button',
       {
         active: active,

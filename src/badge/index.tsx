@@ -1,5 +1,5 @@
 import React, { ElementType } from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 import { generalAttributes } from '../attributes';
@@ -18,7 +18,7 @@ export function Badge(props: BadgeProps) {
   return (
     <Badge
       {...generalAttributes(props)}
-      className={classNames(
+      className={clsx(
         'badge',
         {
           pulse: pulse,
