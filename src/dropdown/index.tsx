@@ -141,7 +141,7 @@ export function Dropdown(props: DropdownProps) {
       document.removeEventListener('click', outsideClicked);
       document.removeEventListener('keyup', handleKeyUp);
     };
-  }, []);
+  }, [handleKeyUp, outsideClicked]);
 
   return (
     <div
@@ -164,7 +164,7 @@ export function Dropdown(props: DropdownProps) {
           ...generalClasses(props)
         )}
         onClick={() => {
-          setOpen((old) => !old);
+          setOpen(old => !old);
 
           // update popper after animation
           update && setTimeout(() => update(), 320);

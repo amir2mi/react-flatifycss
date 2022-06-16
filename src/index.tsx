@@ -18,3 +18,6 @@ export * from './dropdown';
 export * from './items-group';
 export * from './loading';
 export * from './tabs';
+
+// deprecated components
+// export * from './tabs-deprecated';

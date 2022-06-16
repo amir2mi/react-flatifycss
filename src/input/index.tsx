@@ -151,7 +151,7 @@ export function Input(props: InputProps) {
           <button
             className="show-password-button"
             aria-label={togglePasswordLabel}
-            onClick={() => setTogglePassword((old) => !old)}
+            onClick={() => setTogglePassword(old => !old)}
           />
         )}
         {children}

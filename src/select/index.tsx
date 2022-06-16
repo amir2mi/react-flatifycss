@@ -44,7 +44,7 @@ export function Select(props: SelectProps) {
     const { selectedOptions, value } = e.target;
 
     const selectedItems = multiple
-      ? Array.from(selectedOptions, (item) => item.value)
+      ? Array.from(selectedOptions, item => item.value)
       : value;
 
     onChange?.(selectedItems);
@@ -73,7 +73,7 @@ export function Select(props: SelectProps) {
         className={clsx(...generalClasses(props))}
         multiple={multiple}
         value={value || selected}
-        onChange={(e) => handleChange(e)}
+        onChange={e => handleChange(e)}
       >
         {items.map(({ label, value }) => (
           <option key={label} value={value}>

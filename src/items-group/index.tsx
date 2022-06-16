@@ -29,7 +29,7 @@ export function ItemsGroup(props: ItemsGroupProps) {
       {...generalAttributes(props)}
       className={clsx('items-group', ...generalClasses(props))}
     >
-      {items.map((item) => {
+      {items.map(item => {
         const {
           activeClassName,
           className,

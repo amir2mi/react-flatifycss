@@ -12,7 +12,9 @@ describe('Dropdown', () => {
   });
 
   it('should be opened on click', async () => {
-    const { container } = render(<Dropdown id="test-dropdown" data-testid="dropdown" />);
+    const { container } = render(
+      <Dropdown id="test-dropdown" data-testid="dropdown" />
+    );
 
     await waitFor(() => {
       expect(screen.getByTestId('dropdown')).toBeInTheDocument();

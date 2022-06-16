@@ -30,7 +30,7 @@ export function Accordion(props: AccordionProps) {
       {...generalAttributes(props)}
     >
       {items.map((item, index) => {
-        const isOpen = openedItem.filter((i) => i === index).length > 0;
+        const isOpen = openedItem.filter(i => i === index).length > 0;
 
         return (
           <Fragment key={index}>
@@ -41,9 +41,9 @@ export function Accordion(props: AccordionProps) {
                 // expendable expects multiple opened items
                 if (expendable) {
                   if (isOpen) {
-                    setOpenedItem((old) => [...old.filter((i) => i !== index)]);
+                    setOpenedItem(old => [...old.filter(i => i !== index)]);
                   } else {
-                    setOpenedItem((old) => [...old, index]);
+                    setOpenedItem(old => [...old, index]);
                   }
                 } else {
                   // toggle active item

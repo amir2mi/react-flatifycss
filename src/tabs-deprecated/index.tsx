@@ -47,7 +47,7 @@ export function Tabs(props: TabsProps) {
   const getItemId = (item: TabItemProps, index: number) =>
     getUniqueID(item.title ? item.title.toString() + index : index);
 
-  const visibleItems = items.filter((item) => !item.isHidden);
+  const visibleItems = items.filter(item => !item.isHidden);
 
   return (
     <div
@@ -79,7 +79,7 @@ export function Tabs(props: TabsProps) {
               panelId={id}
               tagName={item.buttonTagName}
               href={item.buttonHref}
-              onClick={(e) => {
+              onClick={e => {
                 setActive(index);
                 setLastDirection(index > active ? 'right' : 'left');
                 item.onClick?.(e);

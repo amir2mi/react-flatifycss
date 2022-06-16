@@ -13,8 +13,14 @@ interface TabListProps extends FlatifyGeneralProps {
 }
 
 export default function TabList(props: TabListProps) {
-  const { children, className, linePosition, centered, scrollable, ...rest } =
-    props;
+  const {
+    children,
+    className,
+    linePosition,
+    centered,
+    scrollable,
+    ...rest
+  } = props;
   // do not use map index, it run multiple times and gives the wrong index
   let orderIndex = 0;
 
@@ -28,7 +34,7 @@ export default function TabList(props: TabListProps) {
         scrollable: scrollable,
       })}
     >
-      {React.Children.map(children, (child) => {
+      {React.Children.map(children, child => {
         if (React.isValidElement(child)) {
           return React.cloneElement(child, {
             orderIndex: orderIndex++,
