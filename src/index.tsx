@@ -17,6 +17,7 @@ export * from './accordion';
 export * from './dropdown';
 export * from './items-group';
 export * from './loading';
+export * from './modal';
 export * from './tabs';
 
 // deprecated components
