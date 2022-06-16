@@ -2,6 +2,8 @@ import React from 'react';
 import clsx from 'clsx';
 import { TabList as ReachTabList } from '@reach/tabs';
 import { FlatifyGeneralProps } from '../interfaces';
+import { generalClasses } from '../classes';
+import { generalAttributes } from '../attributes';
 
 interface TabListProps extends FlatifyGeneralProps {
   [key: string]: any;
@@ -27,8 +29,9 @@ export default function TabList(props: TabListProps) {
   // add the orderIndex prop to each tab to determine which tab is active and add the active class
   return (
     <ReachTabList
+      {...generalAttributes(props)}
       {...rest}
-      className={clsx('tabs-header', className, {
+      className={clsx('tabs-header', className, ...generalClasses(props), {
         'line-at-top': linePosition === 'top',
         'flex-center': centered,
         scrollable: scrollable,
