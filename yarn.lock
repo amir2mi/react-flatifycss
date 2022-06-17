@@ -1683,6 +1683,18 @@
   "resolved" "https://registry.npmjs.org/@popperjs/core/-/core-2.11.2.tgz"
   "version" "2.11.2"
 
+"@reach/accordion@^0.17.0":
+  "integrity" "sha512-BoFDIYpaW56j1Ys2N1wA2E5UsMW7yJQtVCJkaV0OO4Q/JJY8r8JZoiQ/+Juc8z0DqOJGVIgYebMAgroDT8Oo0g=="
+  "resolved" "https://registry.npmjs.org/@reach/accordion/-/accordion-0.17.0.tgz"
+  "version" "0.17.0"
+  dependencies:
+    "@reach/auto-id" "0.17.0"
+    "@reach/descendants" "0.17.0"
+    "@reach/utils" "0.17.0"
+    "prop-types" "^15.7.2"
+    "tiny-warning" "^1.0.3"
+    "tslib" "^2.3.0"
+
 "@reach/auto-id@0.17.0":
   "integrity" "sha512-ud8iPwF52RVzEmkHq1twuqGuPA+moreumUHdtgvU3sr3/15BNhwp3KyDLrKKSz0LP1r3V4pSdyF9MbYM8BoSjA=="
   "resolved" "https://registry.npmjs.org/@reach/auto-id/-/auto-id-0.17.0.tgz"

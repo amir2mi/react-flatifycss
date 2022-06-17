@@ -46,7 +46,7 @@ const Template: Story = (args) => {
         </div>
         <ModalFooter>
           <Button theme="danger" onClick={() => setIsOpen(false)}>
-            Cancel
+            No, You Are Not!
           </Button>
           <Button theme="success" onClick={() => setIsOpen(false)}>
             Okay
