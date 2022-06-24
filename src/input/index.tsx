@@ -58,7 +58,9 @@ export function Input(props: InputProps) {
     wrapperClassName,
   } = props;
 
-  const [InputValue, setInputValue] = useState<string>('');
+  const [InputValue, setInputValue] = useState<
+    string | ReadonlyArray<string> | number | undefined
+  >('');
   const [isFocused, setIsFocused] = useState<boolean>(false);
   const [isPassword, setTogglePassword] = useState<boolean>(true);
 
@@ -151,7 +153,7 @@ export function Input(props: InputProps) {
           <button
             className="show-password-button"
             aria-label={togglePasswordLabel}
-            onClick={() => setTogglePassword(old => !old)}
+            onClick={() => setTogglePassword((old) => !old)}
           />
         )}
         {children}
