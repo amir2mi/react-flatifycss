@@ -9,12 +9,11 @@ interface TabProps extends FlatifyGeneralProps {
   [key: string]: any;
   className?: string;
   children: React.ReactNode;
-  onClick?: (index: number | undefined) => void;
   orderIndex?: number;
 }
 
 export default function Tab(props: TabProps) {
-  const { orderIndex, className, onClick, ...rest } = props;
+  const { orderIndex, className, ...rest } = props;
   const { selectedIndex } = useTabsContext();
 
   return (
