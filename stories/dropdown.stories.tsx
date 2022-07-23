@@ -1,6 +1,8 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
 import { Dropdown } from '../src';
+import DropdownButton from '../src/dropdown/dropdown-button';
+import DropdownBody from '../src/dropdown/dropdown-body';
 
 const meta: Meta = {
   title: 'Components/Dropdown',
@@ -12,7 +14,30 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story = (args) => <Dropdown id="test-dropdown" {...args} />;
+const Template: Story = (args) => (
+  <Dropdown id="test-dropdown" {...args}>
+    <DropdownButton arrow>Open</DropdownButton>
+    <DropdownBody isMenu>
+      <li className="menu-item heading">My Account</li>
+      <li className="menu-item">
+        <a href="#">Sign up</a>
+      </li>
+      <li className="menu-item">
+        <a href="#">Login</a>
+      </li>
+      <li role="separator" className="menu-item separator"></li>
+      <li className="menu-item">
+        <a href="#">About us</a>
+      </li>
+      <li className="menu-item">
+        <a href="#">Contribute</a>
+      </li>
+      <li className="menu-item">
+        <a href="#">Rate it!</a>
+      </li>
+    </DropdownBody>
+  </Dropdown>
+);
 
 export const Default = Template.bind({});
 export const MenuItems = Template.bind({});
@@ -31,27 +56,6 @@ MenuItems.args = {
   autoClose: true,
   buttonArrow: true,
   buttonLabel: 'Click me',
-  children: (
-    <>
-      <li className="menu-item heading">My Account</li>
-      <li className="menu-item">
-        <a href="#">Sign up</a>
-      </li>
-      <li className="menu-item">
-        <a href="#">Login</a>
-      </li>
-      <li role="separator" className="menu-item separator"></li>
-      <li className="menu-item">
-        <a href="#">About us</a>
-      </li>
-      <li className="menu-item">
-        <a href="#">Contribute</a>
-      </li>
-      <li className="menu-item">
-        <a href="#">Rate it!</a>
-      </li>
-    </>
-  ),
   isMenu: true,
   placement: 'left',
 };

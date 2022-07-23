@@ -1,5 +1,5 @@
 import React, { ElementType, useEffect, useState } from 'react';
-import { CSSTransition } from 'react-transition-group';
+
 import { usePopper } from 'react-popper';
 import clsx from 'clsx';
 import getUniqueID from '../utils/id-generator';
@@ -13,7 +13,6 @@ interface DropdownProps extends FlatifyGeneralProps {
   buttonLabel?: string | React.ReactNode;
   children?: string | React.ReactNode;
   id: string;
-  isMenu?: boolean;
   offsetX?: number;
   offsetY?: number;
   placement?: 'top' | 'bottom' | 'left' | 'right';
@@ -61,19 +60,8 @@ const popperOptions = ({
 };
 
 export function Dropdown(props: DropdownProps) {
-  const {
-    id,
-    autoClose,
-    buttonArrow,
-    buttonLabel,
-    children,
-    className,
-    isMenu,
-    offsetX,
-    offsetY,
-    placement,
-    tagName,
-  } = props;
+  const { id, autoClose, children, className, offsetX, offsetY, placement } =
+    props;
 
   // visibility toggle
   const [isOpen, setOpen] = useState<boolean>(false);
@@ -106,9 +94,6 @@ export function Dropdown(props: DropdownProps) {
       arrowDirection = 'left';
       break;
   }
-
-  const DropdownBody: ElementType = tagName || (isMenu ? 'ul' : 'div');
-  const DropdownArrow: ElementType = isMenu ? 'li' : 'div';
 
   const buttonId: string = getUniqueID(id);
 
@@ -143,69 +128,48 @@ export function Dropdown(props: DropdownProps) {
     };
   }, [handleKeyUp, outsideClicked]);
 
+  useEffect(() => {
+    // update popper before & after animation
+    if (update) {
+      update();
+      setTimeout(() => update(), 320);
+    }
+  }, [isOpen]);
+
   return (
     <div
       {...generalAttributes(props)}
       id={`wrapper-${id}`}
       className={clsx('dropdown-wrapper', className)}
     >
-      <button
-        ref={setReferenceElement}
-        id={buttonId}
-        aria-expanded={false}
-        className={clsx(
-          'button dropdown-toggle',
-          {
-            active: isOpen,
-            'arrow-button': buttonArrow,
-            'arrow-flip': buttonArrow && isOpen,
-            ['arrow-' + arrowDirection]: buttonArrow && placement,
-          },
-          ...generalClasses(props)
-        )}
-        onClick={() => {
-          setOpen(old => !old);
+      {React.Children.map(children, (child: any) => {
+        if (child.props && child.props.__TYPE === 'DropdownButton') {
+          return React.cloneElement(child, {
+            innerRef: setReferenceElement,
+            id: buttonId,
+            isOpen: isOpen,
+            className: `arrow-${arrowDirection}`,
+            onClick: () => setOpen((isOpen) => !isOpen),
+          });
+        }
+        return null;
+      })}
 
-          // update popper after animation
-          update && setTimeout(() => update(), 320);
-        }}
-      >
-        {buttonLabel}
-      </button>
-
-      <CSSTransition
-        in={isOpen}
-        timeout={300}
-        classNames={{
-          enterDone: 'show',
-          exitActive: 'show dropdown-will-be-hidden',
-        }}
-      >
-        <DropdownBody
-          ref={setPopperElement}
-          style={styles.popper}
-          {...attributes.popper}
-          className={clsx(
-            'dropdown',
-            { 'menu-items-wrapper': isMenu },
-            ...generalClasses(props)
-          )}
-          aria-labelledby={buttonId}
-          onClick={() => {
-            // check if the dropdown should be closed depending on autoClose
-            insideClicked();
-          }}
-        >
-          {children}
-          <DropdownArrow aria-hidden="true" data-popper-placement="right">
-            <span
-              ref={setArrowElement}
-              style={styles.arrow}
-              className="pointer-arrow"
-            ></span>
-          </DropdownArrow>
-        </DropdownBody>
-      </CSSTransition>
+      {React.Children.map(children, (child: any) => {
+        if (child.props && child.props.__TYPE === 'DropdownBody') {
+          return React.cloneElement(child, {
+            ...attributes.popper,
+            innerRef: setPopperElement,
+            isOpen: isOpen,
+            arrowInnerRef: setArrowElement,
+            arrowStyles: styles.arrow,
+            style: styles.popper,
+            buttonId: buttonId,
+            onClick: () => insideClicked(),
+          });
+        }
+        return null;
+      })}
     </div>
   );
 }
