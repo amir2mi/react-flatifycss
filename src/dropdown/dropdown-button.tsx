@@ -5,15 +5,15 @@ import { generalClasses } from '../classes';
 import { generalAttributes } from '../attributes';
 
 interface DropdownButtonProps extends FlatifyGeneralProps {
-  arrow?: boolean;
   children?: React.ReactNode;
-  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  hasArrow?: boolean;
   innerRef?: React.Ref<HTMLButtonElement>;
   isOpen?: boolean;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 export default function DropdownButton(props: DropdownButtonProps) {
-  const { arrow, children, isOpen, onClick, innerRef } = props;
+  const { hasArrow, children, isOpen, onClick, innerRef } = props;
 
   return (
     <button
@@ -22,7 +22,7 @@ export default function DropdownButton(props: DropdownButtonProps) {
       aria-expanded={isOpen}
       className={clsx(
         'button dropdown-toggle',
-        arrow && 'arrow-button',
+        hasArrow && 'arrow-button',
         isOpen && 'active',
         isOpen && 'arrow-flip',
         ...generalClasses(props)
