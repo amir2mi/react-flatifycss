@@ -11,6 +11,8 @@ interface DropdownButtonProps extends FlatifyGeneralProps {
   isButton?: boolean;
   isOpen?: boolean;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onBlur?: (event: React.FocusEvent<HTMLButtonElement>) => void;
+  onFocus?: (event: React.FocusEvent<HTMLButtonElement>) => void;
   onMouseEnter?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   onMouseLeave?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
@@ -22,6 +24,8 @@ export default function DropdownButton(props: DropdownButtonProps) {
     isOpen,
     isButton,
     onClick,
+    onBlur,
+    onFocus,
     onMouseEnter,
     onMouseLeave,
     innerRef,
@@ -41,6 +45,8 @@ export default function DropdownButton(props: DropdownButtonProps) {
         ...generalClasses(props)
       )}
       onClick={onClick}
+      onFocus={onFocus}
+      onBlur={onBlur}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
