@@ -9,6 +9,7 @@ import { generalAttributes } from '../attributes';
 interface DropdownProps extends FlatifyGeneralProps {
   autoClose?: boolean | 'outside' | 'inside';
   children?: string | React.ReactNode;
+  isHoverable?: boolean;
   id: string;
   offsetX?: number;
   offsetY?: number;
@@ -57,8 +58,16 @@ const popperOptions = ({
 };
 
 export default function Dropdown(props: DropdownProps) {
-  const { id, autoClose, children, className, offsetX, offsetY, placement } =
-    props;
+  const {
+    id,
+    autoClose,
+    children,
+    className,
+    isHoverable,
+    offsetX,
+    offsetY,
+    placement,
+  } = props;
 
   // visibility toggle
   const [isOpen, setOpen] = useState<boolean>(false);
@@ -74,6 +83,24 @@ export default function Dropdown(props: DropdownProps) {
     popperElement,
     popperOptions({ arrowElement, placement, offsetX, offsetY })
   );
+
+  // TODO: add timeout for toggle
+  const hoverability = isHoverable
+    ? {
+        onMouseEnter: () => setOpen(true),
+        onFocus: () => setOpen(true),
+        onMouseLeave: () => setOpen(false),
+        onBlur: (e: any) => {
+          if (
+            !e.currentTarget
+              .closest('.dropdown-wrapper')
+              .contains(e.relatedTarget)
+          ) {
+            setOpen(false);
+          }
+        },
+      }
+    : {};
 
   // arrow direction should be opposite of placement
   let arrowDirection: string = placement || 'bottom';
@@ -133,6 +160,7 @@ export default function Dropdown(props: DropdownProps) {
             isOpen: isOpen,
             className: `arrow-${arrowDirection}`,
             onClick: () => setOpen((isOpen) => !isOpen),
+            ...hoverability,
           });
         }
         return null;

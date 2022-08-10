@@ -76,6 +76,7 @@ const Custom: Story = (args) => (
 export const Default = Simple.bind({});
 export const MenuItems = Menu.bind({});
 export const Placement = Menu.bind({});
+export const Hoverable = Menu.bind({});
 export const AutoClose = Menu.bind({});
 export const Offset = Menu.bind({});
 export const Customized = Custom.bind({});
@@ -91,6 +92,10 @@ MenuItems.args = { autoClose: true };
 Placement.args = {
   placement: 'right',
   autoClose: true,
+};
+
+Hoverable.args = {
+  isHoverable: true,
 };
 
 AutoClose.args = {

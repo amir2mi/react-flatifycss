@@ -4,7 +4,9 @@ import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 import { generalAttributes } from '../attributes';
 
-interface DropdownButtonProps extends FlatifyGeneralProps {
+export interface DropdownButtonProps
+  extends FlatifyGeneralProps,
+    React.ButtonHTMLAttributes<HTMLButtonElement> {
   children?: React.ReactNode;
   hasArrow?: boolean;
   innerRef?: React.Ref<HTMLButtonElement>;

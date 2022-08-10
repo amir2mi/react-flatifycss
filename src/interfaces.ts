@@ -43,7 +43,7 @@ type Sizes = 'default' | 'xs' | 'sm' | 'md' | 'lg' | '2x' | '3x' | '4x' | '5x';
 
 export interface FlatifyGeneralProps {
   className?: string;
-  color?: Colors;
+  color?: Colors | string;
   'data-testid'?: string;
   id?: string;
   roundness?: Roundness;
