@@ -6,7 +6,7 @@ import { generalAttributes } from '../attributes';
 
 export interface DropdownButtonProps
   extends FlatifyGeneralProps,
-    React.ButtonHTMLAttributes<HTMLButtonElement> {
+    Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'color'> {
   children?: React.ReactNode;
   hasArrow?: boolean;
   innerRef?: React.Ref<HTMLButtonElement>;

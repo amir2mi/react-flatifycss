@@ -1,4 +1,4 @@
-type Colors =
+export type Colors =
   | 'default'
   | 'blue'
   | 'blue-light'
@@ -39,11 +39,20 @@ type Roundness =
   | 'oval'
   | 'triangle';
 
-type Sizes = 'default' | 'xs' | 'sm' | 'md' | 'lg' | '2x' | '3x' | '4x' | '5x';
+export type Sizes =
+  | 'default'
+  | 'xs'
+  | 'sm'
+  | 'md'
+  | 'lg'
+  | '2x'
+  | '3x'
+  | '4x'
+  | '5x';
 
 export interface FlatifyGeneralProps {
   className?: string;
-  color?: Colors | string;
+  color?: Colors;
   'data-testid'?: string;
   id?: string;
   roundness?: Roundness;
