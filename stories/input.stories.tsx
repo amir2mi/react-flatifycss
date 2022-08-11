@@ -12,13 +12,36 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story = (args) => <Input type="text" {...args} />;
+const Template: Story = (args) => (
+  <Input id="story-input" type="text" {...args} />
+);
 const StatesTemplate: Story = (args) => (
   <>
-    <Input {...args} type="text" state="invalid" stateIcon={true} />
-    <Input {...args} type="text" state="warning" stateIcon={true} />
-    <Input {...args} type="text" state="valid" stateIcon={true} />
+    <Input
+      id="story-input-invalid"
+      {...args}
+      type="text"
+      state="invalid"
+      stateIcon={true}
+    />
+    <Input
+      id="story-input-warning"
+      {...args}
+      type="text"
+      state="warning"
+      stateIcon={true}
+    />
+    <Input
+      id="story-input-valid"
+      {...args}
+      type="text"
+      state="valid"
+      stateIcon={true}
+    />
   </>
+);
+const StaticTemplate: Story = (args) => (
+  <Input id="story-input" type="text" {...args} />
 );
 
 export const Default = Template.bind({});
@@ -27,6 +50,7 @@ export const Number = Template.bind({});
 export const Password = Template.bind({});
 export const SearchBar = Template.bind({});
 export const States = StatesTemplate.bind({});
+export const StaticValue = StaticTemplate.bind({});
 
 Default.args = {
   autoComplete: true,
@@ -64,4 +88,8 @@ SearchBar.args = {
   children: <button className="search-button" aria-label="Search"></button>,
   wrapperClassName: 'search-bar',
   theme: 'light',
+};
+
+StaticValue.args = {
+  value: 'Change me with [value] attribute!',
 };

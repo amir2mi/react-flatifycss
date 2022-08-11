@@ -5,86 +5,76 @@ import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 import { generalAttributes } from '../attributes';
 
-interface InputProps extends FlatifyGeneralProps {
-  autoComplete?: boolean;
-  autoFocus?: boolean;
+interface InputProps
+  extends FlatifyGeneralProps,
+    Omit<
+      React.InputHTMLAttributes<HTMLInputElement>,
+      'size' | 'color' | 'onChange' | 'onBlur' | 'onFocus'
+    > {
   children?: string | React.ReactNode;
   hasFloatingLabel?: boolean;
+  id: string;
   label?: string | React.ReactNode;
-  max?: number | string | undefined;
-  min?: number | string | undefined;
-  name?: string;
-  onChange?: (value: string) => void;
-  onBlur?: (value: string) => void;
-  onFocus?: (value: string) => void;
-  placeholder?: string;
-  readOnly?: boolean | undefined;
-  required?: boolean | undefined;
+  onChange?: (
+    value: string,
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => void;
+  onBlur?: (value: string, event: React.FocusEvent<HTMLInputElement>) => void;
+  onFocus?: (value: string, event: React.FocusEvent<HTMLInputElement>) => void;
   state?: 'valid' | 'warning' | 'invalid';
   stateIcon?: boolean;
-  step?: number | string | undefined;
   togglePassword?: boolean;
   togglePasswordLabel?: string;
-  type: 'text' | 'password' | 'email' | 'number' | 'tel' | 'url' | 'search';
-  value?: string;
+  type: React.HTMLInputTypeAttribute;
+  src?: string | undefined;
   wrapperClassName?: string;
 }
 
 export function Input(props: InputProps) {
   const {
-    autoComplete,
-    autoFocus,
     children,
     hasFloatingLabel,
     id,
     label,
-    max,
-    min,
     name,
     onChange,
     onBlur,
     onFocus,
-    placeholder,
-    readOnly,
-    required,
+    size,
     state,
     stateIcon,
-    size,
-    step,
     togglePassword,
     togglePasswordLabel,
     type,
     value,
     wrapperClassName,
+    ...rest
   } = props;
 
   const [InputValue, setInputValue] = useState<
     string | ReadonlyArray<string> | number | undefined
   >('');
   const [isFocused, setIsFocused] = useState<boolean>(false);
-  const [isPassword, setTogglePassword] = useState<boolean>(true);
+  const [isPassword, setIsPassword] = useState<boolean>(true);
 
   const inputId: string = id || getUniqueID(name);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
-
     setInputValue(value);
-    onChange?.(value);
+    onChange?.(value, event);
   };
 
   const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
     const { value } = event.target;
-
     setIsFocused(false);
-    onBlur?.(value);
+    onBlur?.(value, event);
   };
 
   const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
     const { value } = event.target;
-
     setIsFocused(true);
-    onFocus?.(value);
+    onFocus?.(value, event);
   };
 
   let inputType: string;
@@ -121,6 +111,7 @@ export function Input(props: InputProps) {
       >
         <input
           {...generalAttributes(props)}
+          {...rest}
           className={clsx(
             'text-input',
             {
@@ -129,20 +120,12 @@ export function Input(props: InputProps) {
             },
             ...generalClasses(props)
           )}
-          autoComplete={autoComplete ? 'on' : 'off'}
-          autoFocus={autoFocus}
           id={inputId}
           type={inputType}
-          placeholder={placeholder}
           value={value || InputValue}
           onChange={handleChange}
           onBlur={handleBlur}
           onFocus={handleFocus}
-          max={max}
-          min={min}
-          step={step}
-          readOnly={readOnly}
-          required={required}
         />
         {label && hasFloatingLabel ? (
           <label htmlFor={inputId} className="form-label">
@@ -153,7 +136,7 @@ export function Input(props: InputProps) {
           <button
             className="show-password-button"
             aria-label={togglePasswordLabel}
-            onClick={() => setTogglePassword((old) => !old)}
+            onClick={() => setIsPassword((old) => !old)}
           />
         )}
         {children}
