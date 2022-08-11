@@ -4,13 +4,13 @@ import { Input } from '../input';
 
 describe('Input', () => {
   it('should be rendered without crashing', async () => {
-    render(<Input data-testid="input" type="text" />);
+    render(<Input id="test-id" data-testid="input" type="text" />);
 
     expect(screen.getByTestId('input')).toBeInTheDocument();
   });
 
   it('should change value onChange', async () => {
-    render(<Input data-testid="input" type="text" />);
+    render(<Input id="test-id" data-testid="input" type="text" />);
 
     fireEvent.change(screen.getByTestId('input'), { target: { value: 'foo' } });
 

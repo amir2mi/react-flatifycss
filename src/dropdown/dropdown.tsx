@@ -9,6 +9,8 @@ import { generalAttributes } from '../attributes';
 interface DropdownProps extends FlatifyGeneralProps {
   autoClose?: boolean | 'outside' | 'inside';
   children?: string | React.ReactNode;
+  hoverShowDelay?: number;
+  hoverHideDelay?: number;
   isHoverable?: boolean;
   id: string;
   offsetX?: number;
@@ -63,6 +65,8 @@ export default function Dropdown(props: DropdownProps) {
     autoClose,
     children,
     className,
+    hoverShowDelay,
+    hoverHideDelay,
     isHoverable,
     offsetX,
     offsetY,
@@ -71,6 +75,7 @@ export default function Dropdown(props: DropdownProps) {
 
   // visibility toggle
   const [isOpen, setOpen] = useState<boolean>(false);
+  const [isFocused, setFocused] = useState<boolean>(false);
 
   // Popper js
   const [referenceElement, setReferenceElement] = useState<HTMLElement | null>(
@@ -84,18 +89,40 @@ export default function Dropdown(props: DropdownProps) {
     popperOptions({ arrowElement, placement, offsetX, offsetY })
   );
 
-  // TODO: add timeout for toggle
+  // Show/hide on hover with enter/leave delay
+  let mouseEnterTimeout: NodeJS.Timeout;
+  let mouseLeaveTimeout: NodeJS.Timeout;
   const hoverability = isHoverable
     ? {
-        onMouseEnter: () => setOpen(true),
-        onFocus: () => setOpen(true),
-        onMouseLeave: () => setOpen(false),
+        onMouseEnter: () => {
+          clearTimeout(mouseLeaveTimeout);
+          clearTimeout(mouseEnterTimeout);
+          mouseEnterTimeout = setTimeout(
+            () => setOpen(true),
+            hoverShowDelay || 200
+          );
+        },
+        onFocus: () => {
+          setFocused(true);
+          setOpen(true);
+        },
+        onMouseLeave: () => {
+          clearTimeout(mouseEnterTimeout);
+          clearTimeout(mouseLeaveTimeout);
+          mouseLeaveTimeout = setTimeout(
+            () => !isFocused && setOpen(false),
+            hoverHideDelay || 400
+          );
+        },
         onBlur: (e: any) => {
           if (
             !e.currentTarget
               .closest('.dropdown-wrapper')
               .contains(e.relatedTarget)
           ) {
+            clearTimeout(mouseEnterTimeout);
+            clearTimeout(mouseLeaveTimeout);
+            setFocused(false);
             setOpen(false);
           }
         },
@@ -159,7 +186,7 @@ export default function Dropdown(props: DropdownProps) {
             id: buttonId,
             isOpen: isOpen,
             className: `arrow-${arrowDirection}`,
-            onClick: () => setOpen((isOpen) => !isOpen),
+            onClick: () => !isHoverable && setOpen((isOpen) => !isOpen),
             ...hoverability,
           });
         }
