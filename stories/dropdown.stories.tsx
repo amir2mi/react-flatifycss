@@ -78,15 +78,16 @@ const TooltipTemplate: Story = (args) => (
     Lorem, ipsum dolor sit amet consectetur adipisicing elit,
     <Dropdown id="test-tooltip" {...args}>
       <DropdownButton className="link-button" buttonStyle={false}>
-        Open it!
+        open it!
       </DropdownButton>
       <DropdownBody size="sm">
         Lorem ipsum dolor sit amet consectetur adipisicing elit.
       </DropdownBody>
     </Dropdown>
-    reiciendis non magnam repellendus adipisci nihil ipsum dolore, totam
+    <br />
+    Reiciendis non magnam repellendus adipisci nihil ipsum dolore, totam
     temporibus
-    <Dropdown id="test-tooltip" {...args}>
+    <Dropdown id="test-tooltip" {...args} placement="right">
       <DropdownButton className="link-button" buttonStyle={false}>
         expedita laborum
       </DropdownButton>
