@@ -73,6 +73,32 @@ const Custom: Story = (args) => (
   </Dropdown>
 );
 
+const TooltipTemplate: Story = (args) => (
+  <>
+    Lorem, ipsum dolor sit amet consectetur adipisicing elit,
+    <Dropdown id="test-tooltip" {...args}>
+      <DropdownButton className="link-button" buttonStyle={false}>
+        Open it!
+      </DropdownButton>
+      <DropdownBody size="sm">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      </DropdownBody>
+    </Dropdown>
+    reiciendis non magnam repellendus adipisci nihil ipsum dolore, totam
+    temporibus
+    <Dropdown id="test-tooltip" {...args}>
+      <DropdownButton className="link-button" buttonStyle={false}>
+        expedita laborum
+      </DropdownButton>
+      <DropdownBody size="xs">
+        <h3 className="text-lg text-center color-dark-light">Hey!</h3>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      </DropdownBody>
+    </Dropdown>
+    doloremque beatae! Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+  </>
+);
+
 export const Default = Simple.bind({});
 export const MenuItems = Menu.bind({});
 export const Placement = Menu.bind({});
@@ -80,6 +106,7 @@ export const Hoverable = Menu.bind({});
 export const AutoClose = Menu.bind({});
 export const Offset = Menu.bind({});
 export const Customized = Custom.bind({});
+export const Tooltip = TooltipTemplate.bind({});
 
 Default.args = {
   children: 'Im a dropdown',
@@ -105,4 +132,9 @@ AutoClose.args = {
 Offset.args = {
   offsetX: 120,
   offsetY: -10,
+};
+
+Tooltip.args = {
+  isHoverable: true,
+  offsetY: 0,
 };

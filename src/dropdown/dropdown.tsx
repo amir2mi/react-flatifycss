@@ -185,7 +185,7 @@ export default function Dropdown(props: DropdownProps) {
             innerRef: setReferenceElement,
             id: buttonId,
             isOpen: isOpen,
-            className: `arrow-${arrowDirection}`,
+            arrowClassName: `arrow-${arrowDirection}`,
             onClick: () => !isHoverable && setOpen((isOpen) => !isOpen),
             ...hoverability,
           });

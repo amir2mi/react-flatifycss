@@ -7,44 +7,54 @@ import { generalAttributes } from '../attributes';
 export interface DropdownButtonProps
   extends FlatifyGeneralProps,
     Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'color'> {
+  arrowClassName?: string;
+  buttonStyle?: boolean;
   children?: React.ReactNode;
   hasArrow?: boolean;
   innerRef?: React.Ref<HTMLButtonElement>;
-  isButton?: boolean;
   isOpen?: boolean;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   onBlur?: (event: React.FocusEvent<HTMLButtonElement>) => void;
   onFocus?: (event: React.FocusEvent<HTMLButtonElement>) => void;
   onMouseEnter?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   onMouseLeave?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  __TYPE: 'DropdownButton';
 }
 
 export default function DropdownButton(props: DropdownButtonProps) {
   const {
-    hasArrow,
+    arrowClassName,
+    buttonStyle,
     children,
+    hasArrow,
+    innerRef,
     isOpen,
-    isButton,
     onClick,
     onBlur,
     onFocus,
     onMouseEnter,
     onMouseLeave,
-    innerRef,
+    __TYPE,
+    ...rest
   } = props;
 
   return (
     <button
+      {...rest}
       {...generalAttributes(props)}
       ref={innerRef}
       aria-expanded={isOpen}
       className={clsx(
         'dropdown-toggle',
-        isButton !== false && 'button',
-        hasArrow && 'arrow-button',
-        isOpen && 'active',
-        isOpen && hasArrow && 'arrow-flip',
-        ...generalClasses(props)
+        ...generalClasses(props),
+        arrowClassName,
+        {
+          active: isOpen,
+          button: buttonStyle !== false,
+          'no-style': !buttonStyle,
+          'arrow-button': hasArrow,
+          'arrow-flip': isOpen && hasArrow,
+        }
       )}
       onClick={onClick}
       onFocus={onFocus}
