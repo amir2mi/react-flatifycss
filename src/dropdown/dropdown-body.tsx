@@ -18,7 +18,7 @@ interface DropdownBodyProps
   onBodyMouseEnter?: (event: React.MouseEvent<HTMLElement>) => void;
   style?: React.CSSProperties;
   tagName?: React.ElementType;
-  __TYPE?: string;
+  __TYPE?: 'DropdownBody';
 }
 
 export default function DropdownBody(props: DropdownBodyProps) {
