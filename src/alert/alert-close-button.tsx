@@ -10,11 +10,10 @@ interface AlertCloseButtonProps
   children?: React.ReactNode;
   floating?: boolean;
   label: string;
-  __TYPE?: 'AlertCloseButton';
 }
 
 export default function AlertCloseButton(props: AlertCloseButtonProps) {
-  const { children, floating, label, __TYPE, ...rest } = props;
+  const { children, floating, label, ...rest } = props;
 
   return (
     <button
@@ -31,7 +30,3 @@ export default function AlertCloseButton(props: AlertCloseButtonProps) {
     </button>
   );
 }
-
-AlertCloseButton.defaultProps = {
-  __TYPE: 'AlertCloseButton',
-};

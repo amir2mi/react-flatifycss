@@ -1,5 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
+import { CSSTransition } from 'react-transition-group';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 import { generalAttributes } from '../attributes';
@@ -8,21 +9,29 @@ interface AlertProps
   extends FlatifyGeneralProps,
     Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
   children: React.ReactNode;
-  icon?: React.ReactNode;
+  show?: boolean;
 }
 
 export default function Alert(props: AlertProps) {
-  const { children, icon, ...rest } = props;
+  const { children, show, ...rest } = props;
 
   return (
-    <div
-      {...rest}
-      {...generalAttributes(props)}
-      className={clsx('alert', icon && 'has-icon', ...generalClasses(props))}
-      role="alert"
+    <CSSTransition
+      in={show !== false}
+      timeout={300}
+      unmountOnExit
+      classNames={{
+        exitActive: 'alert-will-be-removed',
+      }}
     >
-      {icon && <div className="alert-svg">{icon}</div>}
-      {children}
-    </div>
+      <div
+        {...rest}
+        {...generalAttributes(props)}
+        className={clsx('alert has-icon', ...generalClasses(props))}
+        role="alert"
+      >
+        {children}
+      </div>
+    </CSSTransition>
   );
 }
