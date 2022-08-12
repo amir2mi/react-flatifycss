@@ -29,11 +29,6 @@ export default function DropdownButton(props: DropdownButtonProps) {
     hasArrow,
     innerRef,
     isOpen,
-    onClick,
-    onBlur,
-    onFocus,
-    onMouseEnter,
-    onMouseLeave,
     __TYPE,
     ...rest
   } = props;
@@ -56,11 +51,6 @@ export default function DropdownButton(props: DropdownButtonProps) {
           'arrow-flip': isOpen && hasArrow,
         }
       )}
-      onClick={onClick}
-      onFocus={onFocus}
-      onBlur={onBlur}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
     >
       {children}
     </button>

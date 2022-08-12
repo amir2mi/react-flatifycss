@@ -14,6 +14,10 @@ interface DropdownBodyProps extends FlatifyGeneralProps {
   isOpen?: boolean;
   isMenu?: boolean;
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
+  onBlur?: (event: React.FocusEvent<HTMLButtonElement>) => void;
+  onFocus?: (event: React.FocusEvent<HTMLButtonElement>) => void;
+  onMouseEnter?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onMouseLeave?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   style?: React.CSSProperties;
   tagName?: React.ElementType;
   __TYPE?: string;
