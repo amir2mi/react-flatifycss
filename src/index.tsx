@@ -15,6 +15,7 @@ export * from './toggle-switch';
 
 // other components
 export * from './accordion';
+export * from './alert';
 export * from './dropdown';
 export * from './items-group';
 export * from './loading';
