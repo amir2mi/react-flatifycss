@@ -5,7 +5,9 @@ import { generalClasses } from '../classes';
 import { generalAttributes } from '../attributes';
 import { CSSTransition } from 'react-transition-group';
 
-interface DropdownBodyProps extends FlatifyGeneralProps {
+interface DropdownBodyProps
+  extends FlatifyGeneralProps,
+    Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
   arrowInnerRef?: React.Ref<HTMLElement>;
   arrowStyles?: React.CSSProperties;
   buttonId?: string;
@@ -13,11 +15,7 @@ interface DropdownBodyProps extends FlatifyGeneralProps {
   innerRef?: React.Ref<HTMLElement>;
   isOpen?: boolean;
   isMenu?: boolean;
-  onClick?: (event: React.MouseEvent<HTMLElement>) => void;
-  onBlur?: (event: React.FocusEvent<HTMLButtonElement>) => void;
-  onFocus?: (event: React.FocusEvent<HTMLButtonElement>) => void;
-  onMouseEnter?: (event: React.MouseEvent<HTMLButtonElement>) => void;
-  onMouseLeave?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onBodyMouseEnter?: (event: React.MouseEvent<HTMLElement>) => void;
   style?: React.CSSProperties;
   tagName?: React.ElementType;
   __TYPE?: string;
@@ -32,7 +30,7 @@ export default function DropdownBody(props: DropdownBodyProps) {
     innerRef,
     isOpen,
     isMenu,
-    onClick,
+    onBodyMouseEnter,
     style,
     tagName,
     __TYPE,
@@ -63,7 +61,7 @@ export default function DropdownBody(props: DropdownBodyProps) {
           ...generalClasses(props)
         )}
         aria-labelledby={buttonId}
-        onClick={onClick}
+        onMouseEnter={onBodyMouseEnter}
       >
         {children}
         <DropdownArrow aria-hidden={false}>

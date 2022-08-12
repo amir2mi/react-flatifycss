@@ -13,11 +13,7 @@ export interface DropdownButtonProps
   hasArrow?: boolean;
   innerRef?: React.Ref<HTMLButtonElement>;
   isOpen?: boolean;
-  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
-  onBlur?: (event: React.FocusEvent<HTMLButtonElement>) => void;
-  onFocus?: (event: React.FocusEvent<HTMLButtonElement>) => void;
-  onMouseEnter?: (event: React.MouseEvent<HTMLButtonElement>) => void;
-  onMouseLeave?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onButtonMouseEnter?: (event: React.MouseEvent<HTMLElement>) => void;
   __TYPE: 'DropdownButton';
 }
 
@@ -29,6 +25,7 @@ export default function DropdownButton(props: DropdownButtonProps) {
     hasArrow,
     innerRef,
     isOpen,
+    onButtonMouseEnter,
     __TYPE,
     ...rest
   } = props;
@@ -51,6 +48,7 @@ export default function DropdownButton(props: DropdownButtonProps) {
           'arrow-flip': isOpen && hasArrow,
         }
       )}
+      onMouseEnter={onButtonMouseEnter}
     >
       {children}
     </button>

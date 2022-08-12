@@ -1,4 +1,4 @@
-import React, { ElementType, useEffect, useState } from 'react';
+import React, { ElementType, useEffect, useState, useRef } from 'react';
 import { usePopper } from 'react-popper';
 import clsx from 'clsx';
 import getUniqueID from '../utils/id-generator';
@@ -75,7 +75,6 @@ export default function Dropdown(props: DropdownProps) {
 
   // visibility toggle
   const [isOpen, setOpen] = useState<boolean>(false);
-  const [isEntereBoy, setIsEntereBoy] = useState<boolean>(false);
 
   // Popper js
   const [referenceElement, setReferenceElement] = useState<HTMLElement | null>(
@@ -93,82 +92,51 @@ export default function Dropdown(props: DropdownProps) {
     Show/hide on hover with enter/leave delay.
     Dropdown button and body are separate so they have separate delays and works with each other.
   */
-  let mouseEnterTimeout: NodeJS.Timeout;
-  let mouseLeaveTimeout: NodeJS.Timeout;
-  let bodyEnterTimeout: NodeJS.Timeout;
-  let bodyLeaveTimeout: NodeJS.Timeout;
+  const enterTimeout = useRef<NodeJS.Timeout | null>(null);
+  const leaveTimeout = useRef<NodeJS.Timeout | null>(null);
+  const buttonHoverability = useRef<Object>({});
+  const bodyHoverability = useRef<Object>({});
 
-  const buttonHoverability = isHoverable
-    ? {
-        onMouseEnter: () => {
-          clearTimeout(bodyLeaveTimeout);
-          clearTimeout(mouseLeaveTimeout);
-          clearTimeout(mouseEnterTimeout);
-          mouseEnterTimeout = setTimeout(
-            () => setOpen(true),
-            hoverShowDelay || 200
-          );
-        },
-        onFocus: () => {
-          setOpen(true);
-        },
-        onMouseLeave: () => {
-          clearTimeout(mouseEnterTimeout);
-          clearTimeout(mouseLeaveTimeout);
-          mouseLeaveTimeout = setTimeout(
-            () => setOpen(false),
-            hoverHideDelay || 400
-          );
-        },
-        onBlur: (e: any) => {
-          if (
-            !e.currentTarget
-              .closest('.dropdown-wrapper')
-              .contains(e.relatedTarget)
-          ) {
-            clearTimeout(mouseEnterTimeout);
-            clearTimeout(mouseLeaveTimeout);
-
-            setOpen(false);
-          }
-        },
+  const hoverability = {
+    onButtonMouseEnter: () => {
+      leaveTimeout.current && clearTimeout(leaveTimeout.current);
+      enterTimeout.current && clearTimeout(enterTimeout.current);
+      enterTimeout.current = setTimeout(
+        () => setOpen(true),
+        hoverShowDelay || 200
+      );
+    },
+    onBodyMouseEnter: () => {
+      leaveTimeout.current && clearTimeout(leaveTimeout.current);
+      enterTimeout.current && clearTimeout(enterTimeout.current);
+      setOpen(true);
+    },
+    onFocus: () => {
+      // no need to delay for keyboard folks
+      leaveTimeout.current && clearTimeout(leaveTimeout.current);
+      setOpen(true);
+    },
+    onMouseLeave: () => {
+      enterTimeout.current && clearTimeout(enterTimeout.current);
+      leaveTimeout.current && clearTimeout(leaveTimeout.current);
+      leaveTimeout.current = setTimeout(
+        () => setOpen(false),
+        hoverHideDelay || 400
+      );
+    },
+    onBlur: (e: any) => {
+      if (
+        !e.currentTarget.closest('.dropdown-wrapper').contains(e.relatedTarget)
+      ) {
+        enterTimeout.current && clearTimeout(enterTimeout.current);
+        leaveTimeout.current && clearTimeout(leaveTimeout.current);
+        setOpen(false);
       }
-    : {};
+    },
+  };
 
-  const bodyHoverability = isHoverable
-    ? {
-        onMouseEnter: () => {
-          clearTimeout(mouseLeaveTimeout);
-          clearTimeout(bodyLeaveTimeout);
-          clearTimeout(bodyEnterTimeout);
-          setOpen(true);
-        },
-        onFocus: () => {
-          setOpen(true);
-        },
-        onMouseLeave: () => {
-          clearTimeout(bodyEnterTimeout);
-          clearTimeout(bodyLeaveTimeout);
-          bodyLeaveTimeout = setTimeout(
-            () => setOpen(false),
-            hoverHideDelay || 400
-          );
-        },
-        onBlur: (e: any) => {
-          if (
-            !e.currentTarget
-              .closest('.dropdown-wrapper')
-              .contains(e.relatedTarget)
-          ) {
-            clearTimeout(mouseLeaveTimeout);
-            clearTimeout(bodyEnterTimeout);
-            clearTimeout(bodyLeaveTimeout);
-
-            setOpen(false);
-          }
-        },
-      }
-    : {};
+  buttonHoverability.current = isHoverable ? hoverability : {};
+  bodyHoverability.current = isHoverable ? hoverability : {};
 
   // arrow direction should be opposite of placement
   let arrowDirection: string = placement || 'bottom';
@@ -228,7 +196,7 @@ export default function Dropdown(props: DropdownProps) {
             isOpen: isOpen,
             arrowClassName: `arrow-${arrowDirection}`,
             onClick: () => !isHoverable && setOpen((isOpen) => !isOpen),
-            ...buttonHoverability,
+            ...buttonHoverability.current,
           });
         }
         return null;
@@ -245,7 +213,7 @@ export default function Dropdown(props: DropdownProps) {
             style: styles.popper,
             buttonId: buttonId,
             onClick: () => insideClicked(),
-            ...bodyHoverability,
+            ...bodyHoverability.current,
           });
         }
         return null;
