@@ -17,7 +17,10 @@ interface ProgressProps
 
 export function Progress(props: ProgressProps) {
   const { bordered, children, processing, max = 100, min = 0, value } = props;
-  const widthPercent = ((value - min) / (max - min)) * 100;
+
+  let widthPercent = ((value - min) / (max - min)) * 100;
+  widthPercent = widthPercent > 100 ? 100 : widthPercent;
+
   return (
     <div
       {...generalAttributes(props)}
