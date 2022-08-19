@@ -20,6 +20,7 @@ export * from './dropdown';
 export * from './items-group';
 export * from './loading';
 export * from './modal';
+export * from './progress';
 export * from './tabs';
 
 // deprecated components
