@@ -8,27 +8,34 @@ interface ProgressProps
   extends FlatifyGeneralProps,
     Omit<React.HTMLAttributes<HTMLDivElement>, 'color'> {
   bordered?: boolean;
+  children?: React.ReactNode;
   max?: number;
   min?: number;
   processing?: boolean;
   value: number;
 }
 
-export default function Progress(props: ProgressProps) {
-  const { bordered, processing, max, min, value } = props;
-
+export function Progress(props: ProgressProps) {
+  const { bordered, children, processing, max = 100, min = 0, value } = props;
+  const widthPercent = ((value - min) / (max - min)) * 100;
   return (
-    <div {...generalAttributes(props)} className="progress">
+    <div
+      {...generalAttributes(props)}
+      className={clsx('progress', ...generalClasses(props), {
+        bordered: bordered,
+        processing: processing,
+      })}
+    >
       <div
-        className={clsx('progress-bar', ...generalClasses(props), {
-          bordered: bordered,
-          processing: processing,
-        })}
+        className="progress-bar"
         role="progressbar"
         aria-valuenow={value}
         aria-valuemin={min || 0}
         aria-valuemax={max || 100}
-      />
+        style={{ width: `${widthPercent}%` }}
+      >
+        {children}
+      </div>
     </div>
   );
 }
