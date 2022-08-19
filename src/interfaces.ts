@@ -57,5 +57,6 @@ export interface FlatifyGeneralProps {
   id?: string;
   roundness?: Roundness;
   size?: Sizes;
+  sx?: string;
   theme?: Colors;
 }
