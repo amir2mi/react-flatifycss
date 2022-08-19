@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Meta, Story } from '@storybook/react';
 import { Progress } from '../src';
 
@@ -36,7 +36,7 @@ Processing.args = {
 };
 
 Customized.args = {
-  value: 15,  
+  value: 15,
   bordered: true,
   processing: true,
   theme: 'green-light',
