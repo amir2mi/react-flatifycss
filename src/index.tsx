@@ -17,6 +17,7 @@ export * from './toggle-switch';
 export * from './accordion';
 export * from './alert';
 export * from './dropdown';
+export * from './fireworks';
 export * from './items-group';
 export * from './loading';
 export * from './modal';
