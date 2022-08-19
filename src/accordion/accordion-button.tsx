@@ -15,7 +15,7 @@ interface AccordionButtonProps extends FlatifyGeneralProps {
 }
 
 export default function AccordionButton(props: AccordionButtonProps) {
-  const { children, className, hasIcon, ...rest } = props;
+  const { children, hasIcon, ...rest } = props;
   const { isExpanded } = useAccordionItemContext();
 
   return (
@@ -24,7 +24,6 @@ export default function AccordionButton(props: AccordionButtonProps) {
       className={clsx(
         'accordion-header',
         ...generalClasses(props),
-        className,
         isExpanded && 'active'
       )}
     >

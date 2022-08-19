@@ -15,7 +15,7 @@ interface AccordionPanelProps extends FlatifyGeneralProps {
 }
 
 export default function AccordionPanel(props: AccordionPanelProps) {
-  const { children, className, hasIcon, ...rest } = props;
+  const { children, hasIcon, ...rest } = props;
   const { isExpanded } = useAccordionItemContext();
   const el = useRef<any>(null);
 
@@ -33,7 +33,7 @@ export default function AccordionPanel(props: AccordionPanelProps) {
       from: {
         height: 0,
       },
-      to: async (next) => {
+      to: async next => {
         await next({
           height: getBodyHeight(),
         });
@@ -48,8 +48,7 @@ export default function AccordionPanel(props: AccordionPanelProps) {
       ref={el}
       className={clsx(
         'accordion-collapse accordion-will-be-shown',
-        ...generalClasses(props),
-        className
+        ...generalClasses(props)
       )}
       style={{ height, transition: 'none', transitionDelay: '0.2s' }}
     >

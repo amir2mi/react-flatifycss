@@ -10,17 +10,13 @@ interface AccordionItemProps extends FlatifyGeneralProps {
 }
 
 export default function AccordionItem(props: AccordionItemProps) {
-  const { children, className, ...rest } = props;
+  const { children, ...rest } = props;
 
   return (
     <ReachAccordionItem
       {...generalAttributes(props)}
       {...rest}
-      className={clsx(
-        'accordion-item active',
-        ...generalClasses(props),
-        className
-      )}
+      className={clsx('accordion-item active', ...generalClasses(props))}
     >
       {children}
     </ReachAccordionItem>

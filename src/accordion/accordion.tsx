@@ -19,12 +19,12 @@ interface AccordionProps extends FlatifyGeneralProps {
 }
 
 export default function Accordion(props: AccordionProps) {
-  const { animation, bordered, children, className } = props;
+  const { animation, bordered, children } = props;
   return (
     <ReachAccordion
       {...generalAttributes(props)}
       {...props}
-      className={clsx('accordion', ...generalClasses(props), className, {
+      className={clsx('accordion', ...generalClasses(props), {
         'fade-animation': animation === 'fade',
         bordered: bordered,
       })}
