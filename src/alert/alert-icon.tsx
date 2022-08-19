@@ -8,10 +8,11 @@ interface AlertIconProps
   extends FlatifyGeneralProps,
     Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
   children: React.ReactNode;
+  __TYPE: 'AlertIcon';
 }
 
 export default function AlertIcon(props: AlertIconProps) {
-  const { children, ...rest } = props;
+  const { children, __TYPE, ...rest } = props;
 
   return (
     <div
@@ -23,3 +24,7 @@ export default function AlertIcon(props: AlertIconProps) {
     </div>
   );
 }
+
+AlertIcon.defaultProps = {
+  __TYPE: 'AlertIcon',
+};
