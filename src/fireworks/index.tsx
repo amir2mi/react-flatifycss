@@ -1,5 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
+import styled from 'styled-components';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 import { generalAttributes } from '../attributes';
@@ -11,11 +12,16 @@ interface FireworksProps
   simple?: boolean;
 }
 
+const FireworksWrapper = styled.div`
+  ${props: FireworksProps =>
+    props.delay && `--flatify__firework-animation-delay: ${props.delay}s;`}
+`;
+
 export function Fireworks(props: FireworksProps) {
-  const { delay, simple, ...rest } = props;
+  const { simple, ...rest } = props;
 
   return (
-    <div
+    <FireworksWrapper
       {...rest}
       {...generalAttributes(props)}
       aria-hidden="true"
@@ -24,6 +30,6 @@ export function Fireworks(props: FireworksProps) {
       {[...new Array(5)].map(() => (
         <span className="spark" />
       ))}
-    </div>
+    </FireworksWrapper>
   );
 }
