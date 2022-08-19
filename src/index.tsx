@@ -23,4 +23,5 @@ export * from './modal';
 export * from './tabs';
 
 // deprecated components
+// export * from './accordion-deprecated';
 // export * from './tabs-deprecated';
