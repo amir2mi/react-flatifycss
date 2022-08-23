@@ -1,5 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
+import styled from 'styled-components';
 import { Accordion as ReachAccordion } from '@reach/accordion';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
@@ -7,7 +8,7 @@ import { generalAttributes } from '../attributes';
 
 interface AccordionProps extends FlatifyGeneralProps {
   [key: string]: any;
-  animation?: 'fade' | 'default';
+  animation?: 'fade' | 'default' | string;
   bordered?: boolean;
   children: React.ReactNode;
   collapsible?: boolean;
@@ -18,18 +19,25 @@ interface AccordionProps extends FlatifyGeneralProps {
   multiple?: boolean;
 }
 
+const AccordionWrapper = styled(ReachAccordion)`
+  ${({ sx }: AccordionProps) => (sx ? sx : '')}
+  ${({ animation }: AccordionProps) =>
+    animation ? `--flatify__accordion-animation-show: ${animation}` : ''}
+`;
+
 export default function Accordion(props: AccordionProps) {
-  const { animation, bordered, children } = props;
+  const { animation, bordered, children, ...rest } = props;
   return (
-    <ReachAccordion
+    <AccordionWrapper
       {...generalAttributes(props)}
-      {...props}
+      {...rest}
+      animation={animation}
       className={clsx('accordion', ...generalClasses(props), {
         'fade-animation': animation === 'fade',
         bordered: bordered,
       })}
     >
       {children}
-    </ReachAccordion>
+    </AccordionWrapper>
   );
 }

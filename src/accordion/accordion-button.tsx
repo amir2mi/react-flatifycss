@@ -1,5 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
+import styled from 'styled-components';
 import {
   AccordionButton as ReachAccordionButton,
   useAccordionItemContext,
@@ -14,13 +15,18 @@ interface AccordionButtonProps extends FlatifyGeneralProps {
   hasIcon?: boolean;
 }
 
+const AccordionHeader = styled.div`
+  ${({ sx }: AccordionButtonProps) => (sx ? sx : '')}
+`;
+
 export default function AccordionButton(props: AccordionButtonProps) {
-  const { children, hasIcon, ...rest } = props;
+  const { children, hasIcon, sx, ...rest } = props;
   const { isExpanded } = useAccordionItemContext();
 
   return (
-    <div
+    <AccordionHeader
       {...generalAttributes(props)}
+      sx={sx}
       className={clsx(
         'accordion-header',
         ...generalClasses(props),
@@ -29,8 +35,8 @@ export default function AccordionButton(props: AccordionButtonProps) {
     >
       <ReachAccordionButton {...rest} className="accordion-toggle">
         {children}
-        {hasIcon && <AddButton active={isExpanded} />}
+        {hasIcon && <AddButton tagName="span" active={isExpanded} />}
       </ReachAccordionButton>
-    </div>
+    </AccordionHeader>
   );
 }

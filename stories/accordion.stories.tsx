@@ -17,7 +17,7 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story = (args) => (
+const Template: Story = args => (
   <Accordion {...args}>
     <AccordionItem>
       <AccordionButton hasIcon={args.hasIcon}>
@@ -68,13 +68,13 @@ const Template: Story = (args) => (
   </Accordion>
 );
 
-const TemplateCustom: Story = (args) => (
+const TemplateCustom: Story = args => (
   <Accordion {...args}>
     <AccordionItem theme="purple-light">
       <AccordionButton hasIcon={args.hasIcon} theme="purple-light">
         Lorem ipsum dolor sit amet
       </AccordionButton>
-      <AccordionPanel  theme="purple">
+      <AccordionPanel theme="purple">
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias
           architecto quae tenetur voluptatum ipsa, esse doloremque numquam
@@ -84,7 +84,9 @@ const TemplateCustom: Story = (args) => (
       </AccordionPanel>
     </AccordionItem>
     <AccordionItem theme="pink-light">
-      <AccordionButton theme="pink-light" hasIcon={args.hasIcon}>Far far away</AccordionButton>
+      <AccordionButton theme="pink-light" hasIcon={args.hasIcon}>
+        Far far away
+      </AccordionButton>
       <AccordionPanel theme="pink">
         <p>
           Far far away, behind the word mountains, far from the countries
@@ -155,9 +157,9 @@ FadeAnimation.args = {
 };
 
 Customized.args = {
+  animation: '0.5s ease-in-out flatify-slide-down-in',
   hasIcon: true,
   multiple: true,
   collapsible: true,
   bordered: true,
-  animation: 'fade',
 };

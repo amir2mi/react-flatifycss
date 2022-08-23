@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import clsx from 'clsx';
+import styled from 'styled-components';
 import {
   AccordionPanel as ReachAccordionPanel,
   useAccordionItemContext,
@@ -11,11 +12,14 @@ import { generalAttributes } from '../attributes';
 
 interface AccordionPanelProps extends FlatifyGeneralProps {
   [key: string]: any;
-  hasIcon?: boolean;
 }
 
+const AccordionPanelWrapper = styled(animated.div)`
+  ${({ sx }: AccordionPanelProps) => (sx ? sx : '')}
+`;
+
 export default function AccordionPanel(props: AccordionPanelProps) {
-  const { children, hasIcon, ...rest } = props;
+  const { children, sx, ...rest } = props;
   const { isExpanded } = useAccordionItemContext();
   const el = useRef<any>(null);
 
@@ -43,9 +47,10 @@ export default function AccordionPanel(props: AccordionPanelProps) {
   }, [isExpanded, set]);
 
   return (
-    <animated.div
+    <AccordionPanelWrapper
       {...generalAttributes(props)}
       ref={el}
+      sx={sx}
       className={clsx(
         'accordion-collapse accordion-will-be-shown',
         ...generalClasses(props)
@@ -55,6 +60,6 @@ export default function AccordionPanel(props: AccordionPanelProps) {
       <ReachAccordionPanel {...rest} className="accordion-body">
         {children}
       </ReachAccordionPanel>
-    </animated.div>
+    </AccordionPanelWrapper>
   );
 }
