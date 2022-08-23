@@ -15,17 +15,13 @@ interface FireworksProps
 }
 
 const FireworksWrapper = styled.div`
-  ${(props: FireworksProps) => (props.sx ? props.sx : '')}
-  ${(props: FireworksProps) =>
-    props.delay ? `--flatify__firework-animation-delay: ${props.delay}ms;` : ''}
-  ${(props: FireworksProps) =>
-    props.duration
-      ? `--flatify__firework-animation-duration: ${props.duration}ms;`
-      : ''} 
-  ${(props: FireworksProps) =>
-    props.repeat
-      ? `--flatify__firework-animation-iteration-count: ${props.repeat};`
-      : ''}
+  ${({ sx }: FireworksProps) => (sx ? sx : '')}
+  ${({ delay }: FireworksProps) =>
+    delay ? `--flatify__firework-animation-delay: ${delay}ms;` : ''}
+  ${({ duration }: FireworksProps) =>
+    duration ? `--flatify__firework-animation-duration: ${duration}ms;` : ''} 
+  ${({ repeat }: FireworksProps) =>
+    repeat ? `--flatify__firework-animation-iteration-count: ${repeat};` : ''}
 `;
 
 export function Fireworks(props: FireworksProps) {
