@@ -1,22 +1,28 @@
-import React, { ElementType } from 'react';
+import React from 'react';
 import clsx from 'clsx';
+import styled from 'styled-components';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 import { generalAttributes } from '../attributes';
 
-interface BadgeProps extends FlatifyGeneralProps {
+interface BadgeProps
+  extends FlatifyGeneralProps,
+    Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
   children?: string | React.ReactNode;
   pulse?: boolean;
-  tagName?: ElementType;
   text?: string;
 }
 
+const BadgeWrapper = styled.span`
+  ${({ sx }: BadgeProps) => (sx ? sx : '')}
+`;
+
 export function Badge(props: BadgeProps) {
-  const { children, pulse, tagName, text } = props;
-  const Badge = tagName || 'span';
+  const { children, pulse, text, ...rest } = props;
 
   return (
-    <Badge
+    <BadgeWrapper
+      {...rest}
       {...generalAttributes(props)}
       className={clsx(
         'badge',
@@ -28,6 +34,6 @@ export function Badge(props: BadgeProps) {
     >
       {children}
       {text}
-    </Badge>
+    </BadgeWrapper>
   );
 }

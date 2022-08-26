@@ -12,17 +12,26 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story = (args) => <Badge {...args} />;
+const Template: Story = args => <Badge {...args} />;
 
 export const Default = Template.bind({});
 export const Pulse = Template.bind({});
+export const Customized = Template.bind({});
 
 Default.args = {
   children: 'Hello',
 };
 
 Pulse.args = {
-  children: 'Hello',
+  children: '+99',
   pulse: true,
-  theme: 'red',
+  theme: 'green',
+};
+
+Customized.args = {
+  as: 'button',
+  className: 'button color-light',
+  children: '+99',
+  pulse: true,
+  sx: 'background: linear-gradient(to right, #833ab4, #fd1d1d, #fcb045);',
 };
