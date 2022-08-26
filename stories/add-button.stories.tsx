@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
 import { Meta, Story } from '@storybook/react';
+import React, { useState } from 'react';
 import { AddButton } from '../src';
 
 const meta: Meta = {
@@ -12,6 +12,16 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story = (args) => <AddButton label="Add button" {...args} />;
+const Template: Story = args => {
+  const [active, setActive] = useState(false);
+  return (
+    <AddButton
+      {...args}
+      label="Add Me!"
+      active={active}
+      onClick={() => setActive(old => !old)}
+    />
+  );
+};
 
-export const Default = Template.bind({ active: false, label: 'Add button' });
+export const Default = Template.bind({});
