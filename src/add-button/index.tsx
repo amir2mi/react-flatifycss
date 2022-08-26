@@ -5,10 +5,11 @@ import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 import { generalAttributes } from '../attributes';
 
-interface AddButtonProps extends FlatifyGeneralProps {
+interface AddButtonProps
+  extends FlatifyGeneralProps,
+    Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
   active?: boolean;
   label: string;
-  onClick?: () => void;
 }
 
 const AddButtonWrapper = styled.div`
