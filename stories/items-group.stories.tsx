@@ -3,7 +3,7 @@ import { Meta, Story } from '@storybook/react';
 import { ItemsGroup } from '../src';
 
 const meta: Meta = {
-  title: 'Components/ItemsGroup',
+  title: 'Components/Items Group',
   component: ItemsGroup,
   parameters: {
     controls: { expanded: true },
@@ -74,7 +74,7 @@ const items = [
   },
 ];
 
-const Template: Story = (args) => {
+const Template: Story = args => {
   const [active, setActive] = useState('first');
 
   return (
@@ -82,13 +82,11 @@ const Template: Story = (args) => {
       {...args}
       items={items}
       value={active}
-      onChange={(value) => setActive(value)}
+      onChange={value => setActive(value)}
     />
   );
 };
 
-export const Default = Template.bind({ active: false, label: 'Add button' });
+export const Default = Template.bind({});
 
-Default.args = {
-  
-};
+Default.args = {};

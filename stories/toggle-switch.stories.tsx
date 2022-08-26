@@ -3,7 +3,7 @@ import { Meta, Story } from '@storybook/react';
 import { ToggleSwitch } from '../src';
 
 const meta: Meta = {
-  title: 'Inputs/ToggleSwitch',
+  title: 'Inputs/Toggle Switch',
   component: ToggleSwitch,
   parameters: {
     controls: { expanded: true },
