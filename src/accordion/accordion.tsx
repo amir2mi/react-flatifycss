@@ -6,8 +6,9 @@ import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 import { generalAttributes } from '../attributes';
 
-interface AccordionProps extends FlatifyGeneralProps {
-  [key: string]: any;
+interface AccordionProps
+  extends FlatifyGeneralProps,
+    Omit<React.HTMLAttributes<HTMLElement>, 'color' | 'onChange'> {
   animation?: 'fade' | 'default' | string;
   bordered?: boolean;
   children: React.ReactNode;

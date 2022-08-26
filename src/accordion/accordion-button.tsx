@@ -10,8 +10,9 @@ import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 import { generalAttributes } from '../attributes';
 
-interface AccordionButtonProps extends FlatifyGeneralProps {
-  [key: string]: any;
+interface AccordionButtonProps
+  extends FlatifyGeneralProps,
+    Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
   hasIcon?: boolean;
 }
 

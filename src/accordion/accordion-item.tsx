@@ -6,9 +6,9 @@ import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 import { generalAttributes } from '../attributes';
 
-interface AccordionItemProps extends FlatifyGeneralProps {
-  [key: string]: any;
-}
+interface AccordionItemProps
+  extends FlatifyGeneralProps,
+    Omit<React.HTMLAttributes<HTMLElement>, 'color'> {}
 
 const AccordionItemWrapper = styled(ReachAccordionItem)`
   ${({ sx }: AccordionItemProps) => (sx ? sx : '')}

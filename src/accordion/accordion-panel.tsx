@@ -10,16 +10,18 @@ import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 import { generalAttributes } from '../attributes';
 
-interface AccordionPanelProps extends FlatifyGeneralProps {
-  [key: string]: any;
-}
+interface AccordionPanelProps
+  extends FlatifyGeneralProps,
+    Omit<React.HTMLAttributes<HTMLElement>, 'color'> {}
 
 const AccordionPanelWrapper = styled(animated.div)`
   ${({ sx }: AccordionPanelProps) => (sx ? sx : '')}
+  transition: none;
+  transition-delay: 0.2s;
 `;
 
 export default function AccordionPanel(props: AccordionPanelProps) {
-  const { children, sx, ...rest } = props;
+  const { as, children, sx, ...rest } = props;
   const { isExpanded } = useAccordionItemContext();
   const el = useRef<any>(null);
 
@@ -50,12 +52,13 @@ export default function AccordionPanel(props: AccordionPanelProps) {
     <AccordionPanelWrapper
       {...generalAttributes(props)}
       ref={el}
+      as={as}
       sx={sx}
+      style={{ height }}
       className={clsx(
         'accordion-collapse accordion-will-be-shown',
         ...generalClasses(props)
       )}
-      style={{ height, transition: 'none', transitionDelay: '0.2s' }}
     >
       <ReachAccordionPanel {...rest} className="accordion-body">
         {children}
