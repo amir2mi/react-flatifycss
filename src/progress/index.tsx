@@ -6,7 +6,7 @@ import { generalAttributes } from '../attributes';
 
 interface ProgressProps
   extends FlatifyGeneralProps,
-    Omit<React.HTMLAttributes<HTMLDivElement>, 'color'> {
+    Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
   bordered?: boolean;
   children?: React.ReactNode;
   max?: number;

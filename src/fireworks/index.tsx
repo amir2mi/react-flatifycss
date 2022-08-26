@@ -7,7 +7,7 @@ import { generalAttributes } from '../attributes';
 
 interface FireworksProps
   extends FlatifyGeneralProps,
-    Omit<React.HTMLAttributes<HTMLDivElement>, 'color'> {
+    Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
   delay?: number;
   duration?: number;
   repeat?: number;
