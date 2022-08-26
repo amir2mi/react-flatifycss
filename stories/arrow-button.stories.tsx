@@ -25,10 +25,21 @@ const Template: Story = args => {
 };
 
 export const Default = Template.bind({});
+export const Button = Template.bind({});
+export const Directions = Template.bind({});
 
 Default.args = {
-  disabled: false,
   isButton: false,
-  isFlipped: false,
+  label: 'Arrow button',
+};
+
+Button.args = {
+  isButton: true,
+  label: 'Arrow button',
+};
+
+Directions.args = {
+  isButton: true,
+  direction: 'right',
   label: 'Arrow button',
 };
