@@ -1,5 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
+import styled from 'styled-components';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 import { generalAttributes } from '../attributes';
@@ -12,21 +13,25 @@ interface AlertCloseButtonProps
   label: string;
 }
 
+const AlertCloseButtonWrapper = styled.button`
+  ${({ sx }: AlertCloseButtonProps) => (sx ? sx : '')}
+`;
+
 export default function AlertCloseButton(props: AlertCloseButtonProps) {
   const { children, floating, label, ...rest } = props;
 
   return (
-    <button
+    <AlertCloseButtonWrapper
       {...rest}
-      {...generalAttributes}
+      {...generalAttributes(props)}
+      aria-label={label}
       className={clsx(
         'close-button',
         floating && 'floating',
         ...generalClasses(props)
       )}
-      aria-label={label}
     >
       {children}
-    </button>
+    </AlertCloseButtonWrapper>
   );
 }

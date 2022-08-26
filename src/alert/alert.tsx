@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
+import styled from 'styled-components';
 import { CSSTransition } from 'react-transition-group';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
@@ -12,6 +13,10 @@ interface AlertProps
   children: any;
   show?: boolean;
 }
+
+const AlertWrapper = styled.div`
+  ${({ sx }: AlertProps) => (sx ? sx : '')}
+`;
 
 export default function Alert(props: AlertProps) {
   const { children, show, ...rest } = props;
@@ -32,7 +37,7 @@ export default function Alert(props: AlertProps) {
         exitActive: 'alert-will-be-removed',
       }}
     >
-      <div
+      <AlertWrapper
         {...rest}
         {...generalAttributes(props)}
         className={clsx(
@@ -43,7 +48,7 @@ export default function Alert(props: AlertProps) {
         role="alert"
       >
         {children}
-      </div>
+      </AlertWrapper>
     </CSSTransition>
   );
 }
