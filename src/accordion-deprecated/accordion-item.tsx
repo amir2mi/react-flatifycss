@@ -47,7 +47,9 @@ export function AccordionItem(props: AccordionItemProps) {
             onClick={onClick}
           >
             {title}
-            {!disableAddButton && <AddButton tagName="span" active={isOpen} />}
+            {!disableAddButton && (
+              <AddButton label="" tagName="span" active={isOpen} />
+            )}
           </button>
         </Heading>
         <CSSTransition

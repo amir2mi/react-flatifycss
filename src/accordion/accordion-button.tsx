@@ -35,7 +35,7 @@ export default function AccordionButton(props: AccordionButtonProps) {
     >
       <ReachAccordionButton {...rest} className="accordion-toggle">
         {children}
-        {hasIcon && <AddButton tagName="span" active={isExpanded} />}
+        {hasIcon && <AddButton label="" tagName="span" active={isExpanded} />}
       </ReachAccordionButton>
     </AccordionHeader>
   );
