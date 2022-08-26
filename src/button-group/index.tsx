@@ -1,27 +1,35 @@
 import React from 'react';
 import clsx from 'clsx';
+import styled from 'styled-components';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 import { generalAttributes } from '../attributes';
 
-interface ButtonGroupProps extends FlatifyGeneralProps {
+interface ButtonGroupProps
+  extends FlatifyGeneralProps,
+    Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
   children?: React.ReactNode;
   vertical?: boolean;
 }
 
+const ButtonGroupWrapper = styled.div`
+  ${({ sx }: ButtonGroupProps) => (sx ? sx : '')}
+`;
+
 export function ButtonGroup(props: ButtonGroupProps) {
-  const { children, vertical } = props;
+  const { children, vertical, ...rest } = props;
 
   return (
-    <div
+    <ButtonGroupWrapper
+      {...rest}
+      {...generalAttributes(props)}
       className={clsx(
         'button-group',
         { vertical: vertical },
         ...generalClasses(props)
       )}
-      {...generalAttributes(props)}
     >
-      {children && children}
-    </div>
+      {children}
+    </ButtonGroupWrapper>
   );
 }
