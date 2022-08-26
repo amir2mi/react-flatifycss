@@ -8,7 +8,7 @@ import { generalAttributes } from '../attributes';
 
 interface DropdownProps extends FlatifyGeneralProps {
   autoClose?: boolean | 'outside' | 'inside';
-  children?: string | React.ReactNode;
+  children?: React.ReactNode;
   hoverShowDelay?: number;
   hoverHideDelay?: number;
   isHoverable?: boolean;
@@ -194,7 +194,7 @@ export default function Dropdown(props: DropdownProps) {
             id: buttonId,
             isOpen: isOpen,
             arrowClassName: `arrow-${arrowDirection}`,
-            onClick: () => !isHoverable && setOpen((isOpen) => !isOpen),
+            onClick: () => !isHoverable && setOpen(isOpen => !isOpen),
             ...buttonHoverability.current,
           });
         }

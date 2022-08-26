@@ -11,10 +11,10 @@ interface InputProps
       React.InputHTMLAttributes<HTMLInputElement>,
       'size' | 'color' | 'onChange' | 'onBlur' | 'onFocus'
     > {
-  children?: string | React.ReactNode;
+  children?: React.ReactNode;
   hasFloatingLabel?: boolean;
   id: string;
-  label?: string | React.ReactNode;
+  label?: React.ReactNode;
   onChange?: (
     value: string,
     event: React.ChangeEvent<HTMLInputElement>
@@ -136,7 +136,7 @@ export function Input(props: InputProps) {
           <button
             className="show-password-button"
             aria-label={togglePasswordLabel}
-            onClick={() => setIsPassword((old) => !old)}
+            onClick={() => setIsPassword(old => !old)}
           />
         )}
         {children}

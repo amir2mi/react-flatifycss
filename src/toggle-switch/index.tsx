@@ -6,7 +6,7 @@ import { generalAttributes } from '../attributes';
 
 interface ToggleSwitchProps extends FlatifyGeneralProps {
   checked?: boolean;
-  children?: string | React.ReactNode;
+  children?: React.ReactNode;
   defaultChecked?: boolean;
   disabled?: boolean;
   isAfterLabel?: boolean;

@@ -8,7 +8,7 @@ interface RadioProps extends FlatifyGeneralProps {
   checked?: boolean;
   defaultChecked?: boolean;
   disabled?: boolean;
-  children?: string | React.ReactNode;
+  children?: React.ReactNode;
   label?: string;
   name?: string;
   onChange?: (checked: boolean) => void;

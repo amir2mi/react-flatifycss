@@ -8,7 +8,7 @@ import { generalAttributes } from '../attributes';
 interface BadgeProps
   extends FlatifyGeneralProps,
     Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
-  children?: string | React.ReactNode;
+  children?: React.ReactNode;
   pulse?: boolean;
   text?: string;
 }

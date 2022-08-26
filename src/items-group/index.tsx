@@ -8,7 +8,7 @@ interface itemProps {
   activeClassName?: string;
   className?: string;
   subtitle?: string;
-  svg?: string | React.ReactNode;
+  svg?: React.ReactNode;
   title: string;
   value: string | number;
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 
 interface TabButtonProps {
-  children?: string | React.ReactNode;
+  children?: React.ReactNode;
   href?: string;
   isActive: boolean;
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;

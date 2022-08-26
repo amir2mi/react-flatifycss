@@ -8,12 +8,12 @@ import { AddButton } from '../add-button';
 
 export interface AccordionItemProps extends FlatifyGeneralProps {
   children?: React.ReactNode;
-  content: string | React.ReactNode;
+  content: React.ReactNode;
   disableAddButton?: boolean;
   heading?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   isOpen?: boolean;
   onClick?: () => void;
-  title: string | React.ReactNode;
+  title: React.ReactNode;
 }
 
 export function AccordionItem(props: AccordionItemProps) {

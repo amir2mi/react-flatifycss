@@ -11,11 +11,11 @@ interface TabItemProps {
   buttonHref?: string;
   buttonTagName?: string;
   className?: string;
-  content: string | React.ReactNode;
+  content: React.ReactNode;
   id?: string;
   isHidden?: boolean;
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-  title: string | React.ReactNode;
+  title: React.ReactNode;
 }
 
 interface TabsProps extends FlatifyGeneralProps {

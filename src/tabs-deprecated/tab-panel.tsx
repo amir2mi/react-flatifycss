@@ -2,7 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 
 interface TabPanelProps {
-  children?: string | React.ReactNode;
+  children?: React.ReactNode;
   className?: string;
   isActive: boolean;
   panelId: string;
