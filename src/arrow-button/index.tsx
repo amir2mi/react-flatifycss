@@ -3,7 +3,6 @@ import clsx from 'clsx';
 import styled from 'styled-components';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
-import { generalAttributes } from '../attributes';
 
 interface ArrowButtonProps
   extends FlatifyGeneralProps,
@@ -24,7 +23,6 @@ export function ArrowButton(props: ArrowButtonProps) {
   return (
     <ArrowButtonWrapper
       {...rest}
-      {...generalAttributes(props)}
       className={clsx(
         'arrow-button',
         {

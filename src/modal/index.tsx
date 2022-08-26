@@ -4,7 +4,6 @@ import { Dialog } from '@reach/dialog';
 import { animated, useTransition } from 'react-spring';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
-import { generalAttributes } from '../attributes';
 import ModalHeader from './modal-header';
 import ModalFooter from './modal-footer';
 
@@ -45,7 +44,6 @@ export function Modal(props: ModalProps) {
   return (
     <>
       <AnimatedDialog
-        {...generalAttributes(props)}
         {...rest}
         className={clsx('modal show', ...generalClasses(props), className, {
           bordered: bordered,
@@ -65,7 +63,7 @@ export function Modal(props: ModalProps) {
                 opacity: styles.opacity,
               }}
               className={clsx('backdrop-layer show', overlayClassName)}
-              onClick={(e) => !disableOverlayClick && onDismiss?.(e)}
+              onClick={e => !disableOverlayClick && onDismiss?.(e)}
             />
           )
       )}

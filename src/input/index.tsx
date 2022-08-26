@@ -3,7 +3,6 @@ import clsx from 'clsx';
 import getUniqueID from '../utils/id-generator';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
-import { generalAttributes } from '../attributes';
 
 interface InputProps
   extends FlatifyGeneralProps,
@@ -110,7 +109,6 @@ export function Input(props: InputProps) {
         )}
       >
         <input
-          {...generalAttributes(props)}
           {...rest}
           className={clsx(
             'text-input',

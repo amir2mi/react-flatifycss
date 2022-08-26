@@ -2,7 +2,6 @@ import React, { Fragment, useState } from 'react';
 import clsx from 'clsx';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
-import { generalAttributes } from '../attributes';
 import { AccordionItem, AccordionItemProps } from './accordion-item';
 
 interface AccordionProps extends FlatifyGeneralProps {
@@ -27,7 +26,6 @@ export function Accordion(props: AccordionProps) {
         { bordered: bordered },
         ...generalClasses(props)
       )}
-      {...generalAttributes(props)}
     >
       {items.map((item, index) => {
         const isOpen = openedItem.filter(i => i === index).length > 0;

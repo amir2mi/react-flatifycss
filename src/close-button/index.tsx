@@ -2,7 +2,6 @@ import React from 'react';
 import clsx from 'clsx';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
-import { generalAttributes } from '../attributes';
 
 interface CloseButtonProps extends FlatifyGeneralProps {
   isButton?: boolean;
@@ -22,7 +21,6 @@ export function CloseButton(props: CloseButtonProps) {
         },
         ...generalClasses(props)
       )}
-      {...generalAttributes(props)}
       aria-label={label}
       onClick={onClick}
     ></button>

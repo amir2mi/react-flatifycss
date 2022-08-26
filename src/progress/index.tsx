@@ -2,7 +2,6 @@ import React from 'react';
 import clsx from 'clsx';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
-import { generalAttributes } from '../attributes';
 
 interface ProgressProps
   extends FlatifyGeneralProps,
@@ -23,7 +22,6 @@ export function Progress(props: ProgressProps) {
 
   return (
     <div
-      {...generalAttributes(props)}
       className={clsx('progress', ...generalClasses(props), {
         bordered: bordered,
         processing: processing,

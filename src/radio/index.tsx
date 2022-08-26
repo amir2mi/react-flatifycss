@@ -2,7 +2,6 @@ import React from 'react';
 import clsx from 'clsx';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
-import { generalAttributes } from '../attributes';
 
 interface RadioProps extends FlatifyGeneralProps {
   checked?: boolean;
@@ -31,7 +30,6 @@ export function Radio(props: RadioProps) {
 
   return (
     <label
-      {...generalAttributes(props)}
       className={clsx(
         'radio-wrapper',
         { [state + '']: state },

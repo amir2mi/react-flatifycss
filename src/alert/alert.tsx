@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { CSSTransition } from 'react-transition-group';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
-import { generalAttributes } from '../attributes';
 import { hasSpecificChildren } from '../utils/children';
 
 interface AlertProps
@@ -39,7 +38,6 @@ export default function Alert(props: AlertProps) {
     >
       <AlertWrapper
         {...rest}
-        {...generalAttributes(props)}
         className={clsx(
           'alert',
           hasIcon && 'has-icon',

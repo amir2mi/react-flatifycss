@@ -2,7 +2,6 @@ import React from 'react';
 import clsx from 'clsx';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
-import { generalAttributes } from '../attributes';
 
 interface itemProps {
   activeClassName?: string;
@@ -25,10 +24,7 @@ export function ItemsGroup(props: ItemsGroupProps) {
   if (!items) return null;
 
   return (
-    <div
-      {...generalAttributes(props)}
-      className={clsx('items-group', ...generalClasses(props))}
-    >
+    <div className={clsx('items-group', ...generalClasses(props))}>
       {items.map(item => {
         const {
           activeClassName,

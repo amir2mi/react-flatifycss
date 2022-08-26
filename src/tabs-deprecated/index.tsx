@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import getUniqueID from '../utils/id-generator';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
-import { generalAttributes } from '../attributes';
+
 import { TabButton } from './tab-button';
 import { TabPanel } from './tab-panel';
 
@@ -51,7 +51,6 @@ export function Tabs(props: TabsProps) {
 
   return (
     <div
-      {...generalAttributes(props)}
       className={clsx(
         'tabs-wrapper',
         {

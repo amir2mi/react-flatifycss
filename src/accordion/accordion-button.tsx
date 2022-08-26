@@ -8,7 +8,6 @@ import {
 import { AddButton } from '../add-button';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
-import { generalAttributes } from '../attributes';
 
 interface AccordionButtonProps
   extends FlatifyGeneralProps,
@@ -26,7 +25,6 @@ export default function AccordionButton(props: AccordionButtonProps) {
 
   return (
     <AccordionHeader
-      {...generalAttributes(props)}
       as={as}
       sx={sx}
       className={clsx(

@@ -3,7 +3,6 @@ import clsx from 'clsx';
 import styled from 'styled-components';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
-import { generalAttributes } from '../attributes';
 
 interface BadgeProps
   extends FlatifyGeneralProps,
@@ -23,7 +22,6 @@ export function Badge(props: BadgeProps) {
   return (
     <BadgeWrapper
       {...rest}
-      {...generalAttributes(props)}
       className={clsx(
         'badge',
         {

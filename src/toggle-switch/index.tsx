@@ -2,7 +2,6 @@ import React from 'react';
 import clsx from 'clsx';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
-import { generalAttributes } from '../attributes';
 
 interface ToggleSwitchProps extends FlatifyGeneralProps {
   checked?: boolean;
@@ -35,7 +34,6 @@ export function ToggleSwitch(props: ToggleSwitchProps) {
 
   return (
     <label
-      {...generalAttributes(props)}
       className={clsx(
         'toggle-wrapper',
         { [state + '']: state },

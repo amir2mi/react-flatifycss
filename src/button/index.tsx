@@ -3,7 +3,6 @@ import clsx from 'clsx';
 import styled from 'styled-components';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
-import { generalAttributes } from '../attributes';
 
 interface ButtonProps
   extends FlatifyGeneralProps,
@@ -40,7 +39,6 @@ export function Button(props: ButtonProps) {
   return (
     <ButtonWrapper
       {...rest}
-      {...generalAttributes(props)}
       disabled={disabled || state === 'disabled'}
       className={clsx(
         {

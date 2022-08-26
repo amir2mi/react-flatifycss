@@ -2,7 +2,6 @@ import React from 'react';
 import clsx from 'clsx';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
-import { generalAttributes } from '../attributes';
 
 export interface DropdownButtonProps
   extends FlatifyGeneralProps,
@@ -33,7 +32,6 @@ export default function DropdownButton(props: DropdownButtonProps) {
   return (
     <button
       {...rest}
-      {...generalAttributes(props)}
       ref={innerRef}
       aria-expanded={isOpen}
       className={clsx(

@@ -2,7 +2,6 @@ import React from 'react';
 import clsx from 'clsx';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
-import { generalAttributes } from '../attributes';
 
 interface ModalHeaderProps extends FlatifyGeneralProps {
   [key: string]: any;
@@ -15,7 +14,6 @@ export default function ModalHeader(props: ModalHeaderProps) {
 
   return (
     <header
-      {...generalAttributes(props)}
       className={clsx('modal-header', ...generalClasses(props), className)}
     >
       {children}

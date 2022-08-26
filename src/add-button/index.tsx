@@ -3,7 +3,6 @@ import clsx from 'clsx';
 import styled from 'styled-components';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
-import { generalAttributes } from '../attributes';
 
 interface AddButtonProps
   extends FlatifyGeneralProps,
@@ -21,7 +20,6 @@ export function AddButton(props: AddButtonProps) {
 
   return (
     <AddButtonWrapper
-      {...generalAttributes(props)}
       {...rest}
       aria-label={label}
       className={clsx(

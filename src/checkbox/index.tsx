@@ -3,7 +3,6 @@ import clsx from 'clsx';
 import styled from 'styled-components';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
-import { generalAttributes } from '../attributes';
 
 interface CheckboxProps
   extends FlatifyGeneralProps,
@@ -34,7 +33,6 @@ export function Checkbox(props: CheckboxProps) {
 
   return (
     <CheckboxWrapper
-      {...generalAttributes(props)}
       as={as}
       sx={sx}
       className={clsx(

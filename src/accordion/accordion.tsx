@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { Accordion as ReachAccordion } from '@reach/accordion';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
-import { generalAttributes } from '../attributes';
 
 interface AccordionProps
   extends FlatifyGeneralProps,
@@ -30,7 +29,6 @@ export default function Accordion(props: AccordionProps) {
   const { animation, bordered, children, ...rest } = props;
   return (
     <AccordionWrapper
-      {...generalAttributes(props)}
       {...rest}
       animation={animation}
       className={clsx('accordion', ...generalClasses(props), {

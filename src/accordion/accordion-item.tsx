@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { AccordionItem as ReachAccordionItem } from '@reach/accordion';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
-import { generalAttributes } from '../attributes';
 
 interface AccordionItemProps
   extends FlatifyGeneralProps,
@@ -19,7 +18,6 @@ export default function AccordionItem(props: AccordionItemProps) {
 
   return (
     <AccordionItemWrapper
-      {...generalAttributes(props)}
       {...rest}
       className={clsx('accordion-item active', ...generalClasses(props))}
     >

@@ -4,7 +4,6 @@ import clsx from 'clsx';
 import getUniqueID from '../utils/id-generator';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
-import { generalAttributes } from '../attributes';
 
 interface DropdownProps extends FlatifyGeneralProps {
   autoClose?: boolean | 'outside' | 'inside';
@@ -183,7 +182,6 @@ export default function Dropdown(props: DropdownProps) {
 
   return (
     <div
-      {...generalAttributes(props)}
       id={`wrapper-${id}`}
       className={clsx('dropdown-wrapper', ...generalClasses(props), className)}
     >

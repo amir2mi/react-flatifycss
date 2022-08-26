@@ -3,7 +3,6 @@ import clsx from 'clsx';
 import styled from 'styled-components';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
-import { generalAttributes } from '../attributes';
 
 interface AlertIconProps
   extends FlatifyGeneralProps,
@@ -22,7 +21,6 @@ export default function AlertIcon(props: AlertIconProps) {
   return (
     <AlertIconWrapper
       {...rest}
-      {...generalAttributes(props)}
       className={clsx('alert-svg', ...generalClasses(props))}
     >
       {children}

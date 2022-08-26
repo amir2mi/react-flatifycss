@@ -3,7 +3,6 @@ import clsx from 'clsx';
 import styled from 'styled-components';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
-import { generalAttributes } from '../attributes';
 
 interface FireworksProps
   extends FlatifyGeneralProps,
@@ -30,7 +29,6 @@ export function Fireworks(props: FireworksProps) {
   return (
     <FireworksWrapper
       {...rest}
-      {...generalAttributes(props)}
       aria-hidden="true"
       className={clsx('fireworks', generalClasses(props), simple && 'simple')}
     >

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import clsx from 'clsx';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
-import { generalAttributes } from '../attributes';
 
 interface SelectItemProps {
   label: string;
@@ -68,7 +67,6 @@ export function Select(props: SelectProps) {
         </label>
       )}
       <select
-        {...generalAttributes(props)}
         name={name}
         className={clsx(...generalClasses(props))}
         multiple={multiple}

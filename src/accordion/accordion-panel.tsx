@@ -8,7 +8,6 @@ import {
 import { animated, useSpring } from 'react-spring';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
-import { generalAttributes } from '../attributes';
 
 interface AccordionPanelProps
   extends FlatifyGeneralProps,
@@ -50,7 +49,6 @@ export default function AccordionPanel(props: AccordionPanelProps) {
 
   return (
     <AccordionPanelWrapper
-      {...generalAttributes(props)}
       ref={el}
       as={as}
       sx={sx}

@@ -3,7 +3,6 @@ import clsx from 'clsx';
 import styled from 'styled-components';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
-import { generalAttributes } from '../attributes';
 
 interface AlertCloseButtonProps
   extends FlatifyGeneralProps,
@@ -23,7 +22,6 @@ export default function AlertCloseButton(props: AlertCloseButtonProps) {
   return (
     <AlertCloseButtonWrapper
       {...rest}
-      {...generalAttributes(props)}
       aria-label={label}
       className={clsx(
         'close-button',
