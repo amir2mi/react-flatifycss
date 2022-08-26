@@ -12,15 +12,11 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story = (args) => {
+const Template: Story = args => {
   const [checked, setChecked] = useState(false);
 
   return (
-    <Checkbox
-      {...args}
-      checked={checked}
-      onChange={(value) => setChecked(value)}
-    >
+    <Checkbox {...args} checked={checked} onChange={value => setChecked(value)}>
       I Agree to Privacy Policy.
     </Checkbox>
   );
@@ -28,8 +24,13 @@ const Template: Story = (args) => {
 
 export const Default = Template.bind({});
 export const Disabled = Template.bind({});
+export const States = Template.bind({});
 
 Disabled.args = {
   checked: false,
   disabled: true,
+};
+
+States.args = {
+  state: 'invalid',
 };

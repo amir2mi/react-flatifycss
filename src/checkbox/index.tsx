@@ -1,37 +1,42 @@
 import React from 'react';
 import clsx from 'clsx';
+import styled from 'styled-components';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 import { generalAttributes } from '../attributes';
 
-interface CheckboxProps extends FlatifyGeneralProps {
+interface CheckboxProps
+  extends FlatifyGeneralProps,
+    Omit<React.HTMLAttributes<HTMLInputElement>, 'color' | 'onChange'> {
   checked?: boolean;
-  defaultChecked?: boolean;
-  disabled?: boolean;
-  children?: string | React.ReactNode;
+  children?: React.ReactNode;
   label?: string;
-  name?: string;
   onChange?: (checked: boolean) => void;
-  required?: boolean | undefined;
   state?: 'valid' | 'warning' | 'invalid';
 }
 
+const CheckboxWrapper = styled.label`
+  ${({ sx }: CheckboxProps) => (sx ? sx : '')}
+`;
+
 export function Checkbox(props: CheckboxProps) {
   const {
+    as,
     checked,
-    defaultChecked,
-    disabled,
     children,
-    label,
-    name,
     onChange,
-    required,
+    label,
+    size,
     state,
+    sx,
+    ...rest
   } = props;
 
   return (
-    <label
+    <CheckboxWrapper
       {...generalAttributes(props)}
+      as={as}
+      sx={sx}
       className={clsx(
         'checkbox-wrapper',
         { [state + '']: state },
@@ -39,17 +44,14 @@ export function Checkbox(props: CheckboxProps) {
       )}
     >
       <input
+        {...rest}
         type="checkbox"
-        name={name}
         checked={checked}
-        defaultChecked={defaultChecked}
-        disabled={disabled}
-        required={required}
         onChange={() => onChange?.(!checked)}
       />
       <span aria-hidden={true} className="check" />
       {children}
       {label}
-    </label>
+    </CheckboxWrapper>
   );
 }
