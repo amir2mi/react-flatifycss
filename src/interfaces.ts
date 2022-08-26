@@ -1,3 +1,5 @@
+import { ElementType } from 'react';
+
 export type Colors =
   | 'default'
   | 'blue'
@@ -51,6 +53,7 @@ export type Sizes =
   | '5x';
 
 export interface FlatifyGeneralProps {
+  as?: ElementType;
   className?: string;
   color?: Colors;
   'data-testid'?: string;
