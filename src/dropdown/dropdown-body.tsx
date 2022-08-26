@@ -52,7 +52,7 @@ export default function DropdownBody(props: DropdownBodyProps) {
     >
       <DropdownBodyElement
         {...rest}
-        {...generalAttributes(props)}
+        {...generalAttributes}
         ref={innerRef}
         style={style}
         className={clsx(

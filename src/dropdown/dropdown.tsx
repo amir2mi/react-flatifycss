@@ -16,7 +16,6 @@ interface DropdownProps extends FlatifyGeneralProps {
   offsetX?: number;
   offsetY?: number;
   placement?: 'top' | 'bottom' | 'left' | 'right';
-  tagName?: ElementType;
 }
 
 interface PopperOptionsProps {

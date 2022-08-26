@@ -20,12 +20,13 @@ const AccordionHeader = styled.div`
 `;
 
 export default function AccordionButton(props: AccordionButtonProps) {
-  const { children, hasIcon, sx, ...rest } = props;
+  const { as, children, hasIcon, sx, ...rest } = props;
   const { isExpanded } = useAccordionItemContext();
 
   return (
     <AccordionHeader
       {...generalAttributes(props)}
+      as={as}
       sx={sx}
       className={clsx(
         'accordion-header',
@@ -35,7 +36,7 @@ export default function AccordionButton(props: AccordionButtonProps) {
     >
       <ReachAccordionButton {...rest} className="accordion-toggle">
         {children}
-        {hasIcon && <AddButton label="" tagName="span" active={isExpanded} />}
+        {hasIcon && <AddButton label="" as="span" active={isExpanded} />}
       </ReachAccordionButton>
     </AccordionHeader>
   );

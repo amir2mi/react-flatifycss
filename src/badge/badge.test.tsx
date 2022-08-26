@@ -4,7 +4,7 @@ import { Badge } from '../badge';
 
 describe('Badge', () => {
   it('should be rendered without crashing', () => {
-    const { container } = render(<Badge tagName="div" text="hello" />);
+    const { container } = render(<Badge as="div" text="hello" />);
 
     expect(container.querySelector('div.badge')).toBeInTheDocument();
   });

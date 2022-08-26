@@ -9,7 +9,6 @@ interface AddButtonProps extends FlatifyGeneralProps {
   active?: boolean;
   label: string;
   onClick?: () => void;
-  tagName?: ElementType;
 }
 
 const AddButtonWrapper = styled.div`
@@ -17,13 +16,12 @@ const AddButtonWrapper = styled.div`
 `;
 
 export function AddButton(props: AddButtonProps) {
-  const { active, label, tagName, ...rest } = props;
+  const { active, label, ...rest } = props;
 
   return (
     <AddButtonWrapper
       {...generalAttributes(props)}
       {...rest}
-      as={tagName}
       aria-label={label}
       className={clsx(
         'add-button',

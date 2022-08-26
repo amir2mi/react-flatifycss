@@ -62,6 +62,6 @@ TwoLayerIcon.args = {
 
 LinkButton.args = {
   ...Default.args,
-  tagName: 'a',
+  as: 'a',
   href: '#',
 };
