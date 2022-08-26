@@ -1,10 +1,13 @@
-import React, { ElementType } from 'react';
+import React from 'react';
 import clsx from 'clsx';
+import styled from 'styled-components';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 import { generalAttributes } from '../attributes';
 
-interface ButtonProps extends FlatifyGeneralProps {
+interface ButtonProps
+  extends FlatifyGeneralProps,
+    Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'color'> {
   bordered?: boolean;
   children?: React.ReactNode;
   disabled?: boolean;
@@ -13,31 +16,32 @@ interface ButtonProps extends FlatifyGeneralProps {
   outline?: boolean;
   secondaryText?: React.ReactNode | string;
   state?: 'active' | 'static' | 'disabled';
-  tagName?: ElementType;
   text?: string;
   variant?: 'primary' | 'secondary' | 'tertiary';
 }
+
+const ButtonWrapper = styled.button`
+  ${({ sx }: ButtonProps) => (sx ? sx : '')}
+`;
 
 export function Button(props: ButtonProps) {
   const {
     bordered,
     children,
     disabled,
-    href,
-    onClick,
     outline,
     secondaryText,
     state,
-    tagName,
     text,
     variant,
+    ...rest
   } = props;
 
-  const Button = tagName || 'button';
-
   return (
-    <Button
+    <ButtonWrapper
+      {...rest}
       {...generalAttributes(props)}
+      disabled={disabled || state === 'disabled'}
       className={clsx(
         {
           button: variant !== 'tertiary',
@@ -53,13 +57,10 @@ export function Button(props: ButtonProps) {
         },
         ...generalClasses(props)
       )}
-      href={href}
-      disabled={disabled || state === 'disabled'}
-      onClick={onClick}
     >
       {text}
       {children}
       {secondaryText && <span className="secondary-text">{secondaryText}</span>}
-    </Button>
+    </ButtonWrapper>
   );
 }
