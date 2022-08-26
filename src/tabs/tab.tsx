@@ -1,26 +1,36 @@
 import React from 'react';
 import clsx from 'clsx';
+import styled from 'styled-components';
 import { Tab as ReachTab, useTabsContext } from '@reach/tabs';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 
-interface TabProps extends FlatifyGeneralProps {
+interface TabProps
+  extends FlatifyGeneralProps,
+    Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
   [key: string]: any;
-  className?: string;
   children: React.ReactNode;
   orderIndex?: number;
 }
 
+const TabWrapper = styled(ReachTab)`
+  ${({ sx }: TabProps) => (sx ? sx : '')}
+`;
+
 export default function Tab(props: TabProps) {
-  const { orderIndex, className, ...rest } = props;
+  const { orderIndex, ...rest } = props;
   const { selectedIndex } = useTabsContext();
 
   return (
-    <ReachTab
+    <TabWrapper
       {...rest}
-      className={clsx('tab-button', className, ...generalClasses(props), {
-        active: selectedIndex === orderIndex,
-      })}
+      className={clsx(
+        'tab-button',
+        {
+          active: selectedIndex === orderIndex,
+        },
+        ...generalClasses(props)
+      )}
     />
   );
 }

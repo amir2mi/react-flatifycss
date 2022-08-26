@@ -1,39 +1,41 @@
 import React from 'react';
 import clsx from 'clsx';
+import styled from 'styled-components';
 import { TabList as ReachTabList } from '@reach/tabs';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 
-interface TabListProps extends FlatifyGeneralProps {
-  [key: string]: any;
+interface TabListProps
+  extends FlatifyGeneralProps,
+    Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
   centered?: boolean;
-  className?: string;
   children: React.ReactNode;
   linePosition?: 'bottom' | 'top';
   scrollable?: boolean;
 }
 
+const TabListWrapper = styled(ReachTabList)`
+  ${({ sx }: TabListProps) => (sx ? sx : '')}
+`;
+
 export default function TabList(props: TabListProps) {
-  const {
-    children,
-    className,
-    linePosition,
-    centered,
-    scrollable,
-    ...rest
-  } = props;
-  // do not use map index, it run multiple times and gives the wrong index
+  const { children, linePosition, centered, scrollable, ...rest } = props;
+  // do not use map index, it runs multiple times and gives the wrong index
   let orderIndex = 0;
 
   // add the orderIndex prop to each tab to determine which tab is active and add the active class
   return (
-    <ReachTabList
+    <TabListWrapper
       {...rest}
-      className={clsx('tabs-header', className, ...generalClasses(props), {
-        'line-at-top': linePosition === 'top',
-        'flex-center': centered,
-        scrollable: scrollable,
-      })}
+      className={clsx(
+        'tabs-header',
+        {
+          'line-at-top': linePosition === 'top',
+          'flex-center': centered,
+          scrollable: scrollable,
+        },
+        ...generalClasses(props)
+      )}
     >
       {React.Children.map(children, child => {
         if (React.isValidElement(child)) {
@@ -43,6 +45,6 @@ export default function TabList(props: TabListProps) {
         }
         return child;
       })}
-    </ReachTabList>
+    </TabListWrapper>
   );
 }
