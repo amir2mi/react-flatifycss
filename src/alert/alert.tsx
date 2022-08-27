@@ -9,12 +9,15 @@ import { hasSpecificChildren } from '../utils/children';
 interface AlertProps
   extends FlatifyGeneralProps,
     Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
+  animation?: string;
   children: any;
   show?: boolean;
 }
 
 const AlertWrapper = styled.div`
   ${({ sx }: AlertProps) => (sx ? sx : '')}
+  ${({ animation }: AlertProps) =>
+    animation ? `--flatify__alert-animation-remove: ${animation}` : ''}
 `;
 
 export default function Alert(props: AlertProps) {

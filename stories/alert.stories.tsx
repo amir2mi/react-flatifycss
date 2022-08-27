@@ -12,12 +12,12 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story = ({ floating, theme }) => {
+const Template: Story = ({ animation, floating, sx, theme }) => {
   const [show, setShow] = useState(true);
 
   return (
     <>
-      <Alert show={show} theme={theme}>
+      <Alert animation={animation} sx={sx} show={show} theme={theme}>
         <AlertCloseButton
           label="Close the alert"
           floating={floating}
@@ -56,13 +56,26 @@ const IconTemplate: Story = args => {
 export const Default = Template.bind({});
 export const WithIcon = IconTemplate.bind({});
 export const FloatingCloseButton = Template.bind({});
-export const Customized = Template.bind({});
+export const CustomAnimation = Template.bind({});
 
 FloatingCloseButton.args = {
   floating: true,
 };
 
-Customized.args = {
+CustomAnimation.args = {
   floating: true,
   theme: 'accent-light',
+  animation: 'my-custom-animation 0.4s ease;',
+  sx: `
+  @keyframes my-custom-animation {
+    from {
+      opacity: 1;
+      transform: scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: scale(0.5) rotate(0.5turn);
+    }
+  }
+  `,
 };
