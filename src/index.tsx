@@ -5,7 +5,6 @@ export * from './button-group';
 export * from './add-button';
 export * from './arrow-button';
 export * from './hamburger';
-export * from './close-button';
 
 // form
 export * from './input';
