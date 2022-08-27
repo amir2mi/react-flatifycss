@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Meta, Story } from '@storybook/react';
-import { Modal, Button, CloseButton, ModalHeader, ModalFooter } from '../src';
+import { Modal, Button, ModalHeader, ModalFooter } from '../src';
 
 const meta: Meta = {
   title: 'Components/Modal',
@@ -12,7 +12,7 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story = (args) => {
+const Template: Story = args => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -29,9 +29,9 @@ const Template: Story = (args) => {
       >
         <ModalHeader>
           <h3 className="modal-title">I am a big boy</h3>
-          <CloseButton
-            className="close-modal"
-            label="Close the modal"
+          <button
+            className="close-button close-modal"
+            aria-label="Close the modal"
             onClick={() => setIsOpen(false)}
           />
         </ModalHeader>
