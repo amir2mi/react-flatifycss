@@ -1,11 +1,11 @@
 import React from 'react';
 import clsx from 'clsx';
-import { FlatifyGeneralProps } from '../interfaces';
+import styled from 'styled-components';
 import { generalClasses } from '../classes';
+import { Button } from '..';
+import type {ButtonProps} from '..'
 
-export interface DropdownButtonProps
-  extends FlatifyGeneralProps,
-    Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'color'> {
+export interface DropdownButtonProps extends ButtonProps {
   arrowClassName?: string;
   buttonStyle?: boolean;
   children?: React.ReactNode;
@@ -16,10 +16,13 @@ export interface DropdownButtonProps
   __TYPE: 'DropdownButton';
 }
 
+const DropdownButtonWrapper = styled(Button)`
+  ${({ sx }: DropdownButtonProps) => (sx ? sx : '')}
+`;
+
 export default function DropdownButton(props: DropdownButtonProps) {
   const {
     arrowClassName,
-    buttonStyle,
     children,
     hasArrow,
     innerRef,
@@ -30,26 +33,24 @@ export default function DropdownButton(props: DropdownButtonProps) {
   } = props;
 
   return (
-    <button
+    <DropdownButtonWrapper
       {...rest}
       ref={innerRef}
       aria-expanded={isOpen}
+      onMouseEnter={onButtonMouseEnter}
       className={clsx(
         'dropdown-toggle',
         ...generalClasses(props),
         arrowClassName,
         {
           active: isOpen,
-          button: buttonStyle !== false,
-          'no-style': !buttonStyle,
           'arrow-button': hasArrow,
           'arrow-flip': isOpen && hasArrow,
         }
       )}
-      onMouseEnter={onButtonMouseEnter}
     >
       {children}
-    </button>
+    </DropdownButtonWrapper>
   );
 }
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
+import styled from 'styled-components';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 import { CSSTransition } from 'react-transition-group';
@@ -15,13 +16,16 @@ interface DropdownBodyProps
   isOpen?: boolean;
   isMenu?: boolean;
   onBodyMouseEnter?: (event: React.MouseEvent<HTMLElement>) => void;
-  style?: React.CSSProperties;
-  tagName?: React.ElementType;
   __TYPE?: 'DropdownBody';
 }
 
+const DropdownBodyWrapper = styled.div`
+  ${({ sx }: DropdownBodyProps) => (sx ? sx : '')}
+`;
+
 export default function DropdownBody(props: DropdownBodyProps) {
   const {
+    as,
     arrowInnerRef,
     arrowStyles,
     buttonId,
@@ -30,14 +34,10 @@ export default function DropdownBody(props: DropdownBodyProps) {
     isOpen,
     isMenu,
     onBodyMouseEnter,
-    style,
-    tagName,
     __TYPE,
     ...rest
   } = props;
 
-  const DropdownBodyElement: React.ElementType =
-    tagName || (isMenu ? 'ul' : 'div');
   const DropdownArrow: React.ElementType = isMenu ? 'li' : 'div';
 
   return (
@@ -49,17 +49,17 @@ export default function DropdownBody(props: DropdownBodyProps) {
         exitActive: 'show dropdown-will-be-hidden',
       }}
     >
-      <DropdownBodyElement
+      <DropdownBodyWrapper
         {...rest}
+        as={as || (isMenu ? 'ul' : 'div')}
         ref={innerRef}
-        style={style}
+        aria-labelledby={buttonId}
+        onMouseEnter={onBodyMouseEnter}
         className={clsx(
           'dropdown',
           isMenu && 'menu-items-wrapper',
           ...generalClasses(props)
         )}
-        aria-labelledby={buttonId}
-        onMouseEnter={onBodyMouseEnter}
       >
         {children}
         <DropdownArrow aria-hidden={false}>
@@ -67,9 +67,9 @@ export default function DropdownBody(props: DropdownBodyProps) {
             ref={arrowInnerRef}
             style={arrowStyles}
             className="pointer-arrow"
-          ></span>
+          />
         </DropdownArrow>
-      </DropdownBodyElement>
+      </DropdownBodyWrapper>
     </CSSTransition>
   );
 }

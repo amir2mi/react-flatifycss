@@ -1,6 +1,12 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import { Dropdown, DropdownButton, DropdownBody } from '../src';
+import {
+  Button,
+  ButtonGroup,
+  Dropdown,
+  DropdownButton,
+  DropdownBody,
+} from '../src';
 
 const meta: Meta = {
   title: 'Components/Dropdown',
@@ -12,7 +18,7 @@ const meta: Meta = {
 
 export default meta;
 
-const Simple: Story = (args) => (
+const Simple: Story = args => (
   <Dropdown id="test-dropdown" {...args}>
     <DropdownButton>Open it!</DropdownButton>
     <DropdownBody>
@@ -21,7 +27,7 @@ const Simple: Story = (args) => (
   </Dropdown>
 );
 
-const Menu: Story = (args) => (
+const Menu: Story = args => (
   <Dropdown id="test-dropdown" {...args}>
     <DropdownButton hasArrow>Open Menu</DropdownButton>
     <DropdownBody isMenu>
@@ -46,7 +52,26 @@ const Menu: Story = (args) => (
   </Dropdown>
 );
 
-const Custom: Story = (args) => (
+const SplitButtonTemplate: Story = args => (
+  <ButtonGroup>
+    <Button bordered sx="line-height: 1">
+      My Button
+    </Button>
+    <Dropdown id="test-dropdown" {...args}>
+      <DropdownButton
+        hasArrow
+        bordered
+        sx="border-radius: 0 1em 1em 0 !important"
+      />
+
+      <DropdownBody>
+        <h6>Gotcha!</h6>
+      </DropdownBody>
+    </Dropdown>
+  </ButtonGroup>
+);
+
+const Custom: Story = args => (
   <Dropdown id="test-dropdown" {...args}>
     <DropdownButton theme="purple-light" hasArrow>
       Open Menu
@@ -73,11 +98,11 @@ const Custom: Story = (args) => (
   </Dropdown>
 );
 
-const TooltipTemplate: Story = (args) => (
+const TooltipTemplate: Story = args => (
   <>
     Lorem, ipsum dolor sit amet consectetur adipisicing elit,
     <Dropdown id="test-tooltip" {...args}>
-      <DropdownButton className="no-style" buttonStyle={false} color="red">
+      <DropdownButton buttonStyle={false} color="red">
         open it!
       </DropdownButton>
       <DropdownBody size="sm">
@@ -88,7 +113,7 @@ const TooltipTemplate: Story = (args) => (
     Reiciendis non magnam repellendus adipisci nihil ipsum dolore, totam
     temporibus
     <Dropdown id="test-tooltip" {...args} placement="right">
-      <DropdownButton className="link-button" buttonStyle={false}>
+      <DropdownButton className="link-button" variant="tertiary">
         expedita laborum
       </DropdownButton>
       <DropdownBody size="xs">
@@ -106,8 +131,9 @@ export const Placement = Menu.bind({});
 export const Hoverable = Menu.bind({});
 export const AutoClose = Menu.bind({});
 export const Offset = Menu.bind({});
-export const Customized = Custom.bind({});
+export const SplitButton = SplitButtonTemplate.bind({});
 export const Tooltip = TooltipTemplate.bind({});
+export const Customized = Custom.bind({});
 
 Default.args = {
   children: 'Im a dropdown',

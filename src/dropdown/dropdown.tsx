@@ -1,6 +1,7 @@
 import React, { ElementType, useEffect, useState, useRef } from 'react';
 import { usePopper } from 'react-popper';
 import clsx from 'clsx';
+import styled from 'styled-components';
 import getUniqueID from '../utils/id-generator';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
@@ -23,6 +24,10 @@ interface PopperOptionsProps {
   offsetY: number | undefined;
   placement: 'top' | 'bottom' | 'left' | 'right' | undefined;
 }
+
+const DropdownWrapper = styled.div`
+  ${({ sx }: DropdownProps) => (sx ? sx : '')}
+`;
 
 const popperOptions = ({
   arrowElement,
@@ -69,8 +74,16 @@ export default function Dropdown(props: DropdownProps) {
     offsetX,
     offsetY,
     placement,
+    ...rest
   } = props;
 
+  // arrow direction should be opposite of placement
+  let arrowDirection: string = placement || 'bottom';
+  const buttonId: string = getUniqueID(id);
+
+  /**
+   * States
+   */
   // visibility toggle
   const [isOpen, setOpen] = useState<boolean>(false);
 
@@ -136,11 +149,9 @@ export default function Dropdown(props: DropdownProps) {
   buttonHoverability.current = isHoverable ? hoverability : {};
   bodyHoverability.current = isHoverable ? hoverability : {};
 
-  // arrow direction should be opposite of placement
-  let arrowDirection: string = placement || 'bottom';
-
-  const buttonId: string = getUniqueID(id);
-
+  /**
+   * Methods
+   */
   const closeDropdown = () => setOpen(false);
 
   // keyup event handler
@@ -158,6 +169,9 @@ export default function Dropdown(props: DropdownProps) {
     if (autoClose === true || autoClose === 'inside') closeDropdown();
   };
 
+  /**
+   * Side effects
+   */
   useEffect(() => {
     // listen when document is clicked to close dropdown
     document.addEventListener('click', outsideClicked);
@@ -181,7 +195,8 @@ export default function Dropdown(props: DropdownProps) {
   }, [isOpen]);
 
   return (
-    <div
+    <DropdownWrapper
+      {...rest}
       id={`wrapper-${id}`}
       className={clsx('dropdown-wrapper', ...generalClasses(props), className)}
     >
@@ -215,6 +230,6 @@ export default function Dropdown(props: DropdownProps) {
         }
         return null;
       })}
-    </div>
+    </DropdownWrapper>
   );
 }
