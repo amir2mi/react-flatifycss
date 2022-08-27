@@ -4,10 +4,11 @@ import styled from 'styled-components';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 
-interface ButtonProps
+export interface ButtonProps
   extends FlatifyGeneralProps,
     Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'color'> {
   bordered?: boolean;
+  buttonStyle?: boolean;
   children?: React.ReactNode;
   disabled?: boolean;
   href?: string;
@@ -23,9 +24,10 @@ const ButtonWrapper = styled.button`
   ${({ sx }: ButtonProps) => (sx ? sx : '')}
 `;
 
-export function Button(props: ButtonProps) {
+export const Button = React.forwardRef((props: ButtonProps, ref: any) => {
   const {
     bordered,
+    buttonStyle,
     children,
     disabled,
     outline,
@@ -39,6 +41,7 @@ export function Button(props: ButtonProps) {
   return (
     <ButtonWrapper
       {...rest}
+      ref={ref}
       disabled={disabled || state === 'disabled'}
       className={clsx(
         {
@@ -48,6 +51,7 @@ export function Button(props: ButtonProps) {
           active: state === 'active',
           disabled: state === 'disabled',
           static: state === 'static',
+          'no-style': buttonStyle === false,
           'style-accent': variant === 'primary',
           'style-light': variant === 'secondary',
           'link-button': variant === 'tertiary',
@@ -61,4 +65,4 @@ export function Button(props: ButtonProps) {
       {secondaryText && <span className="secondary-text">{secondaryText}</span>}
     </ButtonWrapper>
   );
-}
+});
