@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { AddButton } from '../src';
 
 const meta: Meta = {
-  title: 'Components/Add button',
+  title: 'Buttons/Add button',
   component: AddButton,
   parameters: {
     controls: { expanded: true },

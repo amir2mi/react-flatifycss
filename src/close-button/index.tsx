@@ -1,19 +1,27 @@
 import React from 'react';
 import clsx from 'clsx';
+import styled from 'styled-components';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 
-interface CloseButtonProps extends FlatifyGeneralProps {
+interface CloseButtonProps
+  extends FlatifyGeneralProps,
+    Omit<React.HTMLAttributes<HTMLButtonElement>, 'color'> {
   isButton?: boolean;
   label: string;
-  onClick?: () => void;
 }
 
+const CloseButtonWrapper = styled.button`
+  ${({ sx }: CloseButtonProps) => (sx ? sx : '')}
+`;
+
 export function CloseButton(props: CloseButtonProps) {
-  const { isButton, label, onClick } = props;
+  const { isButton, label, ...rest } = props;
 
   return (
-    <button
+    <CloseButtonWrapper
+      {...rest}
+      aria-label={label}
       className={clsx(
         'close-button',
         {
@@ -21,8 +29,6 @@ export function CloseButton(props: CloseButtonProps) {
         },
         ...generalClasses(props)
       )}
-      aria-label={label}
-      onClick={onClick}
-    ></button>
+    />
   );
 }

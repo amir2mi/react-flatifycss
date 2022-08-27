@@ -6,12 +6,12 @@ import { generalClasses } from '../classes';
 
 interface HamburgerProps
   extends FlatifyGeneralProps,
-    Omit<React.HTMLAttributes<HTMLButtonElement>, 'color'> {
+    Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
   active: boolean;
-  label: string;
+  label?: string;
 }
 
-const HamburgerWrapper = styled.button`
+const HamburgerWrapper = styled.div`
   ${({ sx }: HamburgerProps) => (sx ? sx : '')}
 `;
 

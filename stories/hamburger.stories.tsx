@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Meta, Story } from '@storybook/react';
-import { Hamburger } from '../src';
+import { Button, Hamburger } from '../src';
 
 const meta: Meta = {
-  title: 'Components/Hamburger',
+  title: 'Buttons/Hamburger',
   component: Hamburger,
   parameters: {
     controls: { expanded: true },
@@ -17,6 +17,7 @@ const Template: Story = args => {
   return (
     <Hamburger
       {...args}
+      as="button"
       label="Hamburger"
       active={active}
       onClick={() => setActive(old => !old)}
@@ -24,7 +25,17 @@ const Template: Story = args => {
   );
 };
 
+const ButtonTemplate: Story = args => {
+  const [active, setActive] = useState(false);
+  return (
+    <Button size="xs" outline onClick={() => setActive(old => !old)}>
+      <Hamburger {...args} active={active} color="dark-light" />
+    </Button>
+  );
+};
+
 export const Default = Template.bind({});
+export const WithButton = ButtonTemplate.bind({});
 
 Default.args = {
   label: 'Hamburger',
