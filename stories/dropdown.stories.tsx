@@ -71,33 +71,6 @@ const SplitButtonTemplate: Story = args => (
   </ButtonGroup>
 );
 
-const Custom: Story = args => (
-  <Dropdown id="test-dropdown" {...args}>
-    <DropdownButton theme="purple-light" hasArrow>
-      Open Menu
-    </DropdownButton>
-    <DropdownBody isMenu theme="dark">
-      <li className="menu-item heading">My Account</li>
-      <li className="menu-item">
-        <a href="#">Sign up</a>
-      </li>
-      <li className="menu-item">
-        <a href="#">Login</a>
-      </li>
-      <li role="separator" className="menu-item separator"></li>
-      <li className="menu-item">
-        <a href="#">About us</a>
-      </li>
-      <li className="menu-item">
-        <a href="#">Contribute</a>
-      </li>
-      <li className="menu-item">
-        <a href="#">Rate it!</a>
-      </li>
-    </DropdownBody>
-  </Dropdown>
-);
-
 const TooltipTemplate: Story = args => (
   <>
     Lorem, ipsum dolor sit amet consectetur adipisicing elit,
@@ -124,6 +97,66 @@ const TooltipTemplate: Story = args => (
     doloremque beatae! Lorem, ipsum dolor sit amet consectetur adipisicing elit.
   </>
 );
+
+const Custom: Story = args => {
+  const keyframes = `
+    @keyframes my-dropdown-show-animation {
+      from {
+        opacity: 0;
+        transform: scale(1.2) rotate(90deg);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+      }
+    }
+    
+    @keyframes my-dropdown-hide-animation {
+      from {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.2);
+      }
+      to {
+        transform: scale(0);
+      }
+    }
+  `;
+
+  return (
+    <Dropdown
+      id="test-dropdown"
+      sx={keyframes}
+      showAnimation="my-dropdown-show-animation 500ms ease"
+      hideAnimation="my-dropdown-hide-animation 400ms ease"
+      {...args}
+    >
+      <DropdownButton theme="purple-light" hasArrow>
+        Open Menu
+      </DropdownButton>
+      <DropdownBody isMenu theme="dark">
+        <li className="menu-item heading">My Account</li>
+        <li className="menu-item">
+          <a href="#">Sign up</a>
+        </li>
+        <li className="menu-item">
+          <a href="#">Login</a>
+        </li>
+        <li role="separator" className="menu-item separator"></li>
+        <li className="menu-item">
+          <a href="#">About us</a>
+        </li>
+        <li className="menu-item">
+          <a href="#">Contribute</a>
+        </li>
+        <li className="menu-item">
+          <a href="#">Rate it!</a>
+        </li>
+      </DropdownBody>
+    </Dropdown>
+  );
+};
 
 export const Default = Simple.bind({});
 export const MenuItems = Menu.bind({});

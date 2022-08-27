@@ -1,4 +1,4 @@
-import React, { ElementType, useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { usePopper } from 'react-popper';
 import clsx from 'clsx';
 import styled from 'styled-components';
@@ -15,6 +15,8 @@ interface DropdownProps extends FlatifyGeneralProps {
   id: string;
   offsetX?: number;
   offsetY?: number;
+  showAnimation?: string;
+  hideAnimation?: string;
   placement?: 'top' | 'bottom' | 'left' | 'right';
 }
 
@@ -27,6 +29,10 @@ interface PopperOptionsProps {
 
 const DropdownWrapper = styled.div`
   ${({ sx }: DropdownProps) => (sx ? sx : '')}
+  ${({ showAnimation }: DropdownProps) =>
+    showAnimation ? `--flatify__dropdown-animation-show: ${showAnimation};` : ''}
+  ${({ hideAnimation }: DropdownProps) =>
+    hideAnimation ? `--flatify__dropdown-animation-hide: ${hideAnimation};` : ''}
 `;
 
 const popperOptions = ({

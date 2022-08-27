@@ -22,7 +22,7 @@ interface AccordionProps
 const AccordionWrapper = styled(ReachAccordion)`
   ${({ sx }: AccordionProps) => (sx ? sx : '')}
   ${({ animation }: AccordionProps) =>
-    animation ? `--flatify__accordion-animation-show: ${animation}` : ''}
+    animation ? `--flatify__accordion-animation-show: ${animation};` : ''}
 `;
 
 export default function Accordion(props: AccordionProps) {
