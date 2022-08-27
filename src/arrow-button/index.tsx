@@ -23,6 +23,7 @@ export function ArrowButton(props: ArrowButtonProps) {
   return (
     <ArrowButtonWrapper
       {...rest}
+      aria-label={label}
       className={clsx(
         'arrow-button',
         {
@@ -32,7 +33,6 @@ export function ArrowButton(props: ArrowButtonProps) {
         },
         ...generalClasses(props)
       )}
-      aria-label={label}
     />
   );
 }

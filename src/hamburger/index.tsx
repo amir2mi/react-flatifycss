@@ -21,12 +21,12 @@ export function Hamburger(props: HamburgerProps) {
   return (
     <HamburgerWrapper
       {...rest}
+      aria-label={label}
       className={clsx(
         'hamburger',
         active && 'active',
         ...generalClasses(props)
       )}
-      aria-label={label}
     />
   );
 }
