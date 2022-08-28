@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Meta, Story } from '@storybook/react';
 import { Input } from '../src';
 
@@ -12,10 +12,11 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story = (args) => (
+const Template: Story = args => (
   <Input id="story-input" type="text" {...args} />
 );
-const StatesTemplate: Story = (args) => (
+
+const StatesTemplate: Story = args => (
   <>
     <Input
       id="story-input-invalid"
@@ -40,9 +41,47 @@ const StatesTemplate: Story = (args) => (
     />
   </>
 );
-const StaticTemplate: Story = (args) => (
-  <Input id="story-input" type="text" {...args} />
-);
+
+const ValidationTemplate: Story = args => {
+  const [pass, setPass] = useState('');
+  const [state, setState] = useState<
+    'default' | 'valid' | 'warning' | 'invalid'
+  >('default');
+  const [err, setErr] = useState('');
+
+  const handleOnChange = (value, event) => {
+    setPass(value);
+
+    if (value.length >= 8) {
+      if (/[a-zA-Z]/.test(value)) {
+        setState('valid');
+        setErr('You chose the ✨PERFECT✨ password!');
+      } else {
+        setState('warning');
+        setErr('You can add some letters as well!');
+      }
+    } else {
+      setState('invalid');
+      setErr('Password length should be more than 8 chars.');
+    }
+  };
+
+  return (
+    <>
+      <Input
+        {...args}
+        stateIcon
+        id="story-input"
+        label="Enter a strong Password!"
+        type="password"
+        state={state}
+        value={pass}
+        onChange={handleOnChange}
+      />
+      <p className="help-text size-sm">{err}</p>
+    </>
+  );
+};
 
 export const Default = Template.bind({});
 export const FloatingLabel = Template.bind({});
@@ -50,7 +89,8 @@ export const Number = Template.bind({});
 export const Password = Template.bind({});
 export const SearchBar = Template.bind({});
 export const States = StatesTemplate.bind({});
-export const StaticValue = StaticTemplate.bind({});
+export const Validation = ValidationTemplate.bind({});
+export const Uncontrolled = Template.bind({});
 
 Default.args = {
   autoComplete: true,
@@ -59,9 +99,9 @@ Default.args = {
   name: 'name',
   placeholder: 'Enter your name',
   type: 'text',
-  onChange: (value) => console.log(value),
-  onFocus: (value) => console.log(value),
-  onBlur: (value) => console.log(value),
+  onChange: value => console.log(value),
+  onFocus: value => console.log(value),
+  onBlur: value => console.log(value),
 };
 
 FloatingLabel.args = {
@@ -71,6 +111,8 @@ FloatingLabel.args = {
 
 Number.args = {
   ...Default.args,
+  label: 'Your age',
+  placeholder: 'Enter your age',
   type: 'number',
   min: 0,
   max: 100,
@@ -90,6 +132,12 @@ SearchBar.args = {
   theme: 'light',
 };
 
-StaticValue.args = {
+Uncontrolled.args = {
   value: 'Change me with [value] attribute!',
+};
+
+Validation.args = {
+  colorValid: '#A0CECB',
+  colorWarning: '#8067B7',
+  colorInvalid: '#EC87C0',
 };

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
+import styled from 'styled-components';
 import getUniqueID from '../utils/id-generator';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
@@ -11,8 +12,10 @@ interface InputProps
       'size' | 'color' | 'onChange' | 'onBlur' | 'onFocus'
     > {
   children?: React.ReactNode;
+  colorValid?: string;
+  colorWarning?: string;
+  colorInvalid?: string;
   hasFloatingLabel?: boolean;
-  id: string;
   label?: React.ReactNode;
   onChange?: (
     value: string,
@@ -20,18 +23,36 @@ interface InputProps
   ) => void;
   onBlur?: (value: string, event: React.FocusEvent<HTMLInputElement>) => void;
   onFocus?: (value: string, event: React.FocusEvent<HTMLInputElement>) => void;
-  state?: 'valid' | 'warning' | 'invalid';
+  state?: 'default' | 'valid' | 'warning' | 'invalid';
   stateIcon?: boolean;
   togglePassword?: boolean;
   togglePasswordLabel?: string;
-  type: React.HTMLInputTypeAttribute;
-  src?: string | undefined;
   wrapperClassName?: string;
 }
 
+const InputWrapper = styled.div`
+  ${({ sx }: InputProps) => (sx ? sx : '')}
+  ${({ colorValid }: InputProps) =>
+    colorValid
+      ? `--flatify__form-element-border-color__valid: ${colorValid};`
+      : ''}
+  ${({ colorWarning }: InputProps) =>
+    colorWarning
+      ? `--flatify__form-element-border-color__warning: ${colorWarning};`
+      : ''}
+  ${({ colorInvalid }: InputProps) =>
+    colorInvalid
+      ? `--flatify__form-element-border-color__invalid: ${colorInvalid};`
+      : ''}  
+`;
+
 export function Input(props: InputProps) {
   const {
+    as,
     children,
+    colorValid,
+    colorWarning,
+    colorInvalid,
     hasFloatingLabel,
     id,
     label,
@@ -42,6 +63,7 @@ export function Input(props: InputProps) {
     size,
     state,
     stateIcon,
+    sx,
     togglePassword,
     togglePasswordLabel,
     type,
@@ -76,26 +98,27 @@ export function Input(props: InputProps) {
     onFocus?.(value, event);
   };
 
-  let inputType: string;
+  let inputType: string = type || 'text';
   if (togglePassword) {
     inputType = isPassword ? 'password' : 'text';
-  } else inputType = type;
+  }
 
   return (
     <>
       {label && !hasFloatingLabel ? (
         <label
           htmlFor={inputId}
-          className={clsx(
-            'form-label',
-
-            ...generalClasses({ size })
-          )}
+          className={clsx('form-label', ...generalClasses({ size }))}
         >
           {label}
         </label>
       ) : null}
-      <div
+      <InputWrapper
+        as={as}
+        sx={sx}
+        colorValid={colorValid}
+        colorWarning={colorWarning}
+        colorInvalid={colorInvalid}
         className={clsx(
           'input-wrapper',
           wrapperClassName,
@@ -120,7 +143,7 @@ export function Input(props: InputProps) {
           )}
           id={inputId}
           type={inputType}
-          value={value || InputValue}
+          value={value === undefined ? InputValue : value}
           onChange={handleChange}
           onBlur={handleBlur}
           onFocus={handleFocus}
@@ -138,7 +161,7 @@ export function Input(props: InputProps) {
           />
         )}
         {children}
-      </div>
+      </InputWrapper>
     </>
   );
 }
