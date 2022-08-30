@@ -36,13 +36,26 @@ export default function ItemsGroup(props: ItemsGroupProps) {
       className={clsx('items-group', ...generalClasses(props))}
     >
       {items &&
-        items.map(item => {
+        items.map((item, index) => {
           const { value: itemValue } = item;
           const isActive = itemValue === value;
 
-          return <Item {...item} active={isActive} onClick={onChange} />;
+          return (
+            <Item
+              key={`${itemValue}_${index}`}
+              {...item}
+              active={isActive}
+              onClick={onChange}
+            />
+          );
         })}
-      {children}
+
+      {React.Children.map(children, (child: any) => {
+        return React.cloneElement(child, {
+          active: child.props?.value === value,
+          onClick: onChange,
+        });
+      })}
     </ItemsGroupWrapper>
   );
 }
