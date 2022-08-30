@@ -58,20 +58,6 @@ const items = [
     ),
     value: 'third',
   },
-  {
-    title: 'Fourth Item',
-    subtitle: 'Lorem ipsum dolor sit amet.',
-    svg: (
-      <svg
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-      >
-        <path d="M21.72,18,13.82,4a2.09,2.09,0,0,0-3.64,0L2.28,18a2.08,2.08,0,0,0,1.81,3.11H19.91A2.08,2.08,0,0,0,21.72,18Zm-1.81,1.11H4.09L4,18.94l8-14a.1.1,0,0,1,.08,0h0L20,19h0ZM11,14V11a1,1,0,0,1,2,0v3a1,1,0,0,1-2,0Zm2,3a1,1,0,1,1-1-1A1,1,0,0,1,13,17Z"></path>
-      </svg>
-    ),
-    value: 'fourth',
-  },
 ];
 
 const Template: Story = args => {
@@ -164,7 +150,7 @@ const CustomTemplate: Story = args => {
         title="Second Item"
         subtitle="Lorem ipsum dolor sit amet."
         value="second"
-        sx="&.active{ background: #d9bd00 !important }"
+        sx="&.active{ background: #FF69C5 !important }"
       >
         <ItemIcon>
           <svg
