@@ -1,15 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import clsx from 'clsx';
+import styled from 'styled-components';
 import { Dialog } from '@reach/dialog';
-import { animated, useTransition } from 'react-spring';
+import { CSSTransition } from 'react-transition-group';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
-import ModalHeader from './modal-header';
-import ModalFooter from './modal-footer';
 
-const AnimatedDialog = animated(Dialog);
-
-interface ModalProps extends FlatifyGeneralProps {
+interface ModalProps
+  extends FlatifyGeneralProps,
+    Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
   [key: string]: any;
   'aria-label'?: string;
   'aria-labelledby'?: string;
@@ -21,11 +20,15 @@ interface ModalProps extends FlatifyGeneralProps {
   disableOverlayClick?: boolean;
 }
 
+const ModalWrapper = styled(Dialog)`
+  ${({ sx }: ModalProps) => (sx ? sx : '')}
+`;
+
 export default function Modal(props: ModalProps) {
   const {
     bordered,
     children,
-    className,
+
     isOpen,
     onDismiss,
     overlayClassName,
@@ -34,41 +37,55 @@ export default function Modal(props: ModalProps) {
     ...rest
   } = props;
 
-  const fadeTransition = useTransition(isOpen, {
-    from: { opacity: 0 },
-    enter: { opacity: 0.5 },
-    leave: { opacity: 0 },
-    config: { duration: 200 },
-  });
+  const [delayedIsOpen, setDelayedIsOpen] = useState(isOpen);
+  const toggleTimeout = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    toggleTimeout.current && clearTimeout(toggleTimeout.current);
+    if (isOpen == false) {
+      toggleTimeout.current = setTimeout(() => {
+        setDelayedIsOpen(isOpen);
+      }, 300);
+    } else {
+      setDelayedIsOpen(isOpen);
+    }
+
+    return () => {
+      toggleTimeout.current && clearTimeout(toggleTimeout.current);
+    };
+  }, [isOpen]);
 
   return (
     <>
-      <AnimatedDialog
+      <ModalWrapper
         {...rest}
-        className={clsx('modal show', ...generalClasses(props), className, {
+        className={clsx('modal show', ...generalClasses(props), {
           bordered: bordered,
+          'modal-will-be-hidden': !isOpen,
           [`modal-${position}`]: position,
         })}
-        isOpen={isOpen}
+        isOpen={delayedIsOpen}
         onDismiss={onDismiss}
       >
         {children}
-      </AnimatedDialog>
+      </ModalWrapper>
 
-      {fadeTransition(
-        (styles, item) =>
-          item && (
-            <animated.div
-              style={{
-                opacity: styles.opacity,
-              }}
-              className={clsx('backdrop-layer show', overlayClassName)}
-              onClick={e => !disableOverlayClick && onDismiss?.(e)}
-            />
-          )
-      )}
+      {
+        <CSSTransition
+          in={isOpen}
+          timeout={200}
+          unmountOnExit
+          classNames={{
+            enterDone: 'show',
+            exitActive: 'anim-fade-out show',
+          }}
+        >
+          <div
+            className={clsx('backdrop-layer', overlayClassName)}
+            onClick={e => !disableOverlayClick && onDismiss?.(e)}
+          />
+        </CSSTransition>
+      }
     </>
   );
 }
-
-export { ModalHeader, ModalFooter };
