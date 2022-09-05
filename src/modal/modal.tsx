@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import ReactDOM from 'react-dom';
 import clsx from 'clsx';
 import styled from 'styled-components';
 import { Dialog } from '@reach/dialog';
@@ -9,9 +10,6 @@ import { generalClasses } from '../classes';
 interface ModalProps
   extends FlatifyGeneralProps,
     Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
-  [key: string]: any;
-  'aria-label'?: string;
-  'aria-labelledby'?: string;
   bordered?: boolean;
   isOpen?: boolean;
   onDismiss?(event: React.MouseEvent | React.KeyboardEvent): void;
@@ -28,7 +26,6 @@ export default function Modal(props: ModalProps) {
   const {
     bordered,
     children,
-
     isOpen,
     onDismiss,
     overlayClassName,
@@ -40,6 +37,7 @@ export default function Modal(props: ModalProps) {
   const [delayedIsOpen, setDelayedIsOpen] = useState(isOpen);
   const toggleTimeout = useRef<NodeJS.Timeout | null>(null);
 
+  // listen to isOpen prop and delay modal on close
   useEffect(() => {
     toggleTimeout.current && clearTimeout(toggleTimeout.current);
     if (isOpen == false) {
@@ -70,7 +68,7 @@ export default function Modal(props: ModalProps) {
         {children}
       </ModalWrapper>
 
-      {
+      {ReactDOM.createPortal(
         <CSSTransition
           in={isOpen}
           timeout={200}
@@ -84,8 +82,9 @@ export default function Modal(props: ModalProps) {
             className={clsx('backdrop-layer', overlayClassName)}
             onClick={e => !disableOverlayClick && onDismiss?.(e)}
           />
-        </CSSTransition>
-      }
+        </CSSTransition>,
+        document.body
+      )}
     </>
   );
 }
