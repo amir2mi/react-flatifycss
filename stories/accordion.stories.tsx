@@ -17,13 +17,13 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story = args => (
-  <Accordion {...args}>
+const Template: Story = ({ hasIcon, duration, ...rest }) => (
+  <Accordion {...rest}>
     <AccordionItem>
-      <AccordionButton hasIcon={args.hasIcon}>
+      <AccordionButton hasIcon={hasIcon}>
         Lorem ipsum dolor sit amet
       </AccordionButton>
-      <AccordionPanel>
+      <AccordionPanel duration={duration}>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias
           architecto quae tenetur voluptatum ipsa, esse doloremque numquam
@@ -33,8 +33,8 @@ const Template: Story = args => (
       </AccordionPanel>
     </AccordionItem>
     <AccordionItem>
-      <AccordionButton hasIcon={args.hasIcon}>Far far away</AccordionButton>
-      <AccordionPanel>
+      <AccordionButton hasIcon={hasIcon}>Far far away</AccordionButton>
+      <AccordionPanel duration={duration}>
         <p>
           Far far away, behind the word mountains, far from the countries
           Vokalia and Consonantia, there live the blind texts. Separated they
@@ -50,10 +50,10 @@ const Template: Story = args => (
       </AccordionPanel>
     </AccordionItem>
     <AccordionItem>
-      <AccordionButton hasIcon={args.hasIcon}>
+      <AccordionButton hasIcon={hasIcon}>
         The Sorrows of Young Werther
       </AccordionButton>
-      <AccordionPanel>
+      <AccordionPanel duration={duration}>
         <h3 className="size-lg">Book 2 - Chapter 3</h3>
         <p>
           A wonderful serenity has taken possession of my entire soul, like
@@ -68,10 +68,10 @@ const Template: Story = args => (
   </Accordion>
 );
 
-const TemplateCustom: Story = args => (
-  <Accordion {...args}>
+const TemplateCustom: Story = ({ hasIcon, ...rest }) => (
+  <Accordion {...rest}>
     <AccordionItem theme="purple-light">
-      <AccordionButton hasIcon={args.hasIcon} theme="purple-light">
+      <AccordionButton hasIcon={hasIcon} theme="purple-light">
         Lorem ipsum dolor sit amet
       </AccordionButton>
       <AccordionPanel theme="purple">
@@ -84,7 +84,7 @@ const TemplateCustom: Story = args => (
       </AccordionPanel>
     </AccordionItem>
     <AccordionItem theme="pink-light">
-      <AccordionButton theme="pink-light" hasIcon={args.hasIcon}>
+      <AccordionButton theme="pink-light" hasIcon={hasIcon}>
         Far far away
       </AccordionButton>
       <AccordionPanel theme="pink">
@@ -103,7 +103,7 @@ const TemplateCustom: Story = args => (
       </AccordionPanel>
     </AccordionItem>
     <AccordionItem theme="green-light">
-      <AccordionButton hasIcon={args.hasIcon}>
+      <AccordionButton hasIcon={hasIcon}>
         The Sorrows of Young Werther
       </AccordionButton>
       <AccordionPanel>
@@ -125,6 +125,7 @@ export const Default = Template.bind({});
 export const Bordered = Template.bind({});
 export const Multiple = Template.bind({});
 export const FadeAnimation = Template.bind({});
+export const Duration = Template.bind({});
 export const Customized = TemplateCustom.bind({});
 
 Default.args = {
@@ -154,6 +155,14 @@ FadeAnimation.args = {
   collapsible: true,
   bordered: true,
   animation: 'fade',
+};
+
+Duration.args = {
+  hasIcon: true,
+  multiple: true,
+  collapsible: true,
+  bordered: true,
+  duration: 500,
 };
 
 Customized.args = {
