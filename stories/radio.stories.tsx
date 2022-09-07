@@ -25,7 +25,7 @@ const Template: Story = args => {
       >
         I Agree to Privacy Policy.
       </Radio>
-      <p className="help-text size-sm" style={{ fontFamily: 'monospace' }}>
+      <p className="help-text size-xs" style={{ fontFamily: 'monospace' }}>
         Agreement: {checked ? 'YES' : 'NO'}
       </p>
     </>
@@ -53,7 +53,7 @@ const TemplateMultiple: Story = args => {
       >
         Sushi
       </Radio>
-      <p className="help-text size-sm" style={{ fontFamily: 'monospace' }}>
+      <p className="help-text size-xs" style={{ fontFamily: 'monospace' }}>
         Your dinner will be: {checked}
       </p>
     </>
@@ -63,8 +63,22 @@ const TemplateMultiple: Story = args => {
 export const Default = Template.bind({});
 export const Multiple = TemplateMultiple.bind({});
 export const Disabled = Template.bind({});
+export const States = Template.bind({});
+export const Customized = Template.bind({});
 
 Disabled.args = {
   checked: false,
   disabled: true,
+};
+
+States.args = {
+  state: 'invalid',
+};
+
+Customized.args = {
+  checked: false,
+  disabled: true,
+  colorValid: '#A0CECB',
+  colorWarning: '#EC87C0',
+  colorInvalid: '#8067B7',
 };

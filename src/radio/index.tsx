@@ -9,6 +9,9 @@ interface RadioProps
     Omit<React.HTMLAttributes<HTMLInputElement>, 'color'> {
   checked?: boolean;
   children?: React.ReactNode;
+  colorValid?: string;
+  colorWarning?: string;
+  colorInvalid?: string;
   label?: string;
   name?: string;
   state?: 'valid' | 'warning' | 'invalid';
@@ -16,6 +19,18 @@ interface RadioProps
 }
 
 const RadioWrapper = styled.label`
+  ${({ colorValid }: RadioProps) =>
+    colorValid
+      ? `--flatify__form-element-border-color__valid: ${colorValid};`
+      : ''}
+  ${({ colorWarning }: RadioProps) =>
+    colorWarning
+      ? `--flatify__form-element-border-color__warning: ${colorWarning};`
+      : ''}
+  ${({ colorInvalid }: RadioProps) =>
+    colorInvalid
+      ? `--flatify__form-element-border-color__invalid: ${colorInvalid};`
+      : ''}  
   ${({ sx }: RadioProps) => (sx ? sx : '')}
 `;
 
@@ -23,6 +38,9 @@ export function Radio(props: RadioProps) {
   const {
     as,
     children,
+    colorValid,
+    colorWarning,
+    colorInvalid,
     label,
     size,
     state,
@@ -34,6 +52,9 @@ export function Radio(props: RadioProps) {
     <RadioWrapper
       as={as}
       sx={sx}
+      colorValid={colorValid}
+      colorWarning={colorWarning}
+      colorInvalid={colorInvalid}
       className={clsx(
         'radio-wrapper',
         { [state + '']: state },
