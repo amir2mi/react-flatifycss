@@ -30,11 +30,11 @@ export default function AccordionPanel(props: AccordionPanelProps) {
 
   const animatePanel = () => {
     const bodyHeight = getBodyHeight();
-    const start = Date.now();
+    // skip deep easing with minimum value (150)
+    const start = Date.now() - 150;
 
     animation.current = requestAnimationFrame(function animate() {
       const interval = Date.now() - start;
-
       if (accordionPanel.current) {
         // add show animation class in the middle of the process
         if (interval >= duration / 2) {
