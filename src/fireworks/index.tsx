@@ -14,13 +14,14 @@ interface FireworksProps
 }
 
 const FireworksWrapper = styled.div`
-  ${({ sx }: FireworksProps) => (sx ? sx : '')}
+
   ${({ delay }: FireworksProps) =>
     delay ? `--flatify__firework-animation-delay: ${delay}ms;` : ''}
   ${({ duration }: FireworksProps) =>
     duration ? `--flatify__firework-animation-duration: ${duration}ms;` : ''} 
   ${({ repeat }: FireworksProps) =>
     repeat ? `--flatify__firework-animation-iteration-count: ${repeat};` : ''}
+  ${({ sx }: FireworksProps) => (sx ? sx : '')}
 `;
 
 export function Fireworks(props: FireworksProps) {

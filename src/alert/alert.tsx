@@ -15,9 +15,9 @@ interface AlertProps
 }
 
 const AlertWrapper = styled.div`
-  ${({ sx }: AlertProps) => (sx ? sx : '')}
   ${({ animation }: AlertProps) =>
     animation ? `--flatify__alert-animation-remove: ${animation};` : ''}
+  ${({ sx }: AlertProps) => (sx ? sx : '')}
 `;
 
 export default function Alert(props: AlertProps) {

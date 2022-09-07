@@ -28,11 +28,15 @@ interface PopperOptionsProps {
 }
 
 const DropdownWrapper = styled.div`
-  ${({ sx }: DropdownProps) => (sx ? sx : '')}
   ${({ showAnimation }: DropdownProps) =>
-    showAnimation ? `--flatify__dropdown-animation-show: ${showAnimation};` : ''}
+    showAnimation
+      ? `--flatify__dropdown-animation-show: ${showAnimation};`
+      : ''}
   ${({ hideAnimation }: DropdownProps) =>
-    hideAnimation ? `--flatify__dropdown-animation-hide: ${hideAnimation};` : ''}
+    hideAnimation
+      ? `--flatify__dropdown-animation-hide: ${hideAnimation};`
+      : ''}
+  ${({ sx }: DropdownProps) => (sx ? sx : '')}
 `;
 
 const popperOptions = ({
