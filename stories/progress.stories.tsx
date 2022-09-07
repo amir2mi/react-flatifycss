@@ -19,6 +19,7 @@ const Template: Story = args => {
 export const Default = Template.bind({});
 export const Bordered = Template.bind({});
 export const Processing = Template.bind({});
+export const Duration = Template.bind({});
 export const Customized = Template.bind({});
 
 Default.args = {
@@ -33,6 +34,12 @@ Bordered.args = {
 Processing.args = {
   value: 50,
   processing: true,
+};
+
+Duration.args = {
+  value: 50,
+  processing: true,
+  duration: 300,
 };
 
 Customized.args = {

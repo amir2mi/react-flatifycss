@@ -9,6 +9,7 @@ interface ProgressProps
     Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
   bordered?: boolean;
   children?: React.ReactNode;
+  duration?: number;
   max?: number;
   min?: number;
   processing?: boolean;
@@ -16,6 +17,8 @@ interface ProgressProps
 }
 
 const ProgressWrapper = styled.div`
+  ${({ duration }: ProgressProps) =>
+    duration ? `--flatify__progress-animation-duration: ${duration}ms;` : ''}
   ${({ sx }: ProgressProps) => (sx ? sx : '')}
 `;
 
