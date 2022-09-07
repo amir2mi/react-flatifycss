@@ -31,19 +31,19 @@ interface InputProps
 }
 
 const InputWrapper = styled.div`
-  ${({ sx }: InputProps) => (sx ? sx : '')}
-  ${({ colorValid }: InputProps) =>
-    colorValid
-      ? `--flatify__form-element-border-color__valid: ${colorValid};`
-      : ''}
-  ${({ colorWarning }: InputProps) =>
-    colorWarning
-      ? `--flatify__form-element-border-color__warning: ${colorWarning};`
-      : ''}
-  ${({ colorInvalid }: InputProps) =>
-    colorInvalid
-      ? `--flatify__form-element-border-color__invalid: ${colorInvalid};`
-      : ''}  
+${({ colorValid }: InputProps) =>
+  colorValid
+    ? `--flatify__form-element-border-color__valid: ${colorValid};`
+    : ''}
+${({ colorWarning }: InputProps) =>
+  colorWarning
+    ? `--flatify__form-element-border-color__warning: ${colorWarning};`
+    : ''}
+${({ colorInvalid }: InputProps) =>
+  colorInvalid
+    ? `--flatify__form-element-border-color__invalid: ${colorInvalid};`
+    : ''}  
+${({ sx }: InputProps) => (sx ? sx : '')}
 `;
 
 export function Input(props: InputProps) {

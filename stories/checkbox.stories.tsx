@@ -25,6 +25,7 @@ const Template: Story = args => {
 export const Default = Template.bind({});
 export const Disabled = Template.bind({});
 export const States = Template.bind({});
+export const Customized = Template.bind({});
 
 Disabled.args = {
   checked: false,
@@ -33,4 +34,11 @@ Disabled.args = {
 
 States.args = {
   state: 'invalid',
+};
+
+Customized.args = {
+  state: 'invalid',
+  colorValid: '#A0CECB',
+  colorWarning: '#8067B7',
+  colorInvalid: '#EC87C0',
 };
