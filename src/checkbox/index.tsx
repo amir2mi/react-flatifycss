@@ -10,7 +10,7 @@ interface CheckboxProps
   checked?: boolean;
   children?: React.ReactNode;
   label?: string;
-  onChange?: (checked: boolean) => void;
+  onChange?: (checked: boolean, event: React.ChangeEvent) => void;
   state?: 'valid' | 'warning' | 'invalid';
 }
 
@@ -45,7 +45,7 @@ export function Checkbox(props: CheckboxProps) {
         {...rest}
         type="checkbox"
         checked={checked}
-        onChange={() => onChange?.(!checked)}
+        onChange={e => onChange?.(!checked, e)}
       />
       <span aria-hidden={true} className="check" />
       {children}

@@ -1,53 +1,49 @@
 import React from 'react';
 import clsx from 'clsx';
+import styled from 'styled-components';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 
-interface RadioProps extends FlatifyGeneralProps {
+interface RadioProps
+  extends FlatifyGeneralProps,
+    Omit<React.HTMLAttributes<HTMLInputElement>, 'color'> {
   checked?: boolean;
-  defaultChecked?: boolean;
-  disabled?: boolean;
   children?: React.ReactNode;
   label?: string;
   name?: string;
-  onChange?: (checked: boolean) => void;
-  required?: boolean | undefined;
   state?: 'valid' | 'warning' | 'invalid';
+  value?: string | number;
 }
+
+const RadioWrapper = styled.label`
+  ${({ sx }: RadioProps) => (sx ? sx : '')}
+`;
 
 export function Radio(props: RadioProps) {
   const {
-    checked,
-    defaultChecked,
-    disabled,
+    as,
     children,
     label,
-    name,
-    onChange,
-    required,
+    size,
     state,
+    sx,
+    ...rest
   } = props;
 
   return (
-    <label
+    <RadioWrapper
+      as={as}
+      sx={sx}
       className={clsx(
         'radio-wrapper',
         { [state + '']: state },
         ...generalClasses(props)
       )}
     >
-      <input
-        type="radio"
-        name={name}
-        checked={checked}
-        defaultChecked={defaultChecked}
-        disabled={disabled}
-        required={required}
-        onChange={() => onChange?.(!checked)}
-      />
+      <input {...rest} type="radio" />
       <span aria-hidden={true} className="check" />
       {children}
       {label}
-    </label>
+    </RadioWrapper>
   );
 }

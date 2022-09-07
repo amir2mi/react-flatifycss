@@ -12,17 +12,7 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story = (args) => {
-  const [checked, setChecked] = useState(false);
-
-  return (
-    <Radio {...args} checked={checked} onChange={(value) => setChecked(value)}>
-      I Agree to Privacy Policy.
-    </Radio>
-  );
-};
-
-const TemplateMultiple: Story = (args) => {
+const Template: Story = args => {
   const [checked, setChecked] = useState(false);
 
   return (
@@ -31,18 +21,41 @@ const TemplateMultiple: Story = (args) => {
         {...args}
         name="my-radio"
         checked={checked}
-        onChange={(value) => setChecked(value)}
+        onChange={() => setChecked(!checked)}
       >
         I Agree to Privacy Policy.
+      </Radio>
+      <p className="help-text size-sm" style={{ fontFamily: 'monospace' }}>
+        Agreement: {checked ? 'YES' : 'NO'}
+      </p>
+    </>
+  );
+};
+
+const TemplateMultiple: Story = args => {
+  const [checked, setChecked] = useState('pizza');
+
+  return (
+    <>
+      <Radio
+        {...args}
+        value="pizza"
+        checked={checked == 'pizza'}
+        onChange={e => setChecked(e.currentTarget.value)}
+      >
+        Pizza
       </Radio>
       <Radio
         {...args}
-        name="my-radio"
-        checked={checked}
-        onChange={(value) => setChecked(value)}
+        value="sushi"
+        checked={checked == 'sushi'}
+        onChange={e => setChecked(e.currentTarget.value)}
       >
-        I Agree to Privacy Policy.
+        Sushi
       </Radio>
+      <p className="help-text size-sm" style={{ fontFamily: 'monospace' }}>
+        Your dinner will be: {checked}
+      </p>
     </>
   );
 };
