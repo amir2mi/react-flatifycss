@@ -1,5 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
+import styled from 'styled-components';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 
@@ -14,14 +15,27 @@ interface ProgressProps
   value: number;
 }
 
+const ProgressWrapper = styled.div`
+  ${({ sx }: ProgressProps) => (sx ? sx : '')}
+`;
+
 export function Progress(props: ProgressProps) {
-  const { bordered, children, processing, max = 100, min = 0, value } = props;
+  const {
+    bordered,
+    children,
+    processing,
+    max = 100,
+    min = 0,
+    value,
+    ...rest
+  } = props;
 
   let widthPercent = ((value - min) / (max - min)) * 100;
   widthPercent = widthPercent > 100 ? 100 : widthPercent;
 
   return (
-    <div
+    <ProgressWrapper
+      {...rest}
       className={clsx('progress', ...generalClasses(props), {
         bordered: bordered,
         processing: processing,
@@ -37,6 +51,6 @@ export function Progress(props: ProgressProps) {
       >
         {children}
       </div>
-    </div>
+    </ProgressWrapper>
   );
 }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Meta, Story } from '@storybook/react';
-import { Modal, Button, ModalHeader, ModalFooter } from '../src';
+import { Modal, Button, ModalHeader, ModalBody, ModalFooter } from '../src';
 
 const meta: Meta = {
   title: 'Components/Modal',
@@ -35,7 +35,7 @@ const Template: Story = args => {
             onClick={() => setIsOpen(false)}
           />
         </ModalHeader>
-        <div className="modal-body">
+        <ModalBody>
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Atque sed
           earum repudiandae! Veritatis, quo! Optio distinctio, dolorum eaque
           facilis neque, temporibus nihil exercitationem commodi amet hic iste
@@ -43,7 +43,7 @@ const Template: Story = args => {
           consectetur adipisicing elit. Atque sed earum repudiandae! Veritatis,
           quo! Optio distinctio, dolorum eaque facilis neque, temporibus nihil
           exercitationem commodi amet hic iste reprehenderit voluptas impedit!
-        </div>
+        </ModalBody>
         <ModalFooter>
           <Button theme="danger" onClick={() => setIsOpen(false)}>
             No, You Are Not!
