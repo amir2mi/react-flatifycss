@@ -1,22 +1,28 @@
 import React from 'react';
 import clsx from 'clsx';
+import styled from 'styled-components';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 
-interface ModalHeaderProps extends FlatifyGeneralProps {
-  [key: string]: any;
-  className?: string;
+interface ModalHeaderProps
+  extends FlatifyGeneralProps,
+    Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
   children?: React.ReactNode;
 }
 
+const ModalHeaderWrapper = styled.header`
+  ${({ sx }: ModalHeaderProps) => (sx ? sx : '')}
+`;
+
 export default function ModalHeader(props: ModalHeaderProps) {
-  const { children, className } = props;
+  const { children, ...rest } = props;
 
   return (
-    <header
-      className={clsx('modal-header', ...generalClasses(props), className)}
+    <ModalHeaderWrapper
+      {...rest}
+      className={clsx('modal-header', ...generalClasses(props))}
     >
       {children}
-    </header>
+    </ModalHeaderWrapper>
   );
 }

@@ -1,22 +1,28 @@
 import React from 'react';
 import clsx from 'clsx';
+import styled from 'styled-components';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 
-interface ModalFooterProps extends FlatifyGeneralProps {
-  [key: string]: any;
-  className?: string;
+interface ModalFooterProps
+  extends FlatifyGeneralProps,
+    Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
   children?: React.ReactNode;
 }
 
+const ModalFooterWrapper = styled.footer`
+  ${({ sx }: ModalFooterProps) => (sx ? sx : '')}
+`;
+
 export default function ModalFooter(props: ModalFooterProps) {
-  const { children, className } = props;
+  const { children, ...rest } = props;
 
   return (
-    <footer
-      className={clsx('modal-footer', ...generalClasses(props), className)}
+    <ModalFooterWrapper
+      {...rest}
+      className={clsx('modal-footer', ...generalClasses(props))}
     >
       {children}
-    </footer>
+    </ModalFooterWrapper>
   );
 }
