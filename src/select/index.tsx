@@ -1,54 +1,84 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
+import styled from 'styled-components';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 
-interface SelectItemProps {
-  label: string;
-  value: string;
+interface SelectOptionProps {
+  label?: string;
+  value?: string;
+  options?: SelectSubOptionProps[];
 }
 
-interface SelectProps extends FlatifyGeneralProps {
+interface SelectSubOptionProps {
+  label?: string;
+  value?: string;
+}
+
+interface SelectProps
+  extends FlatifyGeneralProps,
+    Omit<
+      React.HTMLAttributes<HTMLSelectElement>,
+      'color' | 'onChange' | 'value'
+    > {
+  defaultValue?: string | string[];
   inlineLabel?: boolean;
   id: string;
-  items: SelectItemProps[];
+  options: SelectOptionProps[];
   label?: string;
   multiple?: boolean;
   name?: string;
-  onChange?: (value: string | string[]) => void;
+  onChange?: (
+    value: string | string[],
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => void;
   value?: string | string[];
+}
+
+const SelectWrapper = styled.select`
+  ${({ sx }: SelectProps) => (sx ? sx : '')}
+`;
+
+function SelectOption({ value, label }: SelectOptionProps) {
+  return <option value={value}>{label || value}</option>;
 }
 
 export function Select(props: SelectProps) {
   const {
+    defaultValue,
     id,
     inlineLabel,
-    items,
+    options,
     label,
     multiple,
-    name,
     onChange,
     size,
     value,
+    ...rest
   } = props;
 
   const [selected, setSelected] = useState<string | string[]>(
     multiple ? [] : ''
   );
 
-  // prevent error when there is no item
-  if (!items) return null;
+  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const { selectedOptions, value } = event.target;
 
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const { selectedOptions, value } = e.target;
-
-    const selectedItems = multiple
-      ? Array.from(selectedOptions, item => item.value)
+    const options = multiple
+      ? Array.from(selectedOptions, option => option.value)
       : value;
 
-    onChange?.(selectedItems);
-    setSelected(selectedItems);
+    onChange?.(options, event);
+    setSelected(options);
   };
+
+  /*
+   * set the value with this order priority:
+   * #1 controlled select
+   * #2 uncontrolled select (if has local value set already)
+   * #3 default value
+   */
+  const selectValue = value || (selected.length && selected) || defaultValue;
 
   return (
     <>
@@ -57,28 +87,40 @@ export function Select(props: SelectProps) {
           htmlFor={id}
           className={clsx(
             'form-label',
-            {
-              inline: inlineLabel,
-            },
+            inlineLabel && 'inline',
             ...generalClasses({ size })
           )}
         >
           {label}
         </label>
       )}
-      <select
-        name={name}
+      <SelectWrapper
+        {...rest}
+        id={id}
         className={clsx(...generalClasses(props))}
         multiple={multiple}
-        value={value || selected}
-        onChange={e => handleChange(e)}
+        value={selectValue}
+        onChange={handleChange}
       >
-        {items.map(({ label, value }) => (
-          <option key={label} value={value}>
-            {label}
-          </option>
-        ))}
-      </select>
+        {options.length &&
+          options.map(
+            ({ options: subOptions, ...restOptions }: SelectOptionProps) => {
+              if (subOptions && subOptions.length) {
+                return (
+                  <optgroup label={label}>
+                    {subOptions.map((subOption: SelectSubOptionProps) => (
+                      <SelectOption key={subOption.value} {...subOption} />
+                    ))}
+                  </optgroup>
+                );
+              } else {
+                return (
+                  <SelectOption key={restOptions.value} {...restOptions} />
+                );
+              }
+            }
+          )}
+      </SelectWrapper>
     </>
   );
 }
