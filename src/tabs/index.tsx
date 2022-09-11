@@ -1,6 +1,6 @@
 /*
  * Tab component created with ReachUI library
- * These components are wrappers to customize default styles
+ * These components are wrappers to customize the default styles
  */
 import Tabs from './tabs';
 import TabList from './tab-list';
