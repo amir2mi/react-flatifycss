@@ -5,10 +5,9 @@ import { Tab as ReachTab, useTabsContext } from '@reach/tabs';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 
-interface TabProps
+export interface TabProps
   extends FlatifyGeneralProps,
     Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
-  [key: string]: any;
   children: React.ReactNode;
   orderIndex?: number;
 }

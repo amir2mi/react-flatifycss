@@ -5,7 +5,7 @@ import { Tabs as ReachTabs } from '@reach/tabs';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 
-interface TabsProps
+export interface TabsProps
   extends FlatifyGeneralProps,
     Omit<React.HTMLAttributes<HTMLElement>, 'color' | 'onChange'> {
   bordered?: boolean;

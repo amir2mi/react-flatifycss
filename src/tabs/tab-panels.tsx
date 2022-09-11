@@ -5,7 +5,7 @@ import { TabPanels as ReachTabPanels } from '@reach/tabs';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 
-interface TabPanelsProps
+export interface TabPanelsProps
   extends FlatifyGeneralProps,
     Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
   [key: string]: any;

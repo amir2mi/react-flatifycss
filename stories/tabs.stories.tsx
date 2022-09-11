@@ -1,6 +1,6 @@
-import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import { Badge, Tabs, TabList, Tab, TabPanel, TabPanels } from '../src';
+import React from 'react';
+import { Badge, Tab, TabList, TabPanel, TabPanels, Tabs } from '../src';
 
 const meta: Meta = {
   title: 'Components/Tabs',

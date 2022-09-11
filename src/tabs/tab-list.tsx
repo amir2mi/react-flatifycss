@@ -5,7 +5,7 @@ import { TabList as ReachTabList } from '@reach/tabs';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 
-interface TabListProps
+export interface TabListProps
   extends FlatifyGeneralProps,
     Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
   centered?: boolean;
@@ -39,7 +39,7 @@ export default function TabList(props: TabListProps) {
     >
       {React.Children.map(children, child => {
         if (React.isValidElement(child)) {
-          return React.cloneElement(child, {
+          return React.cloneElement((child: any), {
             orderIndex: orderIndex++,
           });
         }
