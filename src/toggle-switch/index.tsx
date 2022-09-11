@@ -63,7 +63,7 @@ export function ToggleSwitch(props: ToggleSwitchProps) {
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     // if checked is passed toggle its bool, otherwise send event value
     const isChecked =
-      typeof checked == 'undefined' ? e.target.checked : !checked;
+      typeof checked != 'undefined' ? !checked : e.target.checked;
     onChange?.(e, isChecked, value);
   };
 
