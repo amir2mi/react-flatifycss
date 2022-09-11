@@ -4,18 +4,18 @@ import styled from 'styled-components';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 
-interface SelectOptionProps {
+export interface SelectOptionProps {
   label?: string;
   value?: string;
   options?: SelectSubOptionProps[];
 }
 
-interface SelectSubOptionProps {
+export interface SelectSubOptionProps {
   label?: string;
   value?: string;
 }
 
-interface SelectProps
+export interface SelectProps
   extends FlatifyGeneralProps,
     Omit<
       React.HTMLAttributes<HTMLSelectElement>,
