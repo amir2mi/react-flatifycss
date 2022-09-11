@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 
-interface ArrowButtonProps
+export interface ArrowButtonProps
   extends FlatifyGeneralProps,
     Omit<React.HTMLAttributes<HTMLButtonElement>, 'color'> {
   direction?: 'top' | 'bottom' | 'left' | 'right';
