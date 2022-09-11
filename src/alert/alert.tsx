@@ -6,7 +6,7 @@ import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 import { hasSpecificChildren } from '../utils/children';
 
-interface AlertProps
+export interface AlertProps
   extends FlatifyGeneralProps,
     Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
   animation?: string;

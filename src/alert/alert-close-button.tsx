@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 
-interface AlertCloseButtonProps
+export interface AlertCloseButtonProps
   extends FlatifyGeneralProps,
     Omit<React.HTMLAttributes<HTMLButtonElement>, 'color'> {
   children?: React.ReactNode;
