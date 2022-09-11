@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 
-interface FireworksProps
+export interface FireworksProps
   extends FlatifyGeneralProps,
     Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
   delay?: number;
@@ -14,7 +14,6 @@ interface FireworksProps
 }
 
 const FireworksWrapper = styled.div`
-
   ${({ delay }: FireworksProps) =>
     delay ? `--flatify__firework-animation-delay: ${delay}ms;` : ''}
   ${({ duration }: FireworksProps) =>
