@@ -5,7 +5,7 @@ import getUniqueID from '../utils/id-generator';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 
-interface InputProps
+export interface InputProps
   extends FlatifyGeneralProps,
     Omit<
       React.InputHTMLAttributes<HTMLInputElement>,
