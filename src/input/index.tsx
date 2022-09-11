@@ -16,7 +16,7 @@ export interface InputProps
   colorWarning?: string;
   colorInvalid?: string;
   hasFloatingLabel?: boolean;
-  label?: React.ReactNode;
+  label?: string;
   onChange?: (
     value: string,
     event: React.ChangeEvent<HTMLInputElement>
@@ -78,7 +78,7 @@ export function Input(props: InputProps) {
   const [isFocused, setIsFocused] = useState<boolean>(false);
   const [isPassword, setIsPassword] = useState<boolean>(true);
 
-  const inputId: string = id || getUniqueID(name || label);
+  const inputId: string = id || getUniqueID(String(name) + String(label));
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
