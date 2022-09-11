@@ -23,7 +23,3 @@ export * from './loading';
 export * from './modal';
 export * from './progress';
 export * from './tabs';
-
-// deprecated components
-// export * from './accordion-deprecated';
-// export * from './tabs-deprecated';
