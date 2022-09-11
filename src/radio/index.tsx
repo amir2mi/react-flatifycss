@@ -6,7 +6,7 @@ import { generalClasses } from '../classes';
 
 interface RadioProps
   extends FlatifyGeneralProps,
-    Omit<React.HTMLAttributes<HTMLInputElement>, 'color'> {
+    Omit<React.HTMLAttributes<HTMLInputElement>, 'color' | 'onChange'> {
   checked?: boolean;
   children?: React.ReactNode;
   colorValid?: string;
