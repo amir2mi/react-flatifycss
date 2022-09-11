@@ -106,11 +106,11 @@ export function Select(props: SelectProps) {
         onChange={handleChange}
       >
         {options.length &&
-          options.map((option: SelectOptionProps) => {
+          options.map((option: SelectOptionProps, i) => {
             const { label: subLabel, options: subOptions } = option;
             if (subOptions && subOptions.length) {
               return (
-                <optgroup label={subLabel}>
+                <optgroup key={i + String(subLabel)} label={subLabel}>
                   {subOptions.map((subOption: SelectSubOptionProps) => (
                     <SelectOption key={subOption.value} {...subOption} />
                   ))}
