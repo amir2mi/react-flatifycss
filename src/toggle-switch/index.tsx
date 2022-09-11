@@ -1,39 +1,79 @@
 import React from 'react';
 import clsx from 'clsx';
+import styled from 'styled-components';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 
-interface ToggleSwitchProps extends FlatifyGeneralProps {
+interface ToggleSwitchProps
+  extends FlatifyGeneralProps,
+    Omit<React.HTMLAttributes<HTMLInputElement>, 'color' | 'onChange'> {
   checked?: boolean;
   children?: React.ReactNode;
-  defaultChecked?: boolean;
-  disabled?: boolean;
+  colorValid?: string;
+  colorWarning?: string;
+  colorInvalid?: string;
   isAfterLabel?: boolean;
   label?: string;
   name?: string;
-  onChange?: (checked: boolean) => void;
-  required?: boolean | undefined;
+  onChange?: (
+    event: React.ChangeEvent<HTMLInputElement>,
+    checked: boolean,
+    value: string | number | undefined | null
+  ) => void;
   state?: 'valid' | 'warning' | 'invalid';
   type?: 'checkbox' | 'radio';
+  value?: string | number;
 }
+
+const ToggleSwitchWrapper = styled.label`
+  ${({ colorValid }: ToggleSwitchProps) =>
+    colorValid
+      ? `--flatify__form-element-border-color__valid: ${colorValid};`
+      : ''}
+  ${({ colorWarning }: ToggleSwitchProps) =>
+    colorWarning
+      ? `--flatify__form-element-border-color__warning: ${colorWarning};`
+      : ''}
+  ${({ colorInvalid }: ToggleSwitchProps) =>
+    colorInvalid
+      ? `--flatify__form-element-border-color__invalid: ${colorInvalid};`
+      : ''}  
+  ${({ sx }: ToggleSwitchProps) => (sx ? sx : '')}
+`;
 
 export function ToggleSwitch(props: ToggleSwitchProps) {
   const {
+    as,
     checked,
-    defaultChecked,
-    disabled,
     children,
+    colorValid,
+    colorWarning,
+    colorInvalid,
     label,
     isAfterLabel,
-    name,
     onChange,
-    required,
+    size,
     state,
+    sx,
     type,
+    value,
+    ...rest
   } = props;
 
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // if checked is passed toggle its bool, otherwise send event value
+    const newValue =
+      typeof checked == 'undefined' ? e.target.checked : !checked;
+    onChange?.(e, newValue, value);
+  };
+
   return (
-    <label
+    <ToggleSwitchWrapper
+      as={as}
+      sx={sx}
+      colorValid={colorValid}
+      colorWarning={colorWarning}
+      colorInvalid={colorInvalid}
       className={clsx(
         'toggle-wrapper',
         { [state + '']: state },
@@ -43,13 +83,12 @@ export function ToggleSwitch(props: ToggleSwitchProps) {
       {isAfterLabel && label}
       {isAfterLabel && children}
       <input
+        {...rest}
+        role="switch"
         type={type || 'checkbox'}
-        name={name}
         checked={checked}
-        defaultChecked={defaultChecked}
-        disabled={disabled}
-        required={required}
-        onChange={() => onChange?.(!checked)}
+        value={value}
+        onChange={handleOnChange}
       />
       <span
         aria-hidden={true}
@@ -59,6 +98,6 @@ export function ToggleSwitch(props: ToggleSwitchProps) {
       />
       {!isAfterLabel && children}
       {!isAfterLabel && label}
-    </label>
+    </ToggleSwitchWrapper>
   );
 }
