@@ -5,7 +5,7 @@ import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 import Item from './item';
 
-interface itemProps {
+export interface itemProps {
   activeClassName?: string;
   className?: string;
   subtitle?: string;
@@ -14,7 +14,7 @@ interface itemProps {
   value: string | number;
 }
 
-interface ItemsGroupProps
+export interface ItemsGroupProps
   extends FlatifyGeneralProps,
     Omit<React.HTMLAttributes<HTMLElement>, 'color' | 'onChange'> {
   children?: React.ReactNode;
