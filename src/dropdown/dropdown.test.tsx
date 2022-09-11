@@ -30,18 +30,18 @@ const TestDropdown = () => (
 );
 
 describe('Dropdown', () => {
-  it('should be rendered without crashing', () => {
+  it('should be rendered without crashing', async () => {
     render(<TestDropdown />);
 
-    waitFor(() => {
+    await waitFor(() => {
       expect(screen.getByTestId('dropdown')).toBeInTheDocument();
     });
   });
 
-  it('should be opened on click', () => {
+  it('should be opened on click', async () => {
     const { container } = render(<TestDropdown />);
 
-    waitFor(() => {
+    await waitFor(() => {
       expect(screen.getByTestId('dropdown')).toBeInTheDocument();
     });
 
