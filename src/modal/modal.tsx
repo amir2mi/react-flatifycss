@@ -7,7 +7,7 @@ import { CSSTransition } from 'react-transition-group';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 
-interface ModalProps
+export interface ModalProps
   extends FlatifyGeneralProps,
     Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
   bordered?: boolean;
