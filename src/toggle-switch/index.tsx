@@ -53,6 +53,7 @@ export function ToggleSwitch(props: ToggleSwitchProps) {
     colorValid,
     colorWarning,
     colorInvalid,
+    id,
     label,
     isAfterLabel,
     onChange,
@@ -74,6 +75,7 @@ export function ToggleSwitch(props: ToggleSwitchProps) {
   return (
     <ToggleSwitchWrapper
       as={as}
+      id={id}
       sx={sx}
       colorValid={colorValid}
       colorWarning={colorWarning}

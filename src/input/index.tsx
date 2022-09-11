@@ -78,7 +78,7 @@ export function Input(props: InputProps) {
   const [isFocused, setIsFocused] = useState<boolean>(false);
   const [isPassword, setIsPassword] = useState<boolean>(true);
 
-  const inputId: string = id || getUniqueID(name);
+  const inputId: string = id || getUniqueID(name || label);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;

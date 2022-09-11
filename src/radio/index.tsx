@@ -50,6 +50,7 @@ export function Radio(props: RadioProps) {
     colorValid,
     colorWarning,
     colorInvalid,
+    id,
     label,
     onChange,
     size,
@@ -69,6 +70,7 @@ export function Radio(props: RadioProps) {
   return (
     <RadioWrapper
       as={as}
+      id={id}
       sx={sx}
       colorValid={colorValid}
       colorWarning={colorWarning}

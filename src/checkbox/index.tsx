@@ -48,6 +48,7 @@ export function Checkbox(props: CheckboxProps) {
     colorValid,
     colorWarning,
     colorInvalid,
+    id,
     onChange,
     label,
     size,
@@ -66,6 +67,7 @@ export function Checkbox(props: CheckboxProps) {
   return (
     <CheckboxWrapper
       as={as}
+      id={id}
       sx={sx}
       colorValid={colorValid}
       colorWarning={colorWarning}
