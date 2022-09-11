@@ -1,10 +1,10 @@
-import React, { ElementType } from 'react';
+import React from 'react';
 import clsx from 'clsx';
 import styled from 'styled-components';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 
-interface AddButtonProps
+export interface AddButtonProps
   extends FlatifyGeneralProps,
     Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
   active?: boolean;
