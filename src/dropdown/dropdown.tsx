@@ -6,7 +6,7 @@ import getUniqueID from '../utils/id-generator';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 
-interface DropdownProps extends FlatifyGeneralProps {
+export interface DropdownProps extends FlatifyGeneralProps {
   autoClose?: boolean | 'outside' | 'inside';
   children?: React.ReactNode;
   hoverShowDelay?: number;
@@ -20,7 +20,7 @@ interface DropdownProps extends FlatifyGeneralProps {
   placement?: 'top' | 'bottom' | 'left' | 'right';
 }
 
-interface PopperOptionsProps {
+export interface PopperOptionsProps {
   arrowElement: HTMLElement | null;
   offsetX: number | undefined;
   offsetY: number | undefined;

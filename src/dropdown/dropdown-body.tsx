@@ -5,7 +5,7 @@ import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 import { CSSTransition } from 'react-transition-group';
 
-interface DropdownBodyProps
+export interface DropdownBodyProps
   extends FlatifyGeneralProps,
     Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
   arrowInnerRef?: React.Ref<HTMLElement>;
