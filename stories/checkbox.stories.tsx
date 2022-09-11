@@ -16,13 +16,27 @@ const Template: Story = args => {
   const [checked, setChecked] = useState(false);
 
   return (
-    <Checkbox {...args} checked={checked} onChange={value => setChecked(value)}>
+    <Checkbox
+      {...args}
+      checked={checked}
+      onChange={(e, checked) => setChecked(checked)}
+    >
       I Agree to Privacy Policy.
     </Checkbox>
   );
 };
 
+const UncontrolledTemplate: Story = args => (
+  <Checkbox
+    {...args}
+    onChange={(e, checked) => alert('Checkbox value is: ' + checked)}
+  >
+    I Agree to Privacy Policy.
+  </Checkbox>
+);
+
 export const Default = Template.bind({});
+export const Uncontrolled = UncontrolledTemplate.bind({});
 export const Disabled = Template.bind({});
 export const States = Template.bind({});
 export const Customized = Template.bind({});

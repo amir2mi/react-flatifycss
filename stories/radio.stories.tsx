@@ -32,8 +32,19 @@ const Template: Story = args => {
   );
 };
 
+const UncontrolledTemplate: Story = args => (
+  <Radio
+    {...args}
+    name="my-radio"
+    defaultChecked={false}
+    onChange={(e, checked) => alert('Radio value is: ' + checked)}
+  >
+    I Agree to Privacy Policy.
+  </Radio>
+);
+
 const TemplateMultiple: Story = args => {
-  const [checked, setChecked] = useState('pizza');
+  const [checked, setChecked] = useState<any>('pizza');
 
   return (
     <>
@@ -41,7 +52,7 @@ const TemplateMultiple: Story = args => {
         {...args}
         value="pizza"
         checked={checked == 'pizza'}
-        onChange={e => setChecked(e.currentTarget.value)}
+        onChange={(e, checked, value) => setChecked(value)}
       >
         Pizza
       </Radio>
@@ -49,7 +60,7 @@ const TemplateMultiple: Story = args => {
         {...args}
         value="sushi"
         checked={checked == 'sushi'}
-        onChange={e => setChecked(e.currentTarget.value)}
+        onChange={(e, checked, value) => setChecked(value)}
       >
         Sushi
       </Radio>
@@ -61,6 +72,7 @@ const TemplateMultiple: Story = args => {
 };
 
 export const Default = Template.bind({});
+export const Uncontrolled = UncontrolledTemplate.bind({});
 export const Multiple = TemplateMultiple.bind({});
 export const Disabled = Template.bind({});
 export const States = Template.bind({});
