@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 
-interface ButtonGroupProps
+export interface ButtonGroupProps
   extends FlatifyGeneralProps,
     Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
   children?: React.ReactNode;
