@@ -5,7 +5,7 @@ import { AccordionItem as ReachAccordionItem } from '@reach/accordion';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 
-interface AccordionItemProps
+export interface AccordionItemProps
   extends FlatifyGeneralProps,
     Omit<React.HTMLAttributes<HTMLElement>, 'color'> {}
 

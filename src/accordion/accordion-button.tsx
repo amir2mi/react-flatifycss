@@ -9,7 +9,7 @@ import { AddButton } from '../add-button';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 
-interface AccordionButtonProps
+export interface AccordionButtonProps
   extends FlatifyGeneralProps,
     Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
   hasIcon?: boolean;

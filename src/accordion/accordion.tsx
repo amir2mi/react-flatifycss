@@ -5,7 +5,7 @@ import { Accordion as ReachAccordion } from '@reach/accordion';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 
-interface AccordionProps
+export interface AccordionProps
   extends FlatifyGeneralProps,
     Omit<React.HTMLAttributes<HTMLElement>, 'color' | 'onChange'> {
   animation?: 'fade' | 'default' | string;

@@ -8,7 +8,7 @@ import styled from 'styled-components';
 import { generalClasses } from '../classes';
 import { FlatifyGeneralProps } from '../interfaces';
 
-interface AccordionPanelProps
+export interface AccordionPanelProps
   extends FlatifyGeneralProps,
     Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
   duration?: number;
