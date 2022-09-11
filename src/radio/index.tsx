@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 
-interface RadioProps
+export interface RadioProps
   extends FlatifyGeneralProps,
     Omit<React.HTMLAttributes<HTMLInputElement>, 'color' | 'onChange'> {
   checked?: boolean;
