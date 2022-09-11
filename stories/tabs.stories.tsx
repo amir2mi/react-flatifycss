@@ -16,7 +16,7 @@ const Template: Story = args => (
   <Tabs {...args}>
     <TabList>
       <Tab>Kafka</Tab>
-      <Tab onMouseDown={() => alert('clicked on Werther')}>Werther</Tab>
+      <Tab onClick={() => alert('clicked on Werther')}>Werther</Tab>
       <Tab>
         Cicero
         <Badge>256</Badge>
