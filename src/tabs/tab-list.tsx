@@ -39,7 +39,7 @@ export default function TabList(props: TabListProps) {
     >
       {React.Children.map(children, child => {
         if (React.isValidElement(child)) {
-          return React.cloneElement((child: any), {
+          return React.cloneElement(child as any, {
             orderIndex: orderIndex++,
           });
         }
