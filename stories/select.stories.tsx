@@ -44,9 +44,7 @@ const itemsGrouped = [
   { label: 'Talking', value: 'talking' },
 ];
 
-const Template: Story = args => (
-  <Select id="storybook-select" options={itemsGrouped} {...args} />
-);
+const Template: Story = args => <Select options={itemsGrouped} {...args} />;
 
 export const Default = Template.bind({});
 export const Grouped = Template.bind({});
