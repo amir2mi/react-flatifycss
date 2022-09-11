@@ -13,7 +13,10 @@ interface CheckboxProps
   colorWarning?: string;
   colorInvalid?: string;
   label?: string;
-  onChange?: (checked: boolean, event: React.ChangeEvent) => void;
+  onChange?: (
+    event: React.ChangeEvent<HTMLInputElement>,
+    checked: boolean
+  ) => void;
   state?: 'valid' | 'warning' | 'invalid';
 }
 
@@ -49,6 +52,13 @@ export function Checkbox(props: CheckboxProps) {
     ...rest
   } = props;
 
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // if checked is passed toggle its bool, otherwise send event value
+    const isChecked =
+      typeof checked != 'undefined' ? !checked : e.target.checked;
+    onChange?.(e, isChecked);
+  };
+
   return (
     <CheckboxWrapper
       as={as}
@@ -66,7 +76,7 @@ export function Checkbox(props: CheckboxProps) {
         {...rest}
         type="checkbox"
         checked={checked}
-        onChange={e => onChange?.(!checked, e)}
+        onChange={handleOnChange}
       />
       <span aria-hidden={true} className="check" />
       {children}
