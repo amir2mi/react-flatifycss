@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
 import styled from 'styled-components';
+import getUniqueID from '../utils/id-generator';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 
@@ -23,7 +24,7 @@ export interface SelectProps
     > {
   defaultValue?: string | string[];
   inlineLabel?: boolean;
-  id: string;
+  id?: string;
   options: SelectOptionProps[];
   label?: string;
   multiple?: boolean;
@@ -61,6 +62,8 @@ export function Select(props: SelectProps) {
     multiple ? [] : ''
   );
 
+  const selectId: string = id || getUniqueID(options.length + String(label));
+
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const { selectedOptions, value } = event.target;
 
@@ -84,7 +87,7 @@ export function Select(props: SelectProps) {
     <>
       {label && (
         <label
-          htmlFor={id}
+          htmlFor={selectId}
           className={clsx(
             'form-label',
             inlineLabel && 'inline',
@@ -96,30 +99,27 @@ export function Select(props: SelectProps) {
       )}
       <SelectWrapper
         {...rest}
-        id={id}
+        id={selectId}
         className={clsx(...generalClasses(props))}
         multiple={multiple}
         value={selectValue}
         onChange={handleChange}
       >
         {options.length &&
-          options.map(
-            ({ options: subOptions, ...restOptions }: SelectOptionProps) => {
-              if (subOptions && subOptions.length) {
-                return (
-                  <optgroup label={label}>
-                    {subOptions.map((subOption: SelectSubOptionProps) => (
-                      <SelectOption key={subOption.value} {...subOption} />
-                    ))}
-                  </optgroup>
-                );
-              } else {
-                return (
-                  <SelectOption key={restOptions.value} {...restOptions} />
-                );
-              }
+          options.map((option: SelectOptionProps) => {
+            const { label: subLabel, options: subOptions } = option;
+            if (subOptions && subOptions.length) {
+              return (
+                <optgroup label={subLabel}>
+                  {subOptions.map((subOption: SelectSubOptionProps) => (
+                    <SelectOption key={subOption.value} {...subOption} />
+                  ))}
+                </optgroup>
+              );
+            } else {
+              return <SelectOption key={option.value} {...option} />;
             }
-          )}
+          })}
       </SelectWrapper>
     </>
   );
