@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 
-interface ToggleSwitchProps
+export interface ToggleSwitchProps
   extends FlatifyGeneralProps,
     Omit<React.HTMLAttributes<HTMLInputElement>, 'color' | 'onChange'> {
   checked?: boolean;
