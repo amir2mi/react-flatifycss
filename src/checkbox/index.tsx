@@ -6,12 +6,16 @@ import { generalClasses } from '../classes';
 
 export interface CheckboxProps
   extends FlatifyGeneralProps,
-    Omit<React.HTMLAttributes<HTMLInputElement>, 'color' | 'onChange'> {
+    Omit<
+      React.InputHTMLAttributes<HTMLInputElement>,
+      'color' | 'onChange' | 'size'
+    > {
   checked?: boolean;
   children?: React.ReactNode;
   colorValid?: string;
   colorWarning?: string;
   colorInvalid?: string;
+  disabled?: boolean;
   label?: string;
   onChange?: (
     event: React.ChangeEvent<HTMLInputElement>,
