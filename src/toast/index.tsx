@@ -1,4 +1,5 @@
 import Toast from './toast';
+import ToastIcon from './toast-icon';
 import ToastsWrapper from './toasts-wrapper';
 
-export { Toast, ToastsWrapper };
+export { Toast, ToastIcon, ToastsWrapper };

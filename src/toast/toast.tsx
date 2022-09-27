@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import clsx from 'clsx';
 import styled from 'styled-components';
@@ -11,7 +11,10 @@ export interface ToastProps
     Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
   children?: React.ReactNode;
   closeButton?: boolean;
+  duration?: number;
+  onClose?: () => void;
   show?: boolean;
+  freeze?: boolean;
   x?: 'left' | 'right' | 'center';
   y?: 'top' | 'bottom';
 }
@@ -24,20 +27,35 @@ export default function Toast(props: ToastProps) {
   const {
     children,
     closeButton,
+    duration = 3000,
+    freeze,
+    onClose,
     show,
     x = 'center',
     y = 'bottom',
     ...rest
   } = props;
 
+  // select the proper toasts wrapper element for ReactDOM portal
   const wrapperElement = document.querySelector(`.toast-wrapper.${x}.${y}`);
-
   if (!wrapperElement) {
     console.error(
-      'React FlatifyCSS: To show toasts you must place the <ToastsWrapper> component somewhere in your application.'
+      'React FlatifyCSS: To display toasts, you must place the <ToastsWrapper /> component somewhere in your application.'
     );
     return null;
   }
+
+  const closeTimeout = useRef<NodeJS.Timeout | null>(null);
+
+  // emit onClose after the given duration
+  useEffect(() => {
+    closeTimeout.current && clearTimeout(closeTimeout.current);
+    if (show) {
+      closeTimeout.current = setTimeout(() => {
+        onClose?.();
+      }, duration);
+    }
+  }, [show]);
 
   return ReactDOM.createPortal(
     <CSSTransition
@@ -53,10 +71,14 @@ export default function Toast(props: ToastProps) {
         {...rest}
         className={clsx('toast', ...generalClasses(props))}
       >
-        <svg className="toast-svg">...</svg>
         {children}
         {closeButton && (
-          <button type="button" className="close-button" aria-label="Close" />
+          <button
+            onClick={onClose}
+            type="button"
+            className="close-button"
+            aria-label="Close"
+          />
         )}
       </ToastWrapper>
     </CSSTransition>,
