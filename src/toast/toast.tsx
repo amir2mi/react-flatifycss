@@ -15,6 +15,7 @@ export interface ToastProps
   duration?: number;
   onClose?: () => void;
   show?: boolean;
+  type?: 'status' | 'alert';
   x?: 'left' | 'right' | 'center';
   y?: 'top' | 'bottom';
 }
@@ -31,6 +32,7 @@ export default function Toast(props: ToastProps) {
     duration = 3000,
     onClose,
     show,
+    type,
     x = 'center',
     y = 'bottom',
     ...rest
@@ -69,7 +71,10 @@ export default function Toast(props: ToastProps) {
       }}
     >
       <ToastWrapper
+        role={type}
+        aria-live={type === 'alert' ? 'assertive' : 'polite'}
         {...rest}
+        aria-atomic="true"
         className={clsx('toast', ...generalClasses(props))}
       >
         {children}
