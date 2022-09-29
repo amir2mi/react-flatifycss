@@ -9,12 +9,12 @@ import { generalClasses } from '../classes';
 export interface ToastProps
   extends FlatifyGeneralProps,
     Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
+  autoClose?: boolean;
   children?: React.ReactNode;
   closeButton?: boolean;
   duration?: number;
   onClose?: () => void;
   show?: boolean;
-  freeze?: boolean;
   x?: 'left' | 'right' | 'center';
   y?: 'top' | 'bottom';
 }
@@ -25,10 +25,10 @@ const ToastWrapper = styled.div`
 
 export default function Toast(props: ToastProps) {
   const {
+    autoClose,
     children,
     closeButton,
     duration = 3000,
-    freeze,
     onClose,
     show,
     x = 'center',
@@ -49,6 +49,7 @@ export default function Toast(props: ToastProps) {
 
   // emit onClose after the given duration
   useEffect(() => {
+    if (!autoClose) return;
     closeTimeout.current && clearTimeout(closeTimeout.current);
     if (show) {
       closeTimeout.current = setTimeout(() => {
