@@ -18,12 +18,7 @@ const Template: Story = args => {
   return (
     <>
       <ToastsWrapper />
-      <Toast
-        {...args}
-        closeButton
-        show={isOpen}
-        onClose={() => setIsOpen(false)}
-      >
+      <Toast {...args} show={isOpen} onClose={() => setIsOpen(false)}>
         Lorem ipsum dolor sit amet.
       </Toast>
       <Button onClick={() => setIsOpen(!isOpen)}>
@@ -39,13 +34,7 @@ const TemplateWithIcon: Story = args => {
   return (
     <>
       <ToastsWrapper />
-      <Toast
-        {...args}
-        closeButton
-        show={isOpen}
-        theme="orange-light"
-        onClose={() => setIsOpen(false)}
-      >
+      <Toast {...args} show={isOpen} onClose={() => setIsOpen(false)}>
         <ToastIcon>
           <svg
             aria-hidden="true"
@@ -65,4 +54,34 @@ const TemplateWithIcon: Story = args => {
 };
 
 export const Default = Template.bind({});
-export const Icon = TemplateWithIcon.bind({});
+export const WithIcon = TemplateWithIcon.bind({});
+export const CloseButton = Template.bind({});
+export const AutoClose = Template.bind({});
+export const AutoCloseDuration = Template.bind({});
+export const XPosition = Template.bind({});
+export const YPosition = Template.bind({});
+
+WithIcon.args = {
+  theme: 'orange-light',
+};
+
+CloseButton.args = {
+  closeButton: true,
+};
+
+AutoClose.args = {
+  autoClose: true,
+};
+
+AutoCloseDuration.args = {
+  autoClose: true,
+  duration: 750,
+};
+
+XPosition.args = {
+  x: 'left',
+};
+
+YPosition.args = {
+  y: 'top',
+};
