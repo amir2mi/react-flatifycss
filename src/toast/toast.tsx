@@ -66,7 +66,6 @@ export default function Toast(props: ToastProps) {
       timeout={200}
       unmountOnExit
       classNames={{
-        enterDone: 'show',
         exitActive: 'toast-will-be-removed',
       }}
     >
