@@ -32,8 +32,8 @@ export function Fireworks(props: FireworksProps) {
       aria-hidden="true"
       className={clsx('fireworks', generalClasses(props), simple && 'simple')}
     >
-      {[...new Array(5)].map(() => (
-        <span className="spark" />
+      {[...new Array(5)].map((a, i) => (
+        <span key={i} className="spark" />
       ))}
     </FireworksWrapper>
   );
