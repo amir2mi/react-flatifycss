@@ -16,6 +16,7 @@ export interface DropdownBodyProps
   isOpen?: boolean;
   isMenu?: boolean;
   onBodyMouseEnter?: (event: React.MouseEvent<HTMLElement>) => void;
+  onButtonMouseEnter?: (event: React.MouseEvent<HTMLElement>) => void;
   __TYPE?: 'DropdownBody';
 }
 
@@ -34,6 +35,7 @@ export default function DropdownBody(props: DropdownBodyProps) {
     isOpen,
     isMenu,
     onBodyMouseEnter,
+    onButtonMouseEnter,
     __TYPE,
     ...rest
   } = props;

@@ -12,6 +12,7 @@ export interface DropdownButtonProps extends ButtonProps {
   hasArrow?: boolean;
   innerRef?: React.Ref<HTMLButtonElement>;
   isOpen?: boolean;
+  onBodyMouseEnter?: (event: React.MouseEvent<HTMLElement>) => void;
   onButtonMouseEnter?: (event: React.MouseEvent<HTMLElement>) => void;
   __TYPE: 'DropdownButton';
 }
@@ -23,10 +24,12 @@ const DropdownButtonWrapper = styled(Button)`
 export default function DropdownButton(props: DropdownButtonProps) {
   const {
     arrowClassName,
+    buttonStyle,
     children,
     hasArrow,
     innerRef,
     isOpen,
+    onBodyMouseEnter,
     onButtonMouseEnter,
     __TYPE,
     ...rest
@@ -44,7 +47,8 @@ export default function DropdownButton(props: DropdownButtonProps) {
         arrowClassName,
         {
           active: isOpen,
-          'arrow-button': hasArrow,
+          'no-style': buttonStyle === false,
+          'arrow-button ': hasArrow,
           'arrow-flip': isOpen && hasArrow,
         }
       )}
