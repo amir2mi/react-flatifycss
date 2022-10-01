@@ -48,7 +48,7 @@ export default function Toast(props: ToastProps) {
   const wrapperElement = document.querySelector(`.toast-wrapper.${x}.${y}`);
   if (!wrapperElement) {
     console.error(
-      'React FlatifyCSS: To display toasts, you must place the <ToastsWrapper /> component somewhere in your application.'
+      `React FlatifyCSS: Could not find toasts wrapper element, to display toasts, you must place the <ToastsWrapper /> component somewhere in your application.`
     );
     return null;
   }
@@ -66,33 +66,37 @@ export default function Toast(props: ToastProps) {
     }
   }, [show]);
 
-  return ReactDOM.createPortal(
-    <CSSTransition
-      in={show}
-      timeout={200}
-      unmountOnExit
-      classNames={{
-        exitActive: 'toast-will-be-removed',
-      }}
-    >
-      <ToastWrapper
-        role={type}
-        aria-live={type === 'alert' ? 'assertive' : 'polite'}
-        {...rest}
-        aria-atomic="true"
-        className={clsx('toast', ...generalClasses(props))}
-      >
-        {children}
-        {closeButton && (
-          <button
-            onClick={onClose}
-            type="button"
-            className="close-button"
-            aria-label="Close"
-          />
-        )}
-      </ToastWrapper>
-    </CSSTransition>,
-    wrapperElement
+  return (
+    <>
+      {ReactDOM.createPortal(
+        <CSSTransition
+          in={show}
+          timeout={200}
+          unmountOnExit
+          classNames={{
+            exitActive: 'toast-will-be-removed',
+          }}
+        >
+          <ToastWrapper
+            {...rest}
+            role={type}
+            aria-live={type === 'alert' ? 'assertive' : 'polite'}
+            aria-atomic="true"
+            className={clsx('toast', ...generalClasses(props))}
+          >
+            {children}
+            {closeButton && (
+              <button
+                onClick={onClose}
+                type="button"
+                className="close-button"
+                aria-label="Close"
+              />
+            )}
+          </ToastWrapper>
+        </CSSTransition>,
+        wrapperElement
+      )}
+    </>
   );
 }
