@@ -15,12 +15,18 @@ export interface ToastProps
   duration?: number;
   onClose?: () => void;
   show?: boolean;
+  showAnimation?: string;
+  hideAnimation?: string;
   type?: 'status' | 'alert';
   x?: 'left' | 'right' | 'center';
   y?: 'top' | 'bottom';
 }
 
 const ToastWrapper = styled.div`
+ ${({ showAnimation }: ToastProps) =>
+   showAnimation ? `--flatify__toast-animation-show: ${showAnimation};` : ''}
+  ${({ hideAnimation }: ToastProps) =>
+    hideAnimation ? `--flatify__toast-animation-hide: ${hideAnimation};` : ''}
   ${({ sx }: ToastProps) => (sx ? sx : '')}
 `;
 
