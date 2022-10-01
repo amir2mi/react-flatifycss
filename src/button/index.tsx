@@ -1,6 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import styled from 'styled-components';
+import { Loading } from '../';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 
@@ -12,6 +13,8 @@ export interface ButtonProps
   children?: React.ReactNode;
   disabled?: boolean;
   href?: string;
+  loading?: boolean;
+  spinnerLoading?: boolean;
   onClick?: () => void;
   outline?: boolean;
   secondaryText?: React.ReactNode | string;
@@ -30,8 +33,10 @@ export const Button = React.forwardRef((props: ButtonProps, ref: any) => {
     buttonStyle,
     children,
     disabled,
+    loading,
     outline,
     secondaryText,
+    spinnerLoading,
     state,
     text,
     variant,
@@ -56,6 +61,7 @@ export const Button = React.forwardRef((props: ButtonProps, ref: any) => {
           'style-light': variant === 'secondary',
           'link-button': variant === 'tertiary',
           'two-layer-button': secondaryText,
+          'overlay-layer': loading,
         },
         ...generalClasses(props)
       )}
@@ -63,6 +69,7 @@ export const Button = React.forwardRef((props: ButtonProps, ref: any) => {
       {text}
       {children}
       {secondaryText && <span className="secondary-text">{secondaryText}</span>}
+      {loading && <Loading spinner={spinnerLoading} />}
     </ButtonWrapper>
   );
 });
