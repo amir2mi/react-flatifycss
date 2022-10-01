@@ -60,6 +60,7 @@ export const AutoClose = Template.bind({});
 export const AutoCloseDuration = Template.bind({});
 export const XPosition = Template.bind({});
 export const YPosition = Template.bind({});
+export const CustomAnimation = Template.bind({});
 
 WithIcon.args = {
   theme: 'orange-light',
@@ -84,4 +85,29 @@ XPosition.args = {
 
 YPosition.args = {
   y: 'top',
+};
+
+CustomAnimation.args = {
+  sx: `@keyframes toast-in{
+    0%{
+      opacity: 0;
+      transform: scale(1.5)
+    }
+    100%{
+      opacity: 1;
+      transform: scale(1)
+    } 
+  }
+  @keyframes toast-out{
+    0%{
+      opacity: 1;
+      transform: scale(1) rotate(0)
+    }
+    100%{
+      opacity: 0;
+      transform: scale(0) rotate(25deg)
+    } 
+   }`,
+  showAnimation: 'toast-in ease 0.5s',
+  hideAnimation: 'toast-out ease 0.5s',
 };
