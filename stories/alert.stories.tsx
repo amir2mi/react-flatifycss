@@ -62,6 +62,10 @@ FloatingCloseButton.args = {
   floating: true,
 };
 
+WithIcon.args = {
+  theme: 'blue-light',
+};
+
 CustomAnimation.args = {
   floating: true,
   theme: 'accent-light',
