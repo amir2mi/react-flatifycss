@@ -1,12 +1,16 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
 import { Badge } from '../src';
+import BadgePage from './badge.mdx';
 
 const meta: Meta = {
   title: 'Components/Badge',
   component: Badge,
   parameters: {
     controls: { expanded: true },
+    docs: {
+      page: BadgePage,
+    },
   },
 };
 
