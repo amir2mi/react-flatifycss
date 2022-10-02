@@ -6,12 +6,16 @@ import {
   AccordionButton,
   AccordionPanel,
 } from '../src';
+import AccordionPage from './accordion.mdx';
 
 const meta: Meta = {
   title: 'Components/Accordion',
   component: Accordion,
   parameters: {
     controls: { expanded: true },
+    docs: {
+      page: AccordionPage,
+    },
   },
 };
 
@@ -122,6 +126,7 @@ const TemplateCustom: Story = ({ hasIcon, ...rest }) => (
 );
 
 export const Default = Template.bind({});
+export const Icon = Template.bind({});
 export const Bordered = Template.bind({});
 export const Multiple = Template.bind({});
 export const FadeAnimation = Template.bind({});
@@ -129,10 +134,16 @@ export const Duration = Template.bind({});
 export const Customized = TemplateCustom.bind({});
 
 Default.args = {
-  hasIcon: true,
+  hasIcon: false,
   multiple: false,
   collapsible: false,
   bordered: false,
+};
+
+Icon.args = {
+  hasIcon: true,
+  multiple: false,
+  collapsible: false,
 };
 
 Bordered.args = {

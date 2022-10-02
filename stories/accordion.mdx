@@ -1,0 +1,76 @@
+import { Canvas, Story } from '@storybook/addon-docs';
+
+# Accordion
+
+<p class="component-doc-intro">
+  Accordions are vertically collapsible components that contain content inside,
+  they come in handy for a lot of situations as an example the list of FAQ or
+  small screen devices submenus.
+</p>
+<div class="funky-spacer" />
+
+## Default
+
+<Canvas>
+  <Story id="components-accordion--default" />
+</Canvas>
+
+## Icon
+
+To have a reactive plus/minus icon add `hasIcon={true}` to the `<AccordionButton />` component.
+
+<Canvas>
+  <Story id="components-accordion--icon" />
+</Canvas>
+
+## Bordered
+
+Accordion supports bordered styles by adding `bordered` prop to the `<Accordion />` component.
+
+<Canvas>
+  <Story id="components-accordion--bordered" />
+</Canvas>
+
+## Multiple
+
+It is also possible to have multiple accordion items that can be open, just by adding both `multiple` and `collapsible` props to the `<Accordion />` component.
+
+<Canvas>
+  <Story id="components-accordion--bordered" />
+</Canvas>
+
+## Animation
+
+By default accordion has two animations ready to use. To change the animation set the `animation` prop which accepts `default`, `fade` and a custom animation string like this: `0.5s ease-in-out flatify-slide-down-in`.
+
+<Canvas>
+  <Story id="components-accordion--fade-animation" />
+</Canvas>
+
+### Animation Duration
+
+Change the animation duration with `duration` prop.
+
+<Canvas>
+  <Story id="components-accordion--duration" />
+</Canvas>
+
+## Default open item
+
+You can specify which accordion item should be opened by default, just set the `defaultIndex` for the `<Accordion />` component.
+
+<div class="funky-spacer" />
+
+## ReadOnly
+
+By adding the `readOnly` prop to the `<Accordion />` component it will not open or close any accordion item on click.
+
+<div class="funky-spacer" />
+
+## Customization
+
+Here we gave each `<AccordionItem />` component a different `theme` prop, by the way created and set a brand new animation with the `animation` prop.
+
+<Canvas>
+  <Story id="components-accordion--customized" />
+</Canvas>
