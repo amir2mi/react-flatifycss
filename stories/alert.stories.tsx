@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import { Meta, Story } from '@storybook/react';
 import { Alert, AlertCloseButton, AlertIcon } from '../src';
+import AlertPage from './alert.mdx';
 
 const meta: Meta = {
   title: 'Components/Alert',
   component: Alert,
   parameters: {
     controls: { expanded: true },
+    docs: {
+      page: AlertPage,
+    },
   },
 };
 
@@ -54,7 +58,7 @@ const IconTemplate: Story = args => {
   );
 };
 export const Default = Template.bind({});
-export const WithIcon = IconTemplate.bind({});
+export const Icon = IconTemplate.bind({});
 export const FloatingCloseButton = Template.bind({});
 export const CustomAnimation = Template.bind({});
 
@@ -62,7 +66,7 @@ FloatingCloseButton.args = {
   floating: true,
 };
 
-WithIcon.args = {
+Icon.args = {
   theme: 'blue-light',
 };
 

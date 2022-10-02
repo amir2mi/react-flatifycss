@@ -1,0 +1,46 @@
+import { Canvas, Story } from '@storybook/addon-docs';
+
+# Alert
+
+<p class="component-doc-intro">
+  Alerts are a great way to communicate with users, to show errors warnings,
+  tips, and much more ideas an alert can be helpful. Alerts can be dismissable
+  so if users do not want to see them again they can dismiss it.
+</p>
+<div class="funky-spacer" />
+
+## Default
+
+<Canvas>
+  <Story id="components-alert--default" />
+</Canvas>
+
+## Show / hide
+
+To toggle the alert visibility state, set the `show` to `true` or `false`. Note that `show={false}` will unmount the alert component.
+
+<div class="funky-spacer" />
+
+## Icon
+
+Alerts can icons, add the `<AlertIcon />` component inside `<Alert />`.
+
+<Canvas>
+  <Story id="components-alert--icon" />
+</Canvas>
+
+## Floating close button
+
+Alert comes with an `<AlertCloseButton />` component which reserves its parent space, another way is to make it comes over the content and be displayed while focued or the parent is hovered, to do so add the `floating` prop to the `<AlertCloseButton />` component.
+
+<Canvas>
+  <Story id="components-alert--floating-close-button" />
+</Canvas>
+
+## Animation
+
+To changed the default dismiss aniamtion use the `animation` prop and set your custom animation like `my-custom-animation 0.4s ease`.
+
+<Canvas>
+  <Story id="components-alert--custom-animation" />
+</Canvas>
