@@ -1,5 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+
+.sbdocs-content p,
+.sbdocs-content h6,
+.sbdocs-content h5,
+.sbdocs-content h4,
+.sbdocs-content h3,
+.sbdocs-content h2,
+.sbdocs-content h1 {
+  font-family: 'Nunito', sans-serif !important;
+}
+
 .prismjs code,
-.prismjs{
-    background: transparent;
-    border: none;
+.prismjs {
+  background: transparent;
+  border: none;
+}
+
+.funky-spacer {
+  padding: 1.5em 0;
+}
+
+.component-doc-intro {
+  line-height: 1.45 !important;
+  font-size: 20px !important;
+  opacity: 0.75;
 }
