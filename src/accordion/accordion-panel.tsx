@@ -38,7 +38,7 @@ export default function AccordionPanel(props: AccordionPanelProps) {
       if (accordionPanel.current) {
         // add show animation class in the middle of the process
         if (interval >= duration / 2) {
-          accordionPanel.current.classList.add('accordion-will-be-shown');
+          accordionPanel.current.classList.add('show');
         }
         // set accordion panel height dynamically and manage animation class
         if (interval >= duration) {
@@ -47,7 +47,7 @@ export default function AccordionPanel(props: AccordionPanelProps) {
           accordionPanel.current.style.height = `${Math.round(
             (interval * bodyHeight) / duration
           )}px`;
-          accordionPanel.current.classList.remove('accordion-will-be-shown');
+          accordionPanel.current.classList.remove('show');
         }
       }
 
