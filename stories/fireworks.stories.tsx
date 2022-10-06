@@ -51,7 +51,7 @@ Duration.args = {
 };
 
 RepeatCount.args = {
-  repeat: 1,
+  repeatCount: 1,
 };
 
 DynamicColor.args = {

@@ -9,7 +9,7 @@ export interface FireworksProps
     Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
   delay?: number;
   duration?: number;
-  repeat?: number;
+  repeatCount?: number;
   simple?: boolean;
 }
 
@@ -18,8 +18,8 @@ const FireworksWrapper = styled.div`
     delay ? `--flatify__firework-animation-delay: ${delay}ms;` : ''}
   ${({ duration }: FireworksProps) =>
     duration ? `--flatify__firework-animation-duration: ${duration}ms;` : ''} 
-  ${({ repeat }: FireworksProps) =>
-    repeat ? `--flatify__firework-animation-iteration-count: ${repeat};` : ''}
+  ${({ repeatCount }: FireworksProps) =>
+    repeatCount ? `--flatify__firework-animation-iteration-count: ${repeatCount};` : ''}
   ${({ sx }: FireworksProps) => (sx ? sx : '')}
 `;
 
