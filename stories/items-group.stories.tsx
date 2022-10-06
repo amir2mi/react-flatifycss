@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import { Meta, Story } from '@storybook/react';
 import { ItemsGroup, Item, ItemIcon } from '../src';
+import ItemsGroupPage from './items-group.mdx';
 
 const meta: Meta = {
   title: 'Components/Items Group',
   component: ItemsGroup,
   parameters: {
     controls: { expanded: true },
+    docs: {
+      page: ItemsGroupPage,
+    },
   },
 };
 
