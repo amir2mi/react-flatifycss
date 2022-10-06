@@ -20,6 +20,10 @@
   padding: 1.5em 0;
 }
 
+.funky-spacer-sm {
+  padding: 0.75em 0;
+}
+
 .component-doc-intro {
   line-height: 1.45 !important;
   font-size: 20px !important;

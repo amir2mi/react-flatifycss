@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Meta, Story } from '@storybook/react';
 import {
   Button,
@@ -7,12 +7,16 @@ import {
   DropdownButton,
   DropdownBody,
 } from '../src';
+import DropdownPage from './dropdown.mdx';
 
 const meta: Meta = {
   title: 'Components/Dropdown',
   component: Dropdown,
   parameters: {
     controls: { expanded: true },
+    docs: {
+      page: DropdownPage,
+    },
   },
 };
 
@@ -103,23 +107,25 @@ const Custom: Story = args => {
     @keyframes my-dropdown-show-animation {
       from {
         opacity: 0;
-        transform: scale(1.2) rotate(90deg);
+        clip-path: circle(0 at top);
+        transform: scale(1.1);
       }
       to {
         opacity: 1;
-        transform: scale(1) rotate(0);
+        clip-path: circle(200% at top);
+        transform: scale(1);
       }
     }
     
     @keyframes my-dropdown-hide-animation {
       from {
+        clip-path: circle(200% at top);
         transform: scale(1);
       }
-      50% {
-        transform: scale(1.2);
-      }
       to {
-        transform: scale(0);
+        opacity: 0;
+        clip-path: circle(0 at top);
+        transform: scale(0.85);
       }
     }
   `;
@@ -128,8 +134,8 @@ const Custom: Story = args => {
     <Dropdown
       id="test-dropdown"
       sx={keyframes}
-      showAnimation="my-dropdown-show-animation 500ms ease"
-      hideAnimation="my-dropdown-hide-animation 400ms ease"
+      showAnimation="my-dropdown-show-animation 400ms ease both"
+      hideAnimation="my-dropdown-hide-animation 300ms ease both"
       {...args}
     >
       <DropdownButton theme="purple-light" hasArrow>
