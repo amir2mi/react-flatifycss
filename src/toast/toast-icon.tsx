@@ -14,7 +14,7 @@ const ToastIconWrapper = styled.div`
   ${({ sx }: ToastIconProps) => (sx ? sx : '')}
 `;
 
-export default function AlertIcon(props: ToastIconProps) {
+export default function ToastIcon(props: ToastIconProps) {
   const { children, ...rest } = props;
 
   return (
