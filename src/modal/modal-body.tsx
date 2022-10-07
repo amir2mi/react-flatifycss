@@ -14,7 +14,7 @@ const ModalBodyWrapper = styled.div`
   ${({ sx }: ModalBodyProps) => (sx ? sx : '')}
 `;
 
-export default function ModalFooter(props: ModalBodyProps) {
+export default function ModalBody(props: ModalBodyProps) {
   const { children, ...rest } = props;
 
   return (
