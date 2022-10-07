@@ -1,0 +1,80 @@
+import { Canvas, Story } from '@storybook/addon-docs';
+
+# Toast
+
+<p class="component-doc-intro">
+  To notify users and communicate, you need something look-alike toasts that
+  come on top of each other and will get hidden after an amount of time.
+</p>
+<div class="funky-spacer" />
+
+## Default
+
+To show/hide the toast, change the `show` prop value for `<Toast />` component.
+
+### Toast wrapper
+
+Toasts need wrapper to be appended to, so before using them add the **`<ToastsWrapper />`** somewhere in your app, **it should be added once**.
+
+<Canvas>
+  <Story id="components-toast--default" />
+</Canvas>
+
+## Icon
+
+Use the `<ToastIcon />` component inside `<Toast />`, its content would be a svg.
+
+<Canvas>
+  <Story id="components-toast--icon" />
+</Canvas>
+
+## Close button
+
+To enable the close button for a toast, add the `closeButton` to `<Toast />` component.  
+Close button do not close the toast, however emit the `onClose` event.
+
+<Canvas>
+  <Story id="components-toast--close-button" />
+</Canvas>
+
+## Auto close
+
+By default the toast will not get hidden but if you add the `autoClose={true}` to `<Toast />`, it will emit the `onClose` event after given duration that is default to `3000ms`.
+
+<Canvas>
+  <Story id="components-toast--auto-close" />
+</Canvas>
+
+### Duration
+
+<Canvas>
+  <Story id="components-toast--auto-close-duration" />
+</Canvas>
+
+## Position
+
+By mixing the `y` and `x` props, it is possible to change the toast position.
+
+### X-axis position
+
+Possible values are: `right`, `left` and `center` (default).
+
+<Canvas>
+  <Story id="components-toast--x-position" />
+</Canvas>
+
+### Y-axis position
+
+Possible values are: `top` and `bottom` (default).
+
+<Canvas>
+  <Story id="components-toast--y-position" />
+</Canvas>
+
+## Custom animation
+
+It is possible to use your custom animation to show and hide toasts, set the `showAnimation` and `hideAnimation` to `<Toast />`, the expected value is a CSS animation like this: `toast-custom-show-anim ease 0.3s`.
+
+<Canvas>
+  <Story id="components-toast--custom-animation" />
+</Canvas>
