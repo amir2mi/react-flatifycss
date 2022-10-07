@@ -10,11 +10,13 @@ export interface TabPanelsProps
     Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
   [key: string]: any;
   animation?: 'default' | 'fade' | 'none' | boolean;
-
   children: React.ReactNode;
+  showAnimation?: string;
 }
 
 const TabPanelsWrapper = styled(ReachTabPanels)`
+  ${({ showAnimation }: TabPanelsProps) =>
+    showAnimation ? `--flatify__tab-animation-show: ${showAnimation};` : ''}
   ${({ sx }: TabPanelsProps) => (sx ? sx : '')}
 `;
 
