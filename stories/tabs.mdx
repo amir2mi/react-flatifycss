@@ -3,7 +3,7 @@ import { Canvas, Story } from '@storybook/addon-docs';
 # Tabs
 
 <p class="component-doc-intro">
-  With Tabs we can have different layers of content in the same place and users
+  With Tabs, we can have different layers of content in the same place and users
   can choose which layer they want to see.
 </p>
 <div class="funky-spacer" />
@@ -11,8 +11,8 @@ import { Canvas, Story } from '@storybook/addon-docs';
 ## Default
 
 Created tabs by separating tabs and its content.  
-For tabs use `<TabList />` with `<Tab />`s inside.  
-For contents use `<TabPanels />` with `<TabPanel />`s inside.
+For tabs, use `<TabList />` with `<Tab />`s inside.  
+For contents, use `<TabPanels />` with `<TabPanel />`s inside.
 
 ### Default tab
 
@@ -48,7 +48,7 @@ To have borders around the tabs component, add the `bordered` prop to `<Tabs />`
 
 ## Scrollable
 
-By default if tabs overflow, they go to the next line but sometimes you might not need that behavior, so add the `scrollable={true}` to `<TabList />` and it will be scrolled horizontally if that's necessary.
+By default, if tabs overflow, they go to the next line, but sometimes you might not need that behavior, so add the `scrollable={true}` to `<TabList />` and it will be scrolled horizontally if that's necessary.
 
 <Canvas>
   <Story id="components-tabs--scrollable" />
@@ -64,7 +64,7 @@ Change the animation by setting the `animation` prop to `<TabPanels />` componen
 
 ### Custom animation
 
-It is possible to use your custom animation to show tabs, set the `showAnimation` to `<TabPanels />`, the expected value is a css animation like this: `tab-custom-show-anim ease 0.3s`.
+It is possible to use your custom animation to show tabs, set the `showAnimation` to `<TabPanels />`, the expected value is a CSS animation like this: `tab-custom-show-anim ease 0.3s`.
 
 ## Customized
 
@@ -83,4 +83,4 @@ Defaults to "auto".
 
 ### index
 
-Tab's state can be controlled by the owner. Make sure to include an onChange as well, or else the tabs will not be interactive.
+Tab's state can be controlled by the owner. Make sure to include an `onChange` as well, or else the tabs will not be interactive.

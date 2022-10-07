@@ -26,8 +26,8 @@ Each modal can have `<ModalHeader />`, `<ModalBody />` and `<ModalFooter />` com
 
 ## Disable overlay click
 
-By default if the user clicks on modal overlay, the modal will be dismissed.  
-However sometimes the action is required and it should be dismissed only after an action, to do so you can set the `disableOverlayClick={false}` for `<Modal />` component.
+By default, if the user clicks on the modal overlay, the modal will be dismissed.  
+However, sometimes the action is required, and it should be dismissed only after an action, to do so you can set the `disableOverlayClick={false}` for `<Modal />` component.
 
 <Canvas>
   <Story id="components-modal--disabled-overlay-click" />
@@ -35,7 +35,7 @@ However sometimes the action is required and it should be dismissed only after a
 
 ## Bordered
 
-In this case, the header and footer will have borders to get separated visually from body.
+In this case, the header and footer will have borders to get separated visually from the body.
 
 <Canvas>
   <Story id="components-modal--bordered" />
@@ -52,7 +52,7 @@ Modals can be opened from top, bottom, right and left sides, just set the `posit
 ## Custom overlay
 
 With `overlayClassName` prop, it is possible to pass a custom class to modal overlay, so to style it.  
-Note that **passed class styles should be global**. For example, styles with `sx` prop will not work, because the overlay itself is appended to the body not inside the modal.
+Note that **passed class styles should be global**. For example, styles with `sx` prop will not work, because the overlay itself is appended to the body, not inside the modal.
 
 <Canvas>
   <Story id="components-modal--custom-overlay" />
