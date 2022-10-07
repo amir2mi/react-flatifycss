@@ -10,20 +10,20 @@ const TestDropdown = () => (
     <DropdownBody isMenu theme="dark">
       <li className="menu-item heading">My Account</li>
       <li className="menu-item">
-        <a href="#">Sign up</a>
+        <a href="#test">Sign up</a>
       </li>
       <li className="menu-item">
-        <a href="#">Login</a>
+        <a href="#test">Login</a>
       </li>
       <li role="separator" className="menu-item separator"></li>
       <li className="menu-item">
-        <a href="#">About us</a>
+        <a href="#test">About us</a>
       </li>
       <li className="menu-item">
-        <a href="#">Contribute</a>
+        <a href="#test">Contribute</a>
       </li>
       <li className="menu-item">
-        <a href="#">Rate it!</a>
+        <a href="#test">Rate it!</a>
       </li>
     </DropdownBody>
   </Dropdown>

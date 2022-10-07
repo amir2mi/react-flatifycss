@@ -92,6 +92,7 @@ export function ToggleSwitch(props: ToggleSwitchProps) {
         {...rest}
         role="switch"
         type={type || 'checkbox'}
+        aria-checked={checked}
         checked={checked}
         value={value}
         onChange={handleOnChange}

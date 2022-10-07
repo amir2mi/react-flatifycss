@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { usePopper } from 'react-popper';
 import clsx from 'clsx';
 import styled from 'styled-components';
@@ -165,16 +165,22 @@ export default function Dropdown(props: DropdownProps) {
   const closeDropdown = () => setOpen(false);
 
   // keyup event handler
-  const handleKeyUp = (e: KeyboardEvent) => {
-    if (e.key === 'Escape' && autoClose !== false) closeDropdown();
-  };
+  const handleKeyUp = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && autoClose !== false) closeDropdown();
+    },
+    [autoClose]
+  );
 
   // click event handlers
-  const outsideClicked = (e: any) => {
-    const thisDropdownWrapper = `#wrapper-${id}`;
-    if (e.target.closest(thisDropdownWrapper)) return;
-    if (autoClose === true || autoClose === 'outside') closeDropdown();
-  };
+  const outsideClicked = useCallback(
+    (e: any) => {
+      const thisDropdownWrapper = `#wrapper-${id}`;
+      if (e.target.closest(thisDropdownWrapper)) return;
+      if (autoClose === true || autoClose === 'outside') closeDropdown();
+    },
+    [autoClose, id]
+  );
   const insideClicked = () => {
     if (autoClose === true || autoClose === 'inside') closeDropdown();
   };
@@ -202,7 +208,7 @@ export default function Dropdown(props: DropdownProps) {
       update();
       setTimeout(() => update(), 320);
     }
-  }, [isOpen]);
+  }, [isOpen, update]);
 
   return (
     <DropdownWrapper

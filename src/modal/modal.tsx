@@ -40,7 +40,7 @@ export default function Modal(props: ModalProps) {
   // listen to isOpen prop and delay modal on close
   useEffect(() => {
     toggleTimeout.current && clearTimeout(toggleTimeout.current);
-    if (isOpen == false) {
+    if (isOpen === false) {
       toggleTimeout.current = setTimeout(() => {
         setDelayedIsOpen(isOpen);
       }, 300);

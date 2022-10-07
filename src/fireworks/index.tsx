@@ -19,7 +19,9 @@ const FireworksWrapper = styled.div`
   ${({ duration }: FireworksProps) =>
     duration ? `--flatify__firework-animation-duration: ${duration}ms;` : ''} 
   ${({ repeatCount }: FireworksProps) =>
-    repeatCount ? `--flatify__firework-animation-iteration-count: ${repeatCount};` : ''}
+    repeatCount
+      ? `--flatify__firework-animation-iteration-count: ${repeatCount};`
+      : ''}
   ${({ sx }: FireworksProps) => (sx ? sx : '')}
 `;
 

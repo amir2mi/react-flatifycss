@@ -23,12 +23,13 @@ export default function Tab(props: TabProps) {
 
   // ReachTab does not support onClick; if it has onClick prop, create event listener for each tab
   useEffect(() => {
-    el.current && onClick && el.current.addEventListener('click', onClick);
+    const tabElement = el.current;
+    tabElement && onClick && tabElement.addEventListener('click', onClick);
 
     return () => {
-      el.current && onClick && el.current.removeEventListener('click', onClick);
+      tabElement && onClick && tabElement.removeEventListener('click', onClick);
     };
-  }, []);
+  }, [onClick]);
 
   return (
     <TabWrapper

@@ -44,15 +44,6 @@ export default function Toast(props: ToastProps) {
     ...rest
   } = props;
 
-  // select the proper toasts wrapper element for ReactDOM portal
-  const wrapperElement = document.querySelector(`.toast-wrapper.${x}.${y}`);
-  if (!wrapperElement) {
-    console.error(
-      `React FlatifyCSS: Could not find toasts wrapper element, to display toasts, you must place the <ToastsWrapper /> component somewhere in your application.`
-    );
-    return null;
-  }
-
   const closeTimeout = useRef<NodeJS.Timeout | null>(null);
 
   // emit onClose after the given duration
@@ -64,7 +55,16 @@ export default function Toast(props: ToastProps) {
         onClose?.();
       }, duration);
     }
-  }, [show]);
+  }, [show, autoClose, duration, onClose]);
+
+  // select the proper toasts wrapper element for ReactDOM portal
+  const wrapperElement = document.querySelector(`.toast-wrapper.${x}.${y}`);
+  if (!wrapperElement) {
+    console.error(
+      `React FlatifyCSS: Could not find toasts wrapper element, to display toasts, you must place the <ToastsWrapper /> component somewhere in your application.`
+    );
+    return null;
+  }
 
   return (
     <>

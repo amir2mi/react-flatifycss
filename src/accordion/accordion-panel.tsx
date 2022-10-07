@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useCallback } from 'react';
 import {
   AccordionPanel as ReachAccordionPanel,
   useAccordionItemContext,
@@ -28,7 +28,7 @@ export default function AccordionPanel(props: AccordionPanelProps) {
   const getBodyHeight = () =>
     accordionPanel?.current?.querySelector('.accordion-body').offsetHeight || 0;
 
-  const animatePanel = () => {
+  const animatePanel = useCallback(() => {
     const bodyHeight = getBodyHeight();
     // skip deep easing with minimum value (150)
     const start = Date.now() - 150;
@@ -57,16 +57,16 @@ export default function AccordionPanel(props: AccordionPanelProps) {
         requestAnimationFrame(animate);
       }
     });
-  };
+  }, [duration]);
 
-  const updateHeightWithDelay = () => {
+  const updateHeightWithDelay = useCallback(() => {
     resizeUpdateTimeout.current && clearTimeout(resizeUpdateTimeout.current);
     resizeUpdateTimeout.current = setTimeout(() => {
       if (accordionPanel.current) {
         accordionPanel.current.style.height = `${getBodyHeight()}px`;
       }
     }, 500);
-  };
+  }, []);
 
   // update accordion panel height on window resize
   useEffect(() => {
