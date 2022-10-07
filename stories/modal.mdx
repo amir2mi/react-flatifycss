@@ -1,0 +1,59 @@
+import { Canvas, Story } from '@storybook/addon-docs';
+
+# Modal
+
+<p class="component-doc-intro">
+  Modal, pop-up box, bottom sheet, off-canvas, anything can be related to this
+  component, we generally call it modal. There are different types of modals
+  with different sizes and styles that come with FlatifyCSS, which we will cover
+  with practical examples on this page.
+</p>
+<div class="funky-spacer" />
+
+## Default
+
+To hide and display the modal use `isOpen` prop for the `<Modal />` component, also you can listen to change this prop to hide the modal with `onDismiss` prop, like this `onDismiss={() => setIsOpen(false)}`.
+
+<Canvas>
+  <Story id="components-modal--default" />
+</Canvas>
+
+### Modal parts
+
+Each modal can have `<ModalHeader />`, `<ModalBody />` and `<ModalFooter />` components inside as children.
+
+<div class="funky-spacer" />
+
+## Disable overlay click
+
+By default if the user clicks on modal overlay, the modal will be dismissed.  
+However sometimes the action is required and it should be dismissed only after an action, to do so you can set the `disableOverlayClick={false}` for `<Modal />` component.
+
+<Canvas>
+  <Story id="components-modal--disabled-overlay-click" />
+</Canvas>
+
+## Bordered
+
+In this case, the header and footer will have borders to get separated visually from body.
+
+<Canvas>
+  <Story id="components-modal--bordered" />
+</Canvas>
+
+## Positioned
+
+Modals can be opened from top, bottom, right and left sides, just set the `position` for `<Modal />` component. Each side will have its special animation.
+
+<Canvas>
+  <Story id="components-modal--positioned" />
+</Canvas>
+
+## Custom overlay
+
+With `overlayClassName` prop, it is possible to pass a custom class to modal overlay, so to style it.  
+Note that **passed class styles should be global**. For example, styles with `sx` prop will not work, because the overlay itself is appended to the body not inside the modal.
+
+<Canvas>
+  <Story id="components-modal--custom-overlay" />
+</Canvas>
