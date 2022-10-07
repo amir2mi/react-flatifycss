@@ -75,7 +75,7 @@ export default function AccordionPanel(props: AccordionPanelProps) {
     return () => {
       window.removeEventListener('resize', updateHeightWithDelay);
     };
-  }, []);
+  }, [updateHeightWithDelay]);
 
   // update accordion panel height on toggle
   useEffect(() => {
@@ -84,7 +84,7 @@ export default function AccordionPanel(props: AccordionPanelProps) {
     return () => {
       cancelAnimationFrame(animation.current);
     };
-  }, [isExpanded]);
+  }, [isExpanded, animatePanel]);
 
   return (
     <AccordionPanelWrapper
