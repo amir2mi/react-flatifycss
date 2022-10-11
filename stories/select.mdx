@@ -1,0 +1,38 @@
+import { Canvas, Story } from '@storybook/addon-docs';
+
+# Select
+
+<div class="funky-spacer" />
+
+## Default
+
+Pass an array of options with `options` prop, use `value` with `onChange` to update data.  
+If you do not set the value, it will be set internally as an uncontrolled component by default, you can use `onChange` event to get the updated value, it returns selected options and event.
+
+<Canvas>
+  <Story id="inputs-select--default" />
+</Canvas>
+
+## Grouped
+
+It is possible to organize options with groups, just add the group items with `options` inside your first level items.
+
+<Canvas>
+  <Story id="inputs-select--grouped" />
+</Canvas>
+
+## Controlled
+
+To have a controlled select component just set the value yourself.
+
+<Canvas>
+  <Story id="inputs-select--controlled" />
+</Canvas>
+
+## Multiple
+
+Selecing multiple options are interesting, add the `multiple={true}` to have one.
+
+<Canvas>
+  <Story id="inputs-select--multiple" />
+</Canvas>

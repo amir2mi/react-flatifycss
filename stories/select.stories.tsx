@@ -1,12 +1,16 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
 import { Select } from '../src';
+import SelectPage from './select.mdx';
 
 const meta: Meta = {
   title: 'Inputs/Select',
   component: Select,
   parameters: {
     controls: { expanded: true },
+    docs: {
+      page: SelectPage,
+    },
   },
 };
 
