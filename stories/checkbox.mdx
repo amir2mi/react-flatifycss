@@ -1,0 +1,49 @@
+import { Canvas, Story } from '@storybook/addon-docs';
+
+# Checkbox
+
+<p class="component-doc-intro">
+  You can have customized checkboxes, it is done with pure CSS which has a clean
+  design and is keyboard friendly, also easy to have one.
+</p>
+<div class="funky-spacer" />
+
+## Default
+
+To have a **controlled** checkbox (that you control the checked state yourself), add the `checked` prop.  
+To toggle, you can use the second argument of `onChange` event like so, `onChange={(e, checked) => setChecked(checked)}`
+
+<Canvas>
+  <Story id="inputs-checkbox--default" />
+</Canvas>
+
+## Uncontrolled
+
+You can have an uncontrolled checkbox as well, just do not use the `checked` prop and get the checked state with `onChange(event, isChecked)` argument.
+
+
+<Canvas>
+  <Story id="inputs-checkbox--uncontrolled" />
+</Canvas>
+
+## Disabled
+
+<Canvas>
+  <Story id="inputs-checkbox--disabled" />
+</Canvas>
+
+## States
+
+All form elements have `valid`, `warning` and `invalid` states, you can determine with `state` prop.
+
+<Canvas>
+  <Story id="inputs-checkbox--states" />
+</Canvas>
+
+## Customized
+
+Let's customize states of the checkbox styles with `colorInvalid`, `colorValid` and `colorWarning` props.
+
+<Canvas>
+  <Story id="inputs-checkbox--customized" />
+</Canvas>

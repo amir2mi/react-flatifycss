@@ -1,0 +1,58 @@
+import { Canvas, Story } from '@storybook/addon-docs';
+
+# Radio
+
+<p class="component-doc-intro">
+  Radios are used when there are multiple options, but the limit is one, users
+  can choose to have one of them.
+</p>
+<div class="funky-spacer" />
+
+## Default
+
+To have a **controlled** radio (that you control the checked state yourself), add the `checked` prop.  
+To toggle, you can use the second argument of `onChange` event like so, `onChange={(e, checked) => setChecked(!checked)}`
+
+<Canvas>
+  <Story id="inputs-radio--default" />
+</Canvas>
+
+## Uncontrolled
+
+You can specify the radio default value with `defaultChecked` prop, then toggle by using the `onChange` second argument.
+
+<Canvas>
+  <Story id="inputs-radio--uncontrolled" />
+</Canvas>
+
+## Multiple
+
+When you want to choose one option from available options, you can use `value` with `checked` props.  
+Here is how, each radio has its specific `name`, a `value` that is set to active radio `name` and `onChange` event third argument, which represents the selected radio `name` like so:
+`onChange={(e, checked, value) => setChecked(value)}`
+
+<Canvas>
+  <Story id="inputs-radio--multiple" />
+</Canvas>
+
+## Disabled
+
+<Canvas>
+  <Story id="inputs-radio--disabled" />
+</Canvas>
+
+## States
+
+All form elements have `valid`, `warning` and `invalid` states, you can determine with `state` prop.
+
+<Canvas>
+  <Story id="inputs-radio--states" />
+</Canvas>
+
+## Customized
+
+Let's customize states of the radio styles with `colorInvalid`, `colorValid` and `colorWarning` props.
+
+<Canvas>
+  <Story id="inputs-radio--customized" />
+</Canvas>

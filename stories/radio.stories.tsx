@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import { Meta, Story } from '@storybook/react';
 import { Radio } from '../src';
+import RadioPage from './radio.mdx';
 
 const meta: Meta = {
   title: 'Inputs/Radio',
   component: Radio,
   parameters: {
     controls: { expanded: true },
+    docs: {
+      page: RadioPage,
+    },
   },
 };
 
