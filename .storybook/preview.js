@@ -4,4 +4,9 @@ import './custom.css';
 export const parameters = {
   // https://storybook.js.org/docs/react/essentials/actions#automatically-matching-args
   actions: { argTypesRegex: '^on.*' },
+  options: {
+    storySort: {
+      order: ['Documents', 'Inputs', 'Components', 'Buttons'],
+    },
+  },
 };
