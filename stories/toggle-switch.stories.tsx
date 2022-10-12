@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import { Meta, Story } from '@storybook/react';
 import { ToggleSwitch } from '../src';
+import ToggleSwitchPage from './toggle-switch.mdx';
 
 const meta: Meta = {
   title: 'Inputs/Toggle Switch',
   component: ToggleSwitch,
   parameters: {
     controls: { expanded: true },
+    docs: {
+      page: ToggleSwitchPage,
+    },
   },
 };
 
