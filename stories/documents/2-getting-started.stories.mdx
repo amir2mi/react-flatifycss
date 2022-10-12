@@ -1,0 +1,55 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta
+  title="Documents/Getting Started"
+  parameters={{ previewTabs: { canvas: { hidden: true } } }}
+/>
+
+# Getting Started
+
+To install and use the library you should install both the `flatifycss` and `react-flatifycss` packages. We use the base `flatifycss` package to import styles.
+
+Use npm or Yarn to install the packages:
+
+## npm
+
+```bash
+npm i flatifycss react-flatifycss
+```
+
+## Yarn
+
+```bash
+yarn add flatifycss react-flatifycss
+```
+
+## Import styles
+
+React FlatifyCSS itself does not include the FlatifyCSS styles, so you can import <a href="https://flatifycss.com/docs/intro#css" target="_blank">your prefered stylesheet</a> in your application.
+
+<div class="funky-spacer-sm" />
+
+### Left to right
+
+```js
+import 'flatifycss/dist/css/flatify-min.css';
+```
+
+### Right to Left
+
+```js
+import 'flatifycss/dist/css/flatify-rtl-min.css';
+```
+
+## Use components!
+
+Now, just import the component you need from `react-flatifycss`, for example a simple button:
+
+```js
+import React from 'react';
+import { Button } from 'react-flatifycss';
+
+export default function App() {
+  return <Button theme="green">Success!</Button>
+}
+```
