@@ -1,8 +1,8 @@
 {
   "name": "react-flatifycss",
-  "version": "0.8.1",
+  "version": "1.0.0",
   "author": "Amir M. Mohamadi",
-  "description": "The React version of FlatifyCSS: Modern flat design framework for the web.",
+  "description": "A collection of flat design components for react, based on FlatifyCSS",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/amir2mi/react-flatifycss.git"
@@ -47,11 +47,11 @@
   "size-limit": [
     {
       "path": "dist/react-flatifycss.cjs.production.min.js",
-      "limit": "10 KB"
+      "limit": "250 KB"
     },
     {
       "path": "dist/react-flatifycss.esm.js",
-      "limit": "10 KB"
+      "limit": "250 KB"
     }
   ],
   "devDependencies": {
