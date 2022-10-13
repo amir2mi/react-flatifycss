@@ -1,0 +1,78 @@
+import { useState } from 'react';
+import { Meta } from '@storybook/addon-docs';
+import { Button } from '../../src';
+
+<Meta
+  title="Documents/Dynamic Styles"
+  parameters={{ previewTabs: { canvas: { hidden: true } } }}
+/>
+
+# styled components
+
+All components are created based on <a href="https://styled-components.com/" target="_blank">styled components</a> library, it is a powerful tool to style React components in a reactive way!
+
+## How and why?
+
+FlatifyCSS itself has its stylesheet and is written in pure CSS with meaningful class names. However, when it comes to react and a real project, styled components is just a great help to fill the gap between that stylesheet and react components.
+
+Because most things in FlatifyCSS can be customized with available CSS custom properties (variables), you can set them dynamically without pain to customize your components.
+
+That badge component styled component wrapper:
+
+```js
+const BadgeWrapper = styled.span`
+  ${({ sx }: BadgeProps) => (sx ? sx : '')}
+`;
+```
+
+## Change component HTML tag name
+
+You can use `as` prop that is available for all styled components like `as="span"`, change the component HTML tag or use another component as wrapper.
+
+<div class="funky-spacer-sm" />
+
+## Apply styles dynamically
+
+With `sx` prop, it is possible to set styles conditionally for dynamic styles purpose, for example here is a reactive button:
+
+export function ButtonExample() {
+  const [clicked, setClicked] = useState(false);
+  const buttonColor = clicked ? '#ff4b4b' : '#58cc02';
+  return (
+    <Button
+      outline
+      onClick={() => setClicked(!clicked)}
+      sx={`
+      margin-top: 25px;
+      --flatify__button-txt-color: ${buttonColor};
+      --flatify__button-border-color: ${buttonColor};
+      `}
+    >
+      {clicked ? 'Noooooo' : "I'm Okay"}
+    </Button>
+  );
+}
+
+<ButtonExample />
+
+```js
+export function ButtonExample() {
+  const [clicked, setClicked] = useState(false);
+  const buttonColor = clicked ? '#ff4b4b' : '#58cc02';
+
+  return (
+    <Button
+      outline
+      onClick={() => setClicked(!clicked)}
+      sx={`
+      --flatify__button-txt-color: ${buttonColor};
+      --flatify__button-border-color: ${buttonColor};
+      `}
+    >
+      {clicked ? 'Noooooo' : "I'm Okay"}
+    </Button>
+  );
+}
+```
+
+This button has styles that are conditionally set based on `clicked` state. Styles are set like strings, and CSS properties are given by FlatifyCSS to customize the `.button` class styles.
