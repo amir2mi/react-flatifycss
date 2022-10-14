@@ -7,7 +7,7 @@
 <h3 align="center">React FlatifyCSS</h3>
 
 <p align="center">
-   A collection of flat design components for react, based on FlatifyCSS.
+   Collection of flat design components for react, based on FlatifyCSS.
 </p>
 
 <p align="center">
