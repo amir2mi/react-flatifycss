@@ -7,6 +7,7 @@ export * from './arrow-button';
 export * from './hamburger';
 
 // content
+export * from './figure';
 export * from './highlight';
 export * from './quote';
 
