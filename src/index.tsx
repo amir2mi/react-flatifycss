@@ -8,6 +8,7 @@ export * from './hamburger';
 
 // content
 export * from './highlight';
+export * from './quote';
 
 // form
 export * from './input';
