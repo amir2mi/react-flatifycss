@@ -6,6 +6,9 @@ export * from './add-button';
 export * from './arrow-button';
 export * from './hamburger';
 
+// content
+export * from './highlight';
+
 // form
 export * from './input';
 export * from './checkbox';
