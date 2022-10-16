@@ -4,7 +4,7 @@ import { Checkbox } from '../src';
 import CheckboxPage from './checkbox.mdx';
 
 const meta: Meta = {
-  title: 'Inputs/Checkbox',
+  title: 'Forms/Checkbox',
   component: Checkbox,
   parameters: {
     controls: { expanded: true },

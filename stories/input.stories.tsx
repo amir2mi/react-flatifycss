@@ -3,7 +3,7 @@ import { Meta, Story } from '@storybook/react';
 import { Input } from '../src';
 
 const meta: Meta = {
-  title: 'Inputs/Input',
+  title: 'Forms/Input',
   component: Input,
   parameters: {
     controls: { expanded: true },

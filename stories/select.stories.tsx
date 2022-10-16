@@ -4,7 +4,7 @@ import { Select } from '../src';
 import SelectPage from './select.mdx';
 
 const meta: Meta = {
-  title: 'Inputs/Select',
+  title: 'Forms/Select',
   component: Select,
   parameters: {
     controls: { expanded: true },

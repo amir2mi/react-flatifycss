@@ -4,7 +4,7 @@ import { Radio } from '../src';
 import RadioPage from './radio.mdx';
 
 const meta: Meta = {
-  title: 'Inputs/Radio',
+  title: 'Forms/Radio',
   component: Radio,
   parameters: {
     controls: { expanded: true },

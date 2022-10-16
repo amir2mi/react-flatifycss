@@ -4,7 +4,7 @@ import { ToggleSwitch } from '../src';
 import ToggleSwitchPage from './toggle-switch.mdx';
 
 const meta: Meta = {
-  title: 'Inputs/Toggle Switch',
+  title: 'Forms/Toggle Switch',
   component: ToggleSwitch,
   parameters: {
     controls: { expanded: true },
