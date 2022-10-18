@@ -89,7 +89,7 @@
     "@reach/dialog": "^0.17.0",
     "@reach/tabs": "^0.17.0",
     "clsx": "^1.2.1",
-    "flatifycss": "1.3.4",
+    "flatifycss": "1.4.1",
     "react-popper": "^2.3.0",
     "react-transition-group": "^4.4.5",
     "styled-components": "^5.3.5",
