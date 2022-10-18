@@ -44,7 +44,7 @@ CreditLink.args = {
 };
 
 CreditTheme.args = {
-  creditTheme: 'orange-light',
+  creditTheme: 'orange  -light',
   creditName: 'Picsum',
   creditLink: 'https://picsum.photos/',
 };

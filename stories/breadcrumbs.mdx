@@ -1,0 +1,33 @@
+import { Canvas, Story } from '@storybook/addon-docs';
+
+# Breadcrumbs
+
+<p class="component-doc-intro">
+  Breadcrumbs are a necessary part of any website, they determine where users are
+  so they can navigate.
+</p>
+<div class="funky-spacer" />
+
+## Default
+
+<Canvas>
+  <Story id="components-breadcrumbs--default" />
+</Canvas>
+
+## Scrollable
+
+By default, if breadcrumbs overflow, it will be scrollable.
+
+<Canvas>
+  <Story id="components-breadcrumbs--scrollable" />
+</Canvas>
+
+## Scroll to the end
+
+Following UX best practices, it is suggested to set the scroll to the end of breadcrumbs by default, so users will know where they are in the first place and then decide where they want to go.
+
+However, it is not done by default, you can set the `scrollTo` to `left` or `right` for `<Breadcrumbs />` component.
+
+<Canvas>
+  <Story id="components-breadcrumbs--scroll-to-end" />
+</Canvas>
