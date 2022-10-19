@@ -51,8 +51,13 @@ const TemplateLonger: Story = args => (
 );
 
 export const Default = Template.bind({});
+export const FitContent = Template.bind({});
 export const Scrollable = TemplateLonger.bind({});
 export const ScrollToEnd = TemplateLonger.bind({});
+
+FitContent.args = {
+  fitContent: true,
+};
 
 ScrollToEnd.args = {
   scrollTo: 'right',

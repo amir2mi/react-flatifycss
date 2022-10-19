@@ -3,15 +3,25 @@ import { Canvas, Story } from '@storybook/addon-docs';
 # Breadcrumbs
 
 <p class="component-doc-intro">
-  Breadcrumbs are a necessary part of any website, they determine where users are
-  so they can navigate.
+  Breadcrumbs are a necessary part of any website, they determine where users
+  are so they can navigate.
 </p>
 <div class="funky-spacer" />
 
 ## Default
 
+Always set the `⁣label` prop for `<Breadcrumbs />⁣` component. It is used by screen readers to tell users about your breadcrumbs. For example, your page might have more than one breadcrumb, so be sure to describe them differently and improve your website's accessibility.
+
 <Canvas>
   <Story id="components-breadcrumbs--default" />
+</Canvas>
+
+## Fit content
+
+To limit breadcrumbs wrapper width to available content width, set the `fitContent` to `true` for `<Breadcrumbs />` component.
+
+<Canvas>
+  <Story id="components-breadcrumbs--fit-content" />
 </Canvas>
 
 ## Scrollable
