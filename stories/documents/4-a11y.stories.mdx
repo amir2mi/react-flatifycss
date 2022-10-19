@@ -1,0 +1,74 @@
+import { useState } from 'react';
+import { Meta } from '@storybook/addon-docs';
+import { Button } from '../../src';
+
+<Meta
+  title="Documents/A11y"
+  parameters={{ previewTabs: { canvas: { hidden: true } } }}
+/>
+
+# Accessibility
+
+<p class="component-doc-intro">
+  A better web with wider range of users is what these components are created
+  for.
+</p>
+<div class="funky-spacer" />
+
+## Assistive technologies
+
+Where content changes dynamically, for example when you open a modal, JavaScript automatically will change the necessary `aria-` HTML attribute and the screen reader will announce the changes.  
+By using TypeScript you will get caught if you miss some required props for components accessibility.
+
+<div class="funky-spacer" />
+
+## Keyboard friendly
+
+Users who prefer keyboard to navigate are important, so FlatifyCSS considers them and optimize [`:focus-visible`](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible) for styles.  
+Also, components that are expected to be more interactive, like dropdowns, are optimized to be shown and dismissed easily so keyboard friendly.
+
+<div class="funky-spacer" />
+
+## Reduced motion
+
+Based on [this article](https://css-tricks.com/introduction-reduced-motion-media-query/): "Vestibular disorders can cause your vestibular system to struggle to make sense of what is happening, resulting in loss of balance and vertigo, migraines, nausea, and hearing loss. Anyone who has spun around too quickly is familiar with a confused vestibular system."  
+As web developers, we should consider this and define or reset current animation and transitions with limited movement.  
+In favor of [prefers-reduced-motion media feature](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion), it is possible to know if the user wants reduced motion or not.
+
+FlatifyCSS takes these facts over, inside `a11y.scss` file these rules are applied:
+
+### Background
+
+Depends on [web.dev article](https://web.dev/prefers-reduced-motion/):  
+"There are decorative effects like animated gradients, parallax scrolling, background videos, and several others. While many users enjoy such animations, some users dislike them because they feel distracted or slowed down by them. In the worst case, users may even suffer from motion sickness as if it were a real life experience, so for these users reducing animations is a medical necessity."
+
+We fix the issue with: `background-attachment: initial;`
+
+### Transitions
+
+No transition is necessary for reduced motion so we reset FlatifyCSS defined transitions duration to 0:  
+`--flatify__simple-transition`  
+`--flatify__long-transition`  
+`--flatify__bouncing-transition`
+
+### Animations
+
+We use `flatify-fade-in`, `flatify-fade-in-out` and `flatify-fade-out` animations instead of primary, also it is a good practice to limit animation steps for complex animations like what we do for spinner loadings.
+
+<div class="funky-spacer" />
+
+## Visual disabilities
+
+The [palette](https://flatifycss.com/docs/overview/colors) is wide enough to handle basic functionalities, it is up to you to consider using [the best practices for color-blind users](https://www.smashingmagazine.com/2016/06/improving-color-accessibility-for-color-blind-users/) while designing.
+
+### Color blindness simulation
+
+The Mozilla Firefox browser has a great [accessibility panel](https://developer.mozilla.org/en-US/docs/Tools/Accessibility_inspector/Simulation) that simulates [diffrent types of color blindness](https://www.color-blindness.com/types-of-color-blindness/), you can easily check contrast issues and fix them besides other helpful tools like keyboard and text labels checker.
+
+### High contrast
+
+FlatifyCSS colors contrast is not scored 100% you can create a special version for people with contrast loss issues (high contrast) by tweaking some percents. For example, here is the blue color variables inside `_config.scss` file, [for more information read it here](https://flatifycss.com/docs/overview/a11y#high-contrast).
+
+### Anchors
+
+By default FlatifyCSS anchors and link buttons do not have borders because of designerish reasons, but if your audience is specific or you want to have a more accessible website you can change anchors basic styles with the `_config.scss` file, [for more information read it here](https://flatifycss.com/docs/overview/a11y#anchors).
