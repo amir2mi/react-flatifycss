@@ -9,6 +9,7 @@ export * from './hamburger';
 // content
 export * from './figure';
 export * from './highlight';
+export * from './separator';
 export * from './quote';
 
 // form
