@@ -15,11 +15,14 @@ export interface BreadcrumbsProps
     Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
   children?: React.ReactNode;
   crumbs: CrumbProps[];
+  fitContent?: boolean;
   label: string;
   scrollTo?: 'left' | 'right';
 }
 
 const BreadcrumbsWrapper = styled.nav`
+  ${({ fitContent }: BreadcrumbsProps) =>
+    fitContent ? 'width: fit-content;' : ''}
   ${({ sx }: BreadcrumbsProps) => (sx ? sx : '')}
 `;
 
