@@ -1,5 +1,5 @@
 <p align="center">
-  <a target="_blank" href="https://amir2mi.github.io/flatifycss/">
+  <a target="_blank" href="https://react.flatifycss.com/">
     <img src="https://raw.githubusercontent.com/amir2mi/flatifycss/master/website/static/img/logo.gif" alt="React FlatifyCSS" width="160" height="160">
   </a>
 </p>
@@ -7,7 +7,7 @@
 <h3 align="center">React FlatifyCSS</h3>
 
 <p align="center">
-   Collection of flat design components for react, based on FlatifyCSS.
+   A collection of React flat design components, based on FlatifyCSS.
 </p>
 
 <p align="center">
