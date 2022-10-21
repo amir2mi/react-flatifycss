@@ -1,6 +1,6 @@
 {
   "name": "react-flatifycss",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "author": "Amir M. Mohamadi",
   "description": "A collection of flat design components for react, based on FlatifyCSS",
   "repository": {
