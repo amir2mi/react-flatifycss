@@ -2,7 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import styled from 'styled-components';
 import { generalClasses } from '../classes';
-import { Button, ButtonProps } from '..';
+import { Button, ButtonProps } from '../button';
 
 export interface DropdownButtonProps extends ButtonProps {
   arrowClassName?: string;

@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import styled from 'styled-components';
-import { Loading } from '../';
+import { Loading } from '../loading';
 import { FlatifyGeneralProps } from '../interfaces';
 import { generalClasses } from '../classes';
 
