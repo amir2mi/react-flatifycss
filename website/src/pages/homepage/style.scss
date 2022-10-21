@@ -3,6 +3,93 @@
   justify-content: space-between;
   align-items: center;
   min-height: 100vh;
+
+  .texts {
+    width: 60%;
+    transform: translateX(-25%);
+
+    .title {
+      display: flex;
+
+      .text {
+        @media (prefers-reduced-motion: no-preference) {
+          animation: title-anim 0.4s 0.2s ease-in-out both;
+        }
+      }
+
+      .badge {
+        position: relative;
+        z-index: 3;
+        margin-right: 0.32em;
+
+        @media (prefers-reduced-motion: no-preference) {
+          animation: flatify-blow-in 0.2s 0.1s ease-in-out both;
+        }
+      }
+    }
+
+    .subtitle {
+      margin-bottom: 2em;
+    }
+
+    .action {
+      display: flex;
+      justify-content: space-between;
+      gap: 1em;
+    }
+  }
+}
+
+.package-input-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 30em;
+
+  .package-input {
+    user-select: all;
+    display: flex;
+  }
+
+  .button {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0.6em;
+    height: 3em;
+    padding: 0 0.75em;
+    margin: auto 0;
+    background: var(--flatify__bg-color-dark);
+
+    &:focus {
+      opacity: 0.65;
+    }
+
+    &:active {
+      opacity: 0.35;
+      transform: scale(0.9) !important;
+    }
+  }
+}
+
+.start-button {
+  white-space: nowrap;
+  display: flex !important;
+  align-items: center;
+  padding-left: 1.32em;
+  padding-right: 1.32em;
+  margin-left: auto;
+
+  &:hover,
+  &:focus-visible {
+    .chevron {
+      transform: translateX(5px);
+    }
+  }
+
+  .chevron {
+    margin-left: 0.75em;
+    transition: transform var(--flatify__simple-transition);
+  }
 }
 
 .logo-wrapper {
@@ -15,6 +102,36 @@
     position: absolute;
     inset: 0;
     margin: auto;
-    animation: flatify-spin 15s linear infinite;
+
+    @media (prefers-reduced-motion: no-preference) {
+      animation: animated-logo-recharge 2.4s
+          cubic-bezier(0.28, 0.31, 0.05, 1.58),
+        flatify-spin 14s 2.4s linear infinite;
+    }
+  }
+}
+
+@keyframes title-anim {
+  0% {
+    letter-spacing: -0.125em;
+    opacity: 0;
+    transform: translateX(-0.5em);
+  }
+  100% {
+    letter-spacing: 0;
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes animated-logo-recharge {
+  0% {
+    transform: rotate(0);
+  }
+  25% {
+    transform: rotate(-45deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }

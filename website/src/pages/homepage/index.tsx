@@ -1,14 +1,25 @@
+import { useState } from 'react';
+import { Badge, Button, Input, Toast } from 'react-flatifycss';
+import copy from 'copy-text-to-clipboard';
 import './style.scss';
 
 export default function HomePage() {
+  const [showToast, setShowToast] = useState(false);
+  const packageCommand = import.meta.env.VITE_PACKAGE_COMMAND;
+
+  const handleCopy = () => {
+    setShowToast(false);
+    copy(packageCommand);
+    setShowToast(true);
+  };
+
   return (
     <div className="homepage">
       <div className="logo-wrapper">
         <svg
-          aria-hidden={true}
+          aria-hidden
           className="logo-outer"
-          width="487"
-          height="484"
+          width="100%"
           viewBox="0 0 487 484"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -31,10 +42,9 @@ export default function HomePage() {
           />
         </svg>
         <svg
-          aria-hidden={true}
+          aria-hidden
           className="logo-inner"
-          width="228"
-          height="203"
+          width="42%"
           viewBox="0 0 228 203"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -57,7 +67,114 @@ export default function HomePage() {
           />
         </svg>
       </div>
-      hello
+      <div className="texts">
+        <h1 className="title">
+          <Badge>React</Badge>
+          <span className="text">FlatifyCSS</span>
+        </h1>
+        <p className="subtitle text-lg">
+          A collection of React flat design components, based on FlatifyCSS.
+        </p>
+        <div className="action">
+          <div className="package-input-wrapper">
+            <Input
+              readOnly
+              hasFloatingLabel
+              wrapperClassName="package-input"
+              label="Let's use it:"
+              value={packageCommand}
+              size="md"
+            />
+            <Button
+              aria-label="Copy the command"
+              buttonStyle={false}
+              onClick={handleCopy}
+            >
+              <svg
+                width="18"
+                height="22"
+                viewBox="0 0 18 22"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M13 17V19C13 19.5304 12.7893 20.0391 12.4142 20.4142C12.0391 20.7893 11.5304 21 11 21H3C2.46957 21 1.96086 20.7893 1.58579 20.4142C1.21071 20.0391 1 19.5304 1 19V8C1 7.46957 1.21071 6.96086 1.58579 6.58579C1.96086 6.21071 2.46957 6 3 6H5M5 3V15C5 15.5304 5.21071 16.0391 5.58579 16.4142C5.96086 16.7893 6.46957 17 7 17H15C15.5304 17 16.0391 16.7893 16.4142 16.4142C16.7893 16.0391 17 15.5304 17 15V6.242C17 5.97556 16.9467 5.71181 16.8433 5.46624C16.7399 5.22068 16.5885 4.99824 16.398 4.812L13.083 1.57C12.7094 1.20466 12.2076 1.00007 11.685 1H7C6.46957 1 5.96086 1.21071 5.58579 1.58579C5.21071 1.96086 5 2.46957 5 3Z"
+                  stroke="currentColor"
+                  fill="none"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </Button>
+            <Toast
+              autoClose
+              closeButton
+              show={showToast}
+              onClose={() => setShowToast(false)}
+              x="right"
+            >
+              Command copied successfully
+            </Toast>
+          </div>
+          <div className="flex-center">
+            <a
+              href={import.meta.env.VITE_FLATIFYCSS_URL}
+              target="_blank"
+              className="button bordered size-lg"
+            >
+              <svg
+                aria-hidden={true}
+                width={35}
+                height={35}
+                viewBox="0 0 293.09 291.89"
+              >
+                <path
+                  d="M283.71,145.92c-.5,75.92-61,137.52-138.57,137-37.29-.27-69.62-14-95.88-40.47C22,214.88,8.65,181.19,9.54,142.51,10.38,105.89,24,74.12,50.15,48.37,77.7,21.21,111.36,7.9,150,8.83c36.48.87,68.07,14.53,93.87,40.42S283.36,108.76,283.71,145.92Z"
+                  fill="#1585b9"
+                />
+                <path
+                  d="M146.48,275.83A130,130,0,0,1,16.59,145.72v-.11C16.64,73.83,75,15.83,147,15.83c71.46.06,129.54,58.48,129.46,130.25S218.17,275.83,146.48,275.83Z"
+                  fill="#1895d0"
+                />
+                <path
+                  d="M63.15,145.71c0-9.16.06-18.32,0-27.48a62.26,62.26,0,0,1,2.62-16.91A50.78,50.78,0,0,1,76.11,82.23a52.34,52.34,0,0,1,25-16.91,56.6,56.6,0,0,1,13.29-2.7c1.67-.11,3.34-.17,5-.17,17.48,0,35,.06,52.44,0a68.85,68.85,0,0,1,17.7,2.26,53,53,0,0,1,19.15,9.73,55,55,0,0,1,16.24,20.81c2.11,4.49,3.12,9.35,4.05,14.2a44.53,44.53,0,0,1,.73,8.43c0,17.88-.06,35.76,0,53.64a68.59,68.59,0,0,1-2,16.41A54.74,54.74,0,0,1,192.16,226a58.66,58.66,0,0,1-13.63,2.84c-2.08.16-4.14.17-6.21.18h-51.6a68.9,68.9,0,0,1-16.3-2A53.23,53.23,0,0,1,83,216.1a55.07,55.07,0,0,1-15-19.81c-2.11-4.5-3.13-9.35-4.07-14.2a44.12,44.12,0,0,1-.74-8.54Q63.15,159.62,63.15,145.71Z"
+                  fill="#1585b9"
+                />
+                <path
+                  d="M70.35,145.72V117.28A48.47,48.47,0,0,1,87,81.26a45.81,45.81,0,0,1,23.34-10.94,52.89,52.89,0,0,1,8.19-.7c19.08,0,38.16-.07,57.24,0a45.28,45.28,0,0,1,17.49,3.78,48,48,0,0,1,16.91,12,46.93,46.93,0,0,1,9.13,15,51.34,51.34,0,0,1,3,12.12,30.85,30.85,0,0,1,.26,3.81c0,19.6.08,39.2,0,58.8a45.08,45.08,0,0,1-3.76,17.37,47.7,47.7,0,0,1-12,16.92,47.12,47.12,0,0,1-14.87,9.16,54.71,54.71,0,0,1-11.64,3,25.2,25.2,0,0,1-3.68.27H115.52a38.47,38.47,0,0,1-10.3-1.76,47.24,47.24,0,0,1-16.48-8.42,47.91,47.91,0,0,1-12.5-14.76,49,49,0,0,1-5.35-15.48,36.44,36.44,0,0,1-.56-6.29C70.37,165.32,70.35,155.52,70.35,145.72Z"
+                  fill="#1caff5"
+                />
+                <path
+                  d="m189.65 145.29a8.07 8.07 0 0 1-2.26 5.41l-36 36a7.75 7.75 0 0 1-11 0q-18-17.92-35.89-35.89a7.77 7.77 0 0 1-0.08-11l0.08-0.08 35.89-35.91a7.78 7.78 0 0 1 11-0.15l0.15 0.15 35.72 35.8a8.22 8.22 0 0 1 2.39 5.67z"
+                  fill="#199cda"
+                />
+                <path
+                  d="M145.85,108.59c.49.07.7.45,1,.72L166,128.48c5.29,5.28,10.57,10.59,15.88,15.84.69.68.77,1,0,1.77q-17.55,17.53-35.08,35.13c-.67.67-1,.67-1.69,0q-17.52-17.6-35.11-35.13c-.64-.63-.75-1,0-1.69q17.59-17.57,35.18-35.18C145.39,109,145.63,108.83,145.85,108.59Z"
+                  fill="#76cff9"
+                />
+              </svg>
+            </a>
+            <a
+              href={import.meta.env.VITE_DOC_URL}
+              className="button start-button style-green size-lg"
+            >
+              Get Started
+              <svg
+                className="chevron"
+                height="18"
+                viewBox="0 0 8 12"
+                fill="none"
+              >
+                <path
+                  d="M2.66301 0.515991C3.08101 0.923991 7.16501 5.21099 7.16501 5.21099C7.27086 5.31313 7.35505 5.43554 7.41255 5.57093C7.47005 5.70631 7.49969 5.8519 7.49969 5.99899C7.49969 6.14608 7.47005 6.29167 7.41255 6.42706C7.35505 6.56244 7.27086 6.68486 7.16501 6.78699C7.16501 6.78699 3.08101 11.076 2.66301 11.482C2.24501 11.89 1.49301 11.918 1.04801 11.482C0.602005 11.048 0.567005 10.441 1.04801 9.90799L4.79501 5.99999L1.04801 2.09199C0.567005 1.55899 0.602005 0.950991 1.04801 0.515991C1.49301 0.0799915 2.24501 0.106991 2.66301 0.515991Z"
+                  fill="white"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
