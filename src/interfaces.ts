@@ -1,4 +1,4 @@
-import { ElementType } from 'react';
+import React, { ElementType } from 'react';
 
 export type Colors =
   | 'default'
@@ -58,6 +58,7 @@ export interface FlatifyGeneralProps {
   color?: Colors;
   'data-testid'?: string;
   id?: string;
+  ref?: React.MutableRefObject<any>;
   roundness?: Roundness;
   size?: Sizes;
   sx?: string;

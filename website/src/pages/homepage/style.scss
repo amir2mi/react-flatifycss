@@ -1,0 +1,20 @@
+.homepage {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.logo-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 40%;
+  transform: translateX(-50%);
+
+  .logo-inner {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    animation: flatify-spin 15s linear infinite;
+  }
+}
