@@ -59,12 +59,7 @@ export default function Toast(props: ToastProps) {
 
   // select the proper toasts wrapper element for ReactDOM portal
   const wrapperElement = document.querySelector(`.toast-wrapper.${x}.${y}`);
-  if (!wrapperElement) {
-    console.error(
-      `React FlatifyCSS: Could not find toasts wrapper element, to display toasts, you must place the <ToastsWrapper /> component somewhere in your application.`
-    );
-    return null;
-  }
+  if (!wrapperElement) return null;
 
   return (
     <>
