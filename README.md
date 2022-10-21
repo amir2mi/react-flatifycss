@@ -28,7 +28,7 @@
 
 [![npm version](https://img.shields.io/npm/v/react-flatifycss)](https://www.npmjs.com/package/react-flatifycss)
 
-# Getting stated
+# Getting started
 
 Start using React FlatifyCSS after installing packages and importing the style file, here is how.
 
