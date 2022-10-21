@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import { Meta, Story } from '@storybook/react';
 import { Input } from '../src';
+import InputPage from './input.mdx';
 
 const meta: Meta = {
   title: 'Forms/Input',
   component: Input,
   parameters: {
     controls: { expanded: true },
+    docs: {
+      page: InputPage,
+    },
   },
 };
 
@@ -86,6 +90,7 @@ const ValidationTemplate: Story = args => {
 export const Default = Template.bind({});
 export const FloatingLabel = Template.bind({});
 export const Number = Template.bind({});
+export const Range = Template.bind({});
 export const Password = Template.bind({});
 export const SearchBar = Template.bind({});
 export const States = StatesTemplate.bind({});
@@ -119,14 +124,26 @@ Number.args = {
   step: 10,
 };
 
+Range.args = {
+  ...Default.args,
+  label: 'Your age',
+  placeholder: 'Enter your age',
+  type: 'range',
+  min: 0,
+  max: 100,
+  step: 10,
+};
+
 Password.args = {
   ...Default.args,
+  type: 'password',
   togglePassword: true,
-  togglePasswordLabel: 'Toggle Password',
+  togglePasswordLabel: 'Show/Hide password',
 };
 
 SearchBar.args = {
   ...Default.args,
+  type: 'search',
   children: <button className="search-button" aria-label="Search"></button>,
   wrapperClassName: 'search-bar',
   theme: 'light',

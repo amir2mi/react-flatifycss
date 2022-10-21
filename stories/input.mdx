@@ -1,0 +1,84 @@
+import { Canvas, Story } from '@storybook/addon-docs';
+
+# Input
+
+<p class="component-doc-intro">
+  With a single component, you can create many different types of input.
+</p>
+<div class="funky-spacer" />
+
+## Default
+
+By structure the `input` HTML element will be in a wrapper, so `className` will be applied to `input`. To add class names to the wrapper, use `wrapperClassName` prop for `<Input />` component.
+
+<Canvas>
+  <Story id="forms-input--default" />
+</Canvas>
+
+## Floating label
+
+The label can be inside the input, just add the `hasFloatingLabel={true}` to `<Input />` component.
+
+<Canvas>
+  <Story id="forms-input--floating-label" />
+</Canvas>
+
+## Number
+
+Change the input type with `type` prop. For example, input with type `number` supports `min`, `max`, `step` and other related props.
+
+<Canvas>
+  <Story id="forms-input--number" />
+</Canvas>
+
+## Range
+
+Like input with the type of number, range also supports the props mentioned above.
+
+<Canvas>
+  <Story id="forms-input--range" />
+</Canvas>
+
+## Password
+
+Just set the `type` to `password`, you can use `togglePassword` prop to show the eye button to toggle the password visibility.  
+**Note that the password toggle button should have a valid label**, so set the `togglePasswordLabel="Show/Hide password"` to your `<Input />` component.
+
+<Canvas>
+  <Story id="forms-input--password" />
+</Canvas>
+
+## Search bar
+
+Add a button as children with specified class names and wrapper class names to have a search bar.
+
+<Canvas>
+  <Story id="forms-input--search-bar" />
+</Canvas>
+
+## States
+
+An `<Input />` component supports these four states with unique style, `default`, `valid`, `warning` and `invalid`.
+
+To hide the states icon, set the `stateIcon` to `false`.
+
+<Canvas>
+  <Story id="forms-input--states" />
+</Canvas>
+
+### A basic validation example
+
+Here's a simple validation example: based on user input, we change the `state⁣` and the helper message.  
+Also in this example, we've changed the default states color with `colorInvalid="#EC87C0"`, `colorValid="#A0CECB"` and `colorWarning="#8067B7"` props.
+
+<Canvas>
+  <Story id="forms-input--validation" />
+</Canvas>
+
+## Uncontrolled
+
+By default, if you do not set the `value` prop, the input value will be saved internally and you can get it from `onChange`, `onFocus` and `onBlur` everytime it is changed. To control the value yourself just set the `value` prop and get the value on change and update it yourself with your state.
+
+<Canvas>
+  <Story id="forms-input--uncontrolled" />
+</Canvas>
