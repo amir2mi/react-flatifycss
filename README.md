@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  <a target="_blank" href="https://react.flatifycss.com/">
+  <a target="_blank" href="https://react.flatifycss.com/playground/?path=/story/documents-introduction--page">
     Getting started
   </a>
 &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;   
