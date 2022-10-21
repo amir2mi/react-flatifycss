@@ -1,6 +1,6 @@
 <p align="center">
   <a target="_blank" href="https://react.flatifycss.com/">
-    <img src="https://raw.githubusercontent.com/amir2mi/flatifycss/master/website/static/img/logo.gif" alt="React FlatifyCSS" width="160" height="160">
+    <img src="https://raw.githubusercontent.com/amir2mi/react-flatifycss/master/website/public/react-flatifycss.gif" alt="React FlatifyCSS" width="160" height="160">
   </a>
 </p>
 
