@@ -31,7 +31,8 @@ Use the `<ToastIcon />` component inside `<Toast />`, its content would be a svg
 ## Close button
 
 To enable the close button for a toast, add the `closeButton` to `<Toast />` component.  
-Close button do not close the toast, however emit the `onClose` event.
+Close button do not close the toast, however emit the `onClose` event.  
+Note that close button does not have any text inside, so you should set a label with `closeButtonLabel` prop, that will be used by screen readers.
 
 <Canvas>
   <Story id="components-toast--close-button" />
