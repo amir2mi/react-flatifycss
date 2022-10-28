@@ -7250,10 +7250,10 @@ flat-cache@^3.0.4:
     flatted "^3.1.0"
     rimraf "^3.0.2"
 
-flatifycss@1.4.1:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/flatifycss/-/flatifycss-1.4.1.tgz#3994ac5fca6219407d703b37f197345295090503"
-  integrity sha512-prTr1HIkfXGjl0BIxw/sjTDG54c4VQ78UuDanKUMhVZJc7qkaaldeb03OzEGVYl0cbXBmIxhSuj0QYTXMQrabw==
+flatifycss@1.5.2:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/flatifycss/-/flatifycss-1.5.2.tgz#e2ee5d8d1af1e0209b877fe6d537adaf9c93c89a"
+  integrity sha512-t+biOLXag6oqk07JriRN+SVQAq7WNpIrFEt+JuKH0KwHPojweurOqI9ew5XU7+IL0IAyAMR5b7f8/woRg5dA3w==
 
 flatted@^2.0.0:
   version "2.0.2"
