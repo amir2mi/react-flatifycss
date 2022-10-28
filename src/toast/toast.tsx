@@ -12,6 +12,7 @@ export interface ToastProps
   autoClose?: boolean;
   children?: React.ReactNode;
   closeButton?: boolean;
+  closeButtonLabel?: String;
   duration?: number;
   onClose?: () => void;
   show?: boolean;
@@ -35,6 +36,7 @@ export default function Toast(props: ToastProps) {
     autoClose,
     children,
     closeButton,
+    closeButtonLabel = 'Close toast',
     duration = 3000,
     onClose,
     show,
@@ -85,7 +87,7 @@ export default function Toast(props: ToastProps) {
                 onClick={onClose}
                 type="button"
                 className="close-button"
-                aria-label="Close"
+                aria-label={closeButtonLabel}
               />
             )}
           </ToastWrapper>
