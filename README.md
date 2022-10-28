@@ -22,6 +22,10 @@
   <a target="_blank" href="https://github.com/amir2mi/react-flatifycss/issues">
     Issues
   </a>
+&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;   
+  <a target="_blank" href="https://flatifycss.com/">
+    FlatifyCSS
+  </a>
 </p>
 
 <hr>
