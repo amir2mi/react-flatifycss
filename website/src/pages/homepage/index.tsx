@@ -119,6 +119,7 @@ export default function HomePage() {
           </div>
           <div className="flex-center">
             <a
+              aria-label="Go to FlatifyCSS"
               href={import.meta.env.VITE_FLATIFYCSS_URL}
               target="_blank"
               className="button bordered size-lg"
