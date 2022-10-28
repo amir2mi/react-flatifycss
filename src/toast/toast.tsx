@@ -12,7 +12,7 @@ export interface ToastProps
   autoClose?: boolean;
   children?: React.ReactNode;
   closeButton?: boolean;
-  closeButtonLabel?: String;
+  closeButtonLabel?: string;
   duration?: number;
   onClose?: () => void;
   show?: boolean;
