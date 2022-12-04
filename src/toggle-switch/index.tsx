@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import clsx from 'clsx';
 import styled from 'styled-components';
 import { FlatifyGeneralProps } from '../interfaces';
@@ -45,66 +45,72 @@ const ToggleSwitchWrapper = styled.label`
   ${({ sx }: ToggleSwitchProps) => (sx ? sx : '')}
 `;
 
-export function ToggleSwitch(props: ToggleSwitchProps) {
-  const {
-    as,
-    checked,
-    children,
-    colorValid,
-    colorWarning,
-    colorInvalid,
-    id,
-    label,
-    isAfterLabel,
-    onChange,
-    size,
-    state,
-    sx,
-    type,
-    value,
-    ...rest
-  } = props;
+export const ToggleSwitch = forwardRef(
+  (
+    props: ToggleSwitchProps,
+    ref: React.LegacyRef<HTMLInputElement> | undefined
+  ) => {
+    const {
+      as,
+      checked,
+      children,
+      colorValid,
+      colorWarning,
+      colorInvalid,
+      id,
+      label,
+      isAfterLabel,
+      onChange,
+      size,
+      state,
+      sx,
+      type,
+      value,
+      ...rest
+    } = props;
 
-  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // if checked is passed toggle its bool, otherwise send event value
-    const isChecked =
-      typeof checked != 'undefined' ? !checked : e.target.checked;
-    onChange?.(e, isChecked, value);
-  };
+    const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      // if checked is passed toggle its bool, otherwise send event value
+      const isChecked =
+        typeof checked != 'undefined' ? !checked : e.target.checked;
+      onChange?.(e, isChecked, value);
+    };
 
-  return (
-    <ToggleSwitchWrapper
-      as={as}
-      id={id}
-      sx={sx}
-      colorValid={colorValid}
-      colorWarning={colorWarning}
-      colorInvalid={colorInvalid}
-      className={clsx(
-        'toggle-wrapper',
-        { [state + '']: state },
-        ...generalClasses(props)
-      )}
-    >
-      {isAfterLabel && label}
-      {isAfterLabel && children}
-      <input
-        {...rest}
-        role="switch"
-        type={type || 'checkbox'}
-        aria-checked={checked}
-        checked={checked}
-        value={value}
-        onChange={handleOnChange}
-      />
-      <span
-        aria-hidden={true}
-        className={clsx('check', {
-          'after-label': isAfterLabel,
-        })}
-      />
-      {!isAfterLabel && children}
-      {!isAfterLabel && label}
-    </ToggleSwitchWrapper>
-  );
-}
+    return (
+      <ToggleSwitchWrapper
+        as={as}
+        id={id}
+        sx={sx}
+        colorValid={colorValid}
+        colorWarning={colorWarning}
+        colorInvalid={colorInvalid}
+        className={clsx(
+          'toggle-wrapper',
+          { [state + '']: state },
+          ...generalClasses(props)
+        )}
+      >
+        {isAfterLabel && label}
+        {isAfterLabel && children}
+        <input
+          {...rest}
+          ref={ref}
+          role="switch"
+          type={type || 'checkbox'}
+          aria-checked={checked}
+          checked={checked}
+          value={value}
+          onChange={handleOnChange}
+        />
+        <span
+          aria-hidden={true}
+          className={clsx('check', {
+            'after-label': isAfterLabel,
+          })}
+        />
+        {!isAfterLabel && children}
+        {!isAfterLabel && label}
+      </ToggleSwitchWrapper>
+    );
+  }
+);

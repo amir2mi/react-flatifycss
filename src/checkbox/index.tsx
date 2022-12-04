@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import clsx from 'clsx';
 import styled from 'styled-components';
 import { FlatifyGeneralProps } from '../interfaces';
@@ -40,53 +40,59 @@ const CheckboxWrapper = styled.label`
   ${({ sx }: CheckboxProps) => (sx ? sx : '')}
 `;
 
-export function Checkbox(props: CheckboxProps) {
-  const {
-    as,
-    checked,
-    children,
-    colorValid,
-    colorWarning,
-    colorInvalid,
-    id,
-    onChange,
-    label,
-    size,
-    state,
-    sx,
-    ...rest
-  } = props;
+export const Checkbox = forwardRef(
+  (
+    props: CheckboxProps,
+    ref: React.LegacyRef<HTMLInputElement> | undefined
+  ) => {
+    const {
+      as,
+      checked,
+      children,
+      colorValid,
+      colorWarning,
+      colorInvalid,
+      id,
+      onChange,
+      label,
+      size,
+      state,
+      sx,
+      ...rest
+    } = props;
 
-  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // if checked is passed toggle its bool, otherwise send event value
-    const isChecked =
-      typeof checked != 'undefined' ? !checked : e.target.checked;
-    onChange?.(e, isChecked);
-  };
+    const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      // if checked is passed toggle its bool, otherwise send event value
+      const isChecked =
+        typeof checked != 'undefined' ? !checked : e.target.checked;
+      onChange?.(e, isChecked);
+    };
 
-  return (
-    <CheckboxWrapper
-      as={as}
-      id={id}
-      sx={sx}
-      colorValid={colorValid}
-      colorWarning={colorWarning}
-      colorInvalid={colorInvalid}
-      className={clsx(
-        'checkbox-wrapper',
-        { [state + '']: state },
-        ...generalClasses(props)
-      )}
-    >
-      <input
-        {...rest}
-        type="checkbox"
-        checked={checked}
-        onChange={handleOnChange}
-      />
-      <span aria-hidden={true} className="check" />
-      {children}
-      {label}
-    </CheckboxWrapper>
-  );
-}
+    return (
+      <CheckboxWrapper
+        as={as}
+        id={id}
+        sx={sx}
+        colorValid={colorValid}
+        colorWarning={colorWarning}
+        colorInvalid={colorInvalid}
+        className={clsx(
+          'checkbox-wrapper',
+          { [state + '']: state },
+          ...generalClasses(props)
+        )}
+      >
+        <input
+          {...rest}
+          ref={ref}
+          type="checkbox"
+          checked={checked}
+          onChange={handleOnChange}
+        />
+        <span aria-hidden={true} className="check" />
+        {children}
+        {label}
+      </CheckboxWrapper>
+    );
+  }
+);

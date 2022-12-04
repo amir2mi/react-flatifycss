@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Meta, Story } from '@storybook/react';
 import { Input } from '../src';
 import InputPage from './input.mdx';

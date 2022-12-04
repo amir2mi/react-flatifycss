@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, forwardRef } from 'react';
 import clsx from 'clsx';
 import styled from 'styled-components';
 import getUniqueID from '../utils/id-generator';
@@ -46,122 +46,125 @@ ${({ colorInvalid }: InputProps) =>
 ${({ sx }: InputProps) => (sx ? sx : '')}
 `;
 
-export function Input(props: InputProps) {
-  const {
-    as,
-    children,
-    colorValid,
-    colorWarning,
-    colorInvalid,
-    hasFloatingLabel,
-    id,
-    label,
-    name,
-    onChange,
-    onBlur,
-    onFocus,
-    size,
-    state,
-    stateIcon,
-    sx,
-    togglePassword,
-    togglePasswordLabel,
-    type,
-    value,
-    wrapperClassName,
-    ...rest
-  } = props;
+export const Input = forwardRef(
+  (props: InputProps, ref: React.LegacyRef<HTMLInputElement> | undefined) => {
+    const {
+      as,
+      children,
+      colorValid,
+      colorWarning,
+      colorInvalid,
+      hasFloatingLabel,
+      id,
+      label,
+      name,
+      onChange,
+      onBlur,
+      onFocus,
+      size,
+      state,
+      stateIcon,
+      sx,
+      togglePassword,
+      togglePasswordLabel,
+      type,
+      value,
+      wrapperClassName,
+      ...rest
+    } = props;
 
-  const [InputValue, setInputValue] = useState<
-    string | ReadonlyArray<string> | number | undefined
-  >('');
-  const [isFocused, setIsFocused] = useState<boolean>(false);
-  const [isPassword, setIsPassword] = useState<boolean>(true);
+    const [InputValue, setInputValue] = useState<
+      string | ReadonlyArray<string> | number | undefined
+    >('');
+    const [isFocused, setIsFocused] = useState<boolean>(false);
+    const [isPassword, setIsPassword] = useState<boolean>(true);
 
-  const inputId: string = id || getUniqueID(String(name) + String(label));
+    const inputId: string = id || getUniqueID(String(name) + String(label));
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-    setInputValue(value);
-    onChange?.(value, event);
-  };
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      const { value } = event.target;
+      setInputValue(value);
+      onChange?.(value, event);
+    };
 
-  const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-    setIsFocused(false);
-    onBlur?.(value, event);
-  };
+    const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+      const { value } = event.target;
+      setIsFocused(false);
+      onBlur?.(value, event);
+    };
 
-  const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-    setIsFocused(true);
-    onFocus?.(value, event);
-  };
+    const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
+      const { value } = event.target;
+      setIsFocused(true);
+      onFocus?.(value, event);
+    };
 
-  let inputType: string = type || 'text';
-  if (togglePassword) {
-    inputType = isPassword ? 'password' : 'text';
-  }
+    let inputType: string = type || 'text';
+    if (togglePassword) {
+      inputType = isPassword ? 'password' : 'text';
+    }
 
-  return (
-    <>
-      {label && !hasFloatingLabel ? (
-        <label
-          htmlFor={inputId}
-          className={clsx('form-label', ...generalClasses({ size }))}
-        >
-          {label}
-        </label>
-      ) : null}
-      <InputWrapper
-        as={as}
-        sx={sx}
-        colorValid={colorValid}
-        colorWarning={colorWarning}
-        colorInvalid={colorInvalid}
-        className={clsx(
-          'input-wrapper',
-          wrapperClassName,
-          {
-            'floating-label': hasFloatingLabel,
-            'toggle-password': togglePassword,
-            'visible-password': !isPassword,
-            [state + '']: state && stateIcon,
-          },
-          ...generalClasses({ size })
-        )}
-      >
-        <input
-          {...rest}
-          className={clsx(
-            'text-input',
-            {
-              'is-focused': isFocused,
-              [state + '']: state && !stateIcon,
-            },
-            ...generalClasses(props)
-          )}
-          id={inputId}
-          type={inputType}
-          value={value === undefined ? InputValue : value}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          onFocus={handleFocus}
-        />
-        {label && hasFloatingLabel ? (
-          <label htmlFor={inputId} className="form-label">
+    return (
+      <>
+        {label && !hasFloatingLabel ? (
+          <label
+            htmlFor={inputId}
+            className={clsx('form-label', ...generalClasses({ size }))}
+          >
             {label}
           </label>
         ) : null}
-        {togglePassword && (
-          <button
-            className="show-password-button"
-            aria-label={togglePasswordLabel}
-            onClick={() => setIsPassword(old => !old)}
+        <InputWrapper
+          as={as}
+          sx={sx}
+          colorValid={colorValid}
+          colorWarning={colorWarning}
+          colorInvalid={colorInvalid}
+          className={clsx(
+            'input-wrapper',
+            wrapperClassName,
+            {
+              'floating-label': hasFloatingLabel,
+              'toggle-password': togglePassword,
+              'visible-password': !isPassword,
+              [state + '']: state && stateIcon,
+            },
+            ...generalClasses({ size })
+          )}
+        >
+          <input
+            {...rest}
+            ref={ref}
+            className={clsx(
+              'text-input',
+              {
+                'is-focused': isFocused,
+                [state + '']: state && !stateIcon,
+              },
+              ...generalClasses(props)
+            )}
+            id={inputId}
+            type={inputType}
+            value={value === undefined ? InputValue : value}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            onFocus={handleFocus}
           />
-        )}
-        {children}
-      </InputWrapper>
-    </>
-  );
-}
+          {label && hasFloatingLabel ? (
+            <label htmlFor={inputId} className="form-label">
+              {label}
+            </label>
+          ) : null}
+          {togglePassword && (
+            <button
+              className="show-password-button"
+              aria-label={togglePasswordLabel}
+              onClick={() => setIsPassword(old => !old)}
+            />
+          )}
+          {children}
+        </InputWrapper>
+      </>
+    );
+  }
+);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import clsx from 'clsx';
 import styled from 'styled-components';
 import { FlatifyGeneralProps } from '../interfaces';
@@ -42,55 +42,58 @@ const RadioWrapper = styled.label`
   ${({ sx }: RadioProps) => (sx ? sx : '')}
 `;
 
-export function Radio(props: RadioProps) {
-  const {
-    as,
-    checked,
-    children,
-    colorValid,
-    colorWarning,
-    colorInvalid,
-    id,
-    label,
-    onChange,
-    size,
-    state,
-    sx,
-    value,
-    ...rest
-  } = props;
+export const Radio = forwardRef(
+  (props: RadioProps, ref: React.LegacyRef<HTMLInputElement> | undefined) => {
+    const {
+      as,
+      checked,
+      children,
+      colorValid,
+      colorWarning,
+      colorInvalid,
+      id,
+      label,
+      onChange,
+      size,
+      state,
+      sx,
+      value,
+      ...rest
+    } = props;
 
-  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // if checked is passed toggle its bool, otherwise send event value
-    const isChecked =
-      typeof checked != 'undefined' ? !checked : e.target.checked;
-    onChange?.(e, isChecked, value);
-  };
+    const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      // if checked is passed toggle its bool, otherwise send event value
+      const isChecked =
+        typeof checked != 'undefined' ? !checked : e.target.checked;
+      onChange?.(e, isChecked, value);
+    };
 
-  return (
-    <RadioWrapper
-      as={as}
-      id={id}
-      sx={sx}
-      colorValid={colorValid}
-      colorWarning={colorWarning}
-      colorInvalid={colorInvalid}
-      className={clsx(
-        'radio-wrapper',
-        { [state + '']: state },
-        ...generalClasses(props)
-      )}
-    >
-      <input
-        {...rest}
-        type="radio"
-        checked={checked}
-        value={value}
-        onChange={handleOnChange}
-      />
-      <span aria-hidden={true} className="check" />
-      {children}
-      {label}
-    </RadioWrapper>
-  );
-}
+    return (
+      <RadioWrapper
+        as={as}
+        id={id}
+        sx={sx}
+        colorValid={colorValid}
+        colorWarning={colorWarning}
+        colorInvalid={colorInvalid}
+        className={clsx(
+          'radio-wrapper',
+          { [state + '']: state },
+          ...generalClasses(props)
+        )}
+      >
+        <input
+          {...rest}
+          ref={ref}
+          type="radio"
+          checked={checked}
+          value={value}
+          onChange={handleOnChange}
+        />
+        <span aria-hidden={true} className="check" />
+        {children}
+        {label}
+      </RadioWrapper>
+    );
+  }
+);
