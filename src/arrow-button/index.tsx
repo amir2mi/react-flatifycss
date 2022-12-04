@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import clsx from 'clsx';
 import styled from 'styled-components';
 import { FlatifyGeneralProps } from '../interfaces';
@@ -17,22 +17,28 @@ const ArrowButtonWrapper = styled.button`
   ${({ sx }: ArrowButtonProps) => (sx ? sx : '')}
 `;
 
-export function ArrowButton(props: ArrowButtonProps) {
-  const { direction, isButton, isFlipped, label, ...rest } = props;
+export const ArrowButton = forwardRef(
+  (
+    props: ArrowButtonProps,
+    ref: React.LegacyRef<HTMLButtonElement> | undefined
+  ) => {
+    const { direction, isButton, isFlipped, label, ...rest } = props;
 
-  return (
-    <ArrowButtonWrapper
-      {...rest}
-      aria-label={label}
-      className={clsx(
-        'arrow-button',
-        {
-          button: isButton,
-          'arrow-flip': isFlipped,
-          ['arrow-' + direction]: direction,
-        },
-        ...generalClasses(props)
-      )}
-    />
-  );
-}
+    return (
+      <ArrowButtonWrapper
+        {...rest}
+        ref={ref}
+        aria-label={label}
+        className={clsx(
+          'arrow-button',
+          {
+            button: isButton,
+            'arrow-flip': isFlipped,
+            ['arrow-' + direction]: direction,
+          },
+          ...generalClasses(props)
+        )}
+      />
+    );
+  }
+);

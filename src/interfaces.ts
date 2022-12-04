@@ -58,7 +58,6 @@ export interface FlatifyGeneralProps {
   color?: Colors;
   'data-testid'?: string;
   id?: string;
-  ref?: React.MutableRefObject<any>;
   roundness?: Roundness;
   size?: Sizes;
   sx?: string;
