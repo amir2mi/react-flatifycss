@@ -144,6 +144,7 @@ export const Input = forwardRef(
               ...generalClasses(props)
             )}
             id={inputId}
+            name={name}
             type={inputType}
             value={value === undefined ? InputValue : value}
             onChange={handleChange}
