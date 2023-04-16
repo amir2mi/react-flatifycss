@@ -22,6 +22,7 @@ export * from './toggle-switch';
 // other components
 export * from './accordion';
 export * from './alert';
+export * from './element';
 export * from './breadcrumbs';
 export * from './dropdown';
 export * from './fireworks';
