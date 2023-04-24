@@ -161,6 +161,7 @@ export const Input = forwardRef(
               className="show-password-button"
               aria-label={togglePasswordLabel}
               onClick={() => setIsPassword(old => !old)}
+              type="button"
             />
           )}
           {children}
