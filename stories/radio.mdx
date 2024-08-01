@@ -14,7 +14,7 @@ To have a **controlled** radio (that you control the checked state yourself), ad
 To toggle, you can use the second argument of `onChange` event like so, `onChange={(e, checked) => setChecked(!checked)}`
 
 <Canvas>
-  <Story id="inputs-radio--default" />
+  <Story id="forms-radio--default" />
 </Canvas>
 
 ## Uncontrolled
@@ -22,7 +22,7 @@ To toggle, you can use the second argument of `onChange` event like so, `onChang
 You can specify the radio default value with `defaultChecked` prop, then toggle by using the `onChange` second argument.
 
 <Canvas>
-  <Story id="inputs-radio--uncontrolled" />
+  <Story id="forms-radio--uncontrolled" />
 </Canvas>
 
 ## Multiple
@@ -32,13 +32,13 @@ Here is how, each radio has its specific `name`, a `value` that is set to active
 `onChange={(e, checked, value) => setChecked(value)}`
 
 <Canvas>
-  <Story id="inputs-radio--multiple" />
+  <Story id="forms-radio--multiple" />
 </Canvas>
 
 ## Disabled
 
 <Canvas>
-  <Story id="inputs-radio--disabled" />
+  <Story id="forms-radio--disabled" />
 </Canvas>
 
 ## States
@@ -46,7 +46,7 @@ Here is how, each radio has its specific `name`, a `value` that is set to active
 All form elements have `valid`, `warning` and `invalid` states, you can determine with `state` prop.
 
 <Canvas>
-  <Story id="inputs-radio--states" />
+  <Story id="forms-radio--states" />
 </Canvas>
 
 ## Customized
@@ -54,5 +54,5 @@ All form elements have `valid`, `warning` and `invalid` states, you can determin
 Let's customize states of the radio styles with `colorInvalid`, `colorValid` and `colorWarning` props.
 
 <Canvas>
-  <Story id="inputs-radio--customized" />
+  <Story id="forms-radio--customized" />
 </Canvas>

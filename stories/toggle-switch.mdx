@@ -15,7 +15,7 @@ You can control the toggle switch checked state with `checked` prop, also get th
 `onChange={(e, checked) => setChecked(checked)}`
 
 <Canvas>
-  <Story id="inputs-toggle-switch--default" />
+  <Story id="forms-toggle-switch--default" />
 </Canvas>
 
 ## Uncontrolled
@@ -23,7 +23,7 @@ You can control the toggle switch checked state with `checked` prop, also get th
 You can have an uncontrolled toggle switch as well, just do not use the `checked` prop and get the checked state with `onChange(event, isChecked)` argument.
 
 <Canvas>
-  <Story id="inputs-toggle-switch--uncontrolled" />
+  <Story id="forms-toggle-switch--uncontrolled" />
 </Canvas>
 
 ## Radios
@@ -33,7 +33,7 @@ You have radios in form of toggle switches, give every radio a specific value li
  `onChange={(e, checked, value) => setChecked(value)}`
 
 <Canvas>
-  <Story id="inputs-toggle-switch--radios" />
+  <Story id="forms-toggle-switch--radios" />
 </Canvas>
 
 ## Uncontrolled radios
@@ -41,13 +41,13 @@ You have radios in form of toggle switches, give every radio a specific value li
 To have uncontrolled toggle switches that are radios technically, just do not set the `checked` prop. It is possible to set the default toggle to be checked with `defaultChecked` prop.
 
 <Canvas>
-  <Story id="inputs-toggle-switch--uncontrolled-radios" />
+  <Story id="forms-toggle-switch--uncontrolled-radios" />
 </Canvas>
 
 ## Disabled
 
 <Canvas>
-  <Story id="inputs-toggle-switch--disabled" />
+  <Story id="forms-toggle-switch--disabled" />
 </Canvas>
 
 ## After label
@@ -55,5 +55,5 @@ To have uncontrolled toggle switches that are radios technically, just do not se
 If you set the `isAfterLabel={true}` for `<ToggleSwitch />` component, the toggle element will come after label.
 
 <Canvas>
-  <Story id="inputs-toggle-switch--after-label" />
+  <Story id="forms-toggle-switch--after-label" />
 </Canvas>
